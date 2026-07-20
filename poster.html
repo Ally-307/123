@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宣传海报 - 2027考研数学三十讲可视化</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #1a1a2e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.poster-container {
+  margin-bottom: 60px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.poster-label {
+  color: #8899b4;
+  font-size: 14px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.tips {
+  color: #8899b4;
+  font-size: 14px;
+  text-align: center;
+  max-width: 600px;
+  margin: 20px auto 40px;
+  line-height: 1.8;
+}
+
+/* ===== Poster 1: Vertical (小红书/朋友圈) ===== */
+.poster-v {
+  width: 800px;
+  height: 1200px;
+  background: linear-gradient(180deg, #0b1120 0%, #0f1a2e 30%, #111d35 60%, #0b1120 100%);
+  position: relative;
+  overflow: hidden;
+  color: #e2e8f0;
+}
+.poster-v .bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+}
+.poster-v .bg-orb.orb1 { width: 500px; height: 500px; background: #38bdf8; top: -100px; right: -100px; }
+.poster-v .bg-orb.orb2 { width: 400px; height: 400px; background: #818cf8; bottom: 200px; left: -100px; }
+.poster-v .bg-orb.orb3 { width: 300px; height: 300px; background: #f472b6; bottom: -50px; right: 50px; }
+.poster-v .grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.poster-v .content-v { position: relative; z-index: 1; padding: 80px 60px; height: 100%; display: flex; flex-direction: column; }
+
+.poster-v .tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #fff; font-size: 16px; font-weight: 700;
+  padding: 10px 28px; border-radius: 30px;
+  align-self: flex-start; margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+.poster-v h1 {
+  font-size: 56px; font-weight: 900; line-height: 1.25; margin-bottom: 24px;
+  background: linear-gradient(135deg, #e2e8f0 20%, #38bdf8 50%, #818cf8 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.poster-v .subtitle {
+  font-size: 20px; color: #8899b4; line-height: 1.6; margin-bottom: 50px;
+}
+
+.poster-v .stats-row {
+  display: flex; gap: 40px; margin-bottom: 60px;
+}
+.poster-v .stat-item { text-align: center; }
+.poster-v .stat-num {
+  font-size: 48px; font-weight: 900;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.poster-v .stat-label { font-size: 15px; color: #8899b4; margin-top: 4px; }
+
+.poster-v .modules {
+  display: flex; gap: 20px; margin-bottom: 50px;
+}
+.poster-v .module-card {
+  flex: 1; background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; padding: 24px; text-align: center;
+}
+.poster-v .module-card .m-icon { font-size: 36px; margin-bottom: 8px; }
+.poster-v .module-card .m-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.poster-v .module-card .m-count { font-size: 13px; color: #8899b4; }
+
+.poster-v .feature-tags {
+  display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px;
+}
+.poster-v .feature-tag {
+  font-size: 14px; padding: 8px 18px;
+  border-radius: 20px; background: rgba(56,189,248,0.08);
+  border: 1px solid rgba(56,189,248,0.2);
+  color: #94a3b8;
+}
+
+.poster-v .footer-text {
+  margin-top: auto; font-size: 14px; color: #555;
+  text-align: center;
+}
+
+/* ===== Poster 2: Horizontal banner (知乎/微博) ===== */
+.poster-h {
+  width: 1200px;
+  height: 630px;
+  background: linear-gradient(135deg, #0b1120 0%, #0f1a2e 40%, #111d35 70%, #0b1120 100%);
+  position: relative;
+  overflow: hidden;
+  color: #e2e8f0;
+}
+.poster-h .bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+}
+.poster-h .orb1 { width: 400px; height: 400px; background: #38bdf8; top: -100px; right: -80px; }
+.poster-h .orb2 { width: 300px; height: 300px; background: #818cf8; bottom: -80px; left: 200px; }
+.poster-h .orb3 { width: 250px; height: 250px; background: #f472b6; top: 50%; right: 300px; }
+
+.poster-h .grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(56,189,248,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.poster-h .content-h {
+  position: relative; z-index: 1;
+  display: flex; height: 100%; padding: 60px 70px;
+  align-items: center; gap: 60px;
+}
+.poster-h .left { flex: 1; }
+.poster-h .right {
+  flex: 1; display: flex; flex-wrap: wrap; gap: 16px;
+  align-content: center;
+}
+
+.poster-h .tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  color: #fff; font-size: 14px; font-weight: 700;
+  padding: 8px 22px; border-radius: 20px;
+  margin-bottom: 24px; letter-spacing: 1px;
+}
+.poster-h h1 {
+  font-size: 42px; font-weight: 900; line-height: 1.3; margin-bottom: 16px;
+  background: linear-gradient(135deg, #e2e8f0 20%, #38bdf8 50%, #818cf8 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.poster-h .subtitle { font-size: 16px; color: #8899b4; margin-bottom: 32px; line-height: 1.6; }
+
+.poster-h .mini-stats { display: flex; gap: 32px; }
+.poster-h .mini-stat { text-align: center; }
+.poster-h .mini-stat .num {
+  font-size: 32px; font-weight: 900;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.poster-h .mini-stat .label { font-size: 12px; color: #8899b4; }
+
+.poster-h .right .feat-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 20px 24px;
+  width: calc(50% - 8px);
+}
+.poster-h .right .feat-card .fc-icon { font-size: 28px; margin-bottom: 6px; }
+.poster-h .right .feat-card .fc-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.poster-h .right .feat-card .fc-desc { font-size: 12px; color: #8899b4; line-height: 1.5; }
+
+/* ===== Poster 3: Square (头像/封面) ===== */
+.poster-s {
+  width: 800px;
+  height: 800px;
+  background: linear-gradient(180deg, #0b1120 0%, #111d35 100%);
+  position: relative;
+  overflow: hidden;
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.poster-s .bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.12;
+}
+.poster-s .orb1 { width: 350px; height: 350px; background: #38bdf8; top: -80px; right: -80px; }
+.poster-s .orb2 { width: 250px; height: 250px; background: #818cf8; bottom: -60px; left: -60px; }
+.poster-s .content-s { position: relative; z-index: 1; padding: 60px; }
+.poster-s .emoji-big { font-size: 80px; margin-bottom: 24px; }
+.poster-s h1 {
+  font-size: 48px; font-weight: 900; line-height: 1.3; margin-bottom: 20px;
+  background: linear-gradient(135deg, #e2e8f0 20%, #38bdf8 50%, #818cf8 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.poster-s .desc { font-size: 18px; color: #8899b4; margin-bottom: 40px; line-height: 1.6; }
+.poster-s .big-num {
+  font-size: 80px; font-weight: 900;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.poster-s .big-label { font-size: 16px; color: #8899b4; }
+</style>
+</head>
+<body>
+
+<div class="tips">
+提示：以下三张海报，直接在浏览器中截图即可用作分享配图<br>
+（推荐截图工具：系统截图、浏览器开发者工具截图、Snipaste等）
+</div>
+
+<!-- Poster 1: Vertical -->
+<div class="poster-label">海报一：竖版（适合 小红书 / 微信朋友圈）800 x 1200</div>
+<div class="poster-container">
+<div class="poster-v">
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+  <div class="grid-bg"></div>
+  <div class="content-v">
+    <div class="tag">2027 考研数学</div>
+    <h1>三十讲<br>核心知识<br>可视化图谱</h1>
+    <p class="subtitle">高等数学 · 线性代数 · 概率统计<br>200+ 核心考点 · 500+ 关键公式<br>六维深度解析，构建完整知识体系</p>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-num">30</div>
+        <div class="stat-label">知识讲次</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">学科模块</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">核心考点</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">公式方法</div>
+      </div>
+    </div>
+
+    <div class="modules">
+      <div class="module-card">
+        <div class="m-icon">📐</div>
+        <div class="m-name">高等数学</div>
+        <div class="m-count">第 1 - 16 讲</div>
+      </div>
+      <div class="module-card">
+        <div class="m-icon">📊</div>
+        <div class="m-name">线性代数</div>
+        <div class="m-count">第 17 - 23 讲</div>
+      </div>
+      <div class="module-card">
+        <div class="m-icon">🎲</div>
+        <div class="m-name">概率统计</div>
+        <div class="m-count">第 24 - 30 讲</div>
+      </div>
+    </div>
+
+    <div class="feature-tags">
+      <span class="feature-tag">知识框架</span>
+      <span class="feature-tag">公式汇总</span>
+      <span class="feature-tag">解题方法</span>
+      <span class="feature-tag">技巧提示</span>
+      <span class="feature-tag">常见误区</span>
+      <span class="feature-tag">常考题型</span>
+      <span class="feature-tag">KaTeX 公式</span>
+      <span class="feature-tag">全平台适配</span>
+      <span class="feature-tag">搜索定位</span>
+    </div>
+
+    <p class="footer-text">浏览器打开即用 | 暗色护眼主题 | 响应式设计 | 数一/二/三标注</p>
+  </div>
+</div>
+</div>
+
+<!-- Poster 2: Horizontal -->
+<div class="poster-label">海报二：横版（适合 知乎 / 微博 / 公众号封面）1200 x 630</div>
+<div class="poster-container">
+<div class="poster-h">
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
+  <div class="grid-bg"></div>
+  <div class="content-h">
+    <div class="left">
+      <div class="tag">2027 考研数学</div>
+      <h1>三十讲核心知识<br>可视化图谱</h1>
+      <p class="subtitle">覆盖高数、线代、概率三大模块全部考点<br>每讲六维解析：框架 + 公式 + 方法 + 技巧 + 误区 + 题型</p>
+      <div class="mini-stats">
+        <div class="mini-stat"><div class="num">30</div><div class="label">讲次</div></div>
+        <div class="mini-stat"><div class="num">3</div><div class="label">模块</div></div>
+        <div class="mini-stat"><div class="num">200+</div><div class="label">考点</div></div>
+        <div class="mini-stat"><div class="num">500+</div><div class="label">公式</div></div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="feat-card">
+        <div class="fc-icon">🔍</div>
+        <div class="fc-title">智能搜索</div>
+        <div class="fc-desc">输入关键词，一秒定位目标知识点</div>
+      </div>
+      <div class="feat-card">
+        <div class="fc-icon">📱</div>
+        <div class="fc-title">全平台适配</div>
+        <div class="fc-desc">电脑、平板、手机均可流畅使用</div>
+      </div>
+      <div class="feat-card">
+        <div class="fc-icon">📝</div>
+        <div class="fc-title">KaTeX 公式</div>
+        <div class="fc-desc">专业数学公式渲染，清晰美观</div>
+      </div>
+      <div class="feat-card">
+        <div class="fc-icon">🏷️</div>
+        <div class="fc-title">分类标注</div>
+        <div class="fc-desc">数一/数二/数三适用类别一目了然</div>
+      </div>
+      <div class="feat-card">
+        <div class="fc-icon">🌙</div>
+        <div class="fc-title">暗色护眼</div>
+        <div class="fc-desc">精心调校的暗色主题，久看不累</div>
+      </div>
+      <div class="feat-card">
+        <div class="fc-icon">⚡</div>
+        <div class="fc-title">即开即用</div>
+        <div class="fc-desc">单个HTML文件，浏览器打开即用</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Poster 3: Square -->
+<div class="poster-label">海报三：方版（适合 头像 / 视频封面）800 x 800</div>
+<div class="poster-container">
+<div class="poster-s">
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="content-s">
+    <div class="emoji-big">📐</div>
+    <h1>考研数学<br>三十讲可视化</h1>
+    <p class="desc">2027考研 · 高数 · 线代 · 概率<br>核心知识体系一页掌握</p>
+    <div class="big-num">30</div>
+    <div class="big-label">讲次 · 200+ 考点 · 500+ 公式</div>
+  </div>
+</div>
+</div>
+
+<div class="tips" style="margin-top:40px;">
+使用说明：<br>
+1. 在浏览器中打开此页面<br>
+2. 使用截图工具截取需要的海报（推荐 Snipaste、系统截图、或浏览器 F12 开发者工具截图）<br>
+3. 配合「社交分享文案.md」中的文案一起发布<br>
+4. 建议截图时隐藏浏览器工具栏，保持画面干净
+</div>
+
+</body>
+</html>

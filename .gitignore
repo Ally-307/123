@@ -1,0 +1,12 @@
+*.jpg
+*.png
+*.pdf
+*.pptx
+*.py
+ppt_slides/
+elec_sim_portfolio/
+jisuda-miniapp/
+restaurant-miniapp/
+.claude/
+*.md
+!README.md

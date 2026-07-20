@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2027考研数学 · 三十讲核心知识可视化</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  --bg: #0b1120; --card: #151d30; --card2: #1a2540; --border: #1e2d4a;
+  --text: #e2e8f0; --text2: #8899b4; --accent: #38bdf8; --accent2: #818cf8;
+  --accent3: #f472b6; --red: #f87171; --green: #4ade80; --orange: #fb923c;
+  --yellow: #facc15; --purple: #c084fc;
+  --grad1: linear-gradient(135deg, #38bdf8, #818cf8);
+  --grad2: linear-gradient(135deg, #f472b6, #fb923c);
+  --grad3: linear-gradient(135deg, #4ade80, #22d3ee);
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; display: flex; min-height: 100vh; }
+.sidebar { position: fixed; left:0; top:0; bottom:0; width: 260px; background: #0d1525; border-right: 1px solid var(--border); overflow-y: auto; z-index: 100; padding-bottom: 40px; }
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+.sidebar-header { padding: 24px 20px; border-bottom: 1px solid var(--border); position: sticky; top:0; background: #0d1525; z-index:1; }
+.sidebar-header h2 { font-size: 16px; font-weight: 700; background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.sidebar-header p { font-size: 12px; color: var(--text2); margin-top: 4px; }
+.sidebar-section { padding: 12px 20px 0; }
+.sidebar-section h3 { font-size: 11px; text-transform: uppercase; color: var(--accent); letter-spacing: 2px; margin-bottom: 8px; }
+.sidebar a { display: block; padding: 7px 16px; color: var(--text2); text-decoration: none; font-size: 13px; border-radius: 8px; transition: all 0.15s; border-left: 2px solid transparent; }
+.sidebar a:hover { color: var(--text); background: rgba(56,189,248,0.06); }
+.sidebar a.active { color: var(--accent); background: rgba(56,189,248,0.1); border-left-color: var(--accent); }
+.main { margin-left: 260px; flex:1; padding: 0; }
+.hero { padding: 80px 48px 60px; text-align: center; background: radial-gradient(ellipse at 30% 20%, rgba(56,189,248,0.1) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(129,140,248,0.08) 0%, transparent 50%), radial-gradient(ellipse at 50% 100%, rgba(244,114,182,0.06) 0%, transparent 40%); border-bottom: 1px solid var(--border); }
+.hero .badge { display: inline-block; background: var(--grad1); color: #fff; font-size: 13px; font-weight: 600; padding: 6px 20px; border-radius: 20px; margin-bottom: 24px; }
+.hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 800; background: linear-gradient(135deg, #e2e8f0, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; line-height: 1.3; }
+.hero .sub { font-size: 17px; color: var(--text2); max-width: 650px; margin: 0 auto 32px; }
+.hero-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+.hero-stat { text-align: center; }
+.hero-stat .num { font-size: 36px; font-weight: 800; background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-stat .label { font-size: 13px; color: var(--text2); margin-top: 4px; }
+.content { max-width: 1300px; margin: 0 auto; padding: 48px 48px 80px; }
+.part-divider { display: flex; align-items: center; gap: 16px; margin: 56px 0 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+.part-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.part-divider h2 { font-size: 24px; font-weight: 700; }
+.part-divider p { font-size: 14px; color: var(--text2); }
+.part-gaoshu .part-icon { background: rgba(56,189,248,0.15); }
+.part-gaoshu h2 { color: var(--accent); }
+.part-xiandai .part-icon { background: rgba(192,132,252,0.15); }
+.part-xiandai h2 { color: var(--purple); }
+.part-gailv .part-icon { background: rgba(244,114,182,0.15); }
+.part-gailv h2 { color: var(--accent3); }
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 20px; }
+.lecture-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; cursor: pointer; transition: all 0.25s; position: relative; overflow: hidden; }
+.lecture-card::before { content: ''; position: absolute; top:0; left:0; right:0; height: 3px; border-radius: 3px 3px 0 0; background: var(--grad1); opacity: 0; transition: opacity 0.25s; }
+.lecture-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
+.lecture-card:hover::before { opacity: 1; }
+.lecture-card .lec-num { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 8px; }
+.lecture-card .lec-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+.lecture-card .lec-desc { font-size: 13px; color: var(--text2); margin-bottom: 12px; line-height: 1.5; }
+.lecture-card .lec-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.lecture-card .lec-tag { font-size: 11px; padding: 3px 10px; border-radius: 12px; background: rgba(56,189,248,0.1); color: var(--accent); }
+.lecture-card .lec-tag.important { background: rgba(248,113,113,0.1); color: var(--red); }
+.lecture-card .lec-tag.formula { background: rgba(192,132,252,0.1); color: var(--purple); }
+.lecture-card .expand-hint { position: absolute; right: 20px; bottom: 20px; font-size: 20px; color: var(--text2); opacity: 0; transition: opacity 0.25s; }
+.lecture-card:hover .expand-hint { opacity: 0.6; }
+.detail-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); justify-content: center; align-items: flex-start; padding: 40px 20px; overflow-y: auto; }
+.detail-overlay.show { display: flex; }
+.detail-panel { background: var(--card2); border: 1px solid var(--border); border-radius: 24px; width: 100%; max-width: 900px; padding: 40px; position: relative; box-shadow: 0 24px 80px rgba(0,0,0,0.6); animation: slideUp 0.3s ease; }
+@keyframes slideUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+.detail-panel .close-btn { position: absolute; top: 20px; right: 20px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.detail-panel .close-btn:hover { background: rgba(248,113,113,0.2); border-color: var(--red); }
+.detail-header { margin-bottom: 32px; }
+.detail-header .lec-num { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 2px; }
+.detail-header h2 { font-size: 28px; font-weight: 800; margin: 8px 0; }
+.exam-tag { display: inline-block; font-size: 12px; padding: 3px 10px; border-radius: 10px; margin-right: 6px; }
+.exam-tag.s1 { background: rgba(56,189,248,0.15); color: var(--accent); }
+.exam-tag.s2 { background: rgba(192,132,252,0.15); color: var(--purple); }
+.exam-tag.s3 { background: rgba(244,114,182,0.15); color: var(--accent3); }
+.detail-body h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: var(--accent); padding-left: 12px; border-left: 3px solid var(--accent); }
+.detail-body .kp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.detail-body .kp-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.detail-body .kp-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+.detail-body .kp-item p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.formula-box { background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 16px 0; overflow-x: auto; }
+.formula-box .katex { font-size: 1.1em; }
+.method-list { list-style: none; padding: 0; }
+.method-list li { padding: 10px 16px; background: var(--card); border-radius: 10px; margin-bottom: 8px; font-size: 14px; display: flex; align-items: flex-start; gap: 10px; }
+.method-list li .step-num { width: 24px; height: 24px; border-radius: 50%; background: var(--grad1); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0; margin-top: 2px; }
+.tips-box { background: rgba(251,146,60,0.08); border: 1px solid rgba(251,146,60,0.25); border-radius: 12px; padding: 16px 20px; margin: 16px 0; font-size: 14px; color: var(--orange); }
+.tips-box::before { content: '💡 技巧提示：'; font-weight: 700; }
+.warn-box { background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.25); border-radius: 12px; padding: 16px 20px; margin: 16px 0; font-size: 14px; color: var(--red); }
+.warn-box::before { content: '⚠️ 常见误区：'; font-weight: 700; }
+.exam-box { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.25); border-radius: 12px; padding: 16px 20px; margin: 16px 0; font-size: 14px; color: var(--green); }
+.exam-box::before { content: '📝 常考题型：'; font-weight: 700; }
+.search-box { position: relative; max-width: 500px; margin: 0 auto 32px; }
+.search-box input { width: 100%; padding: 14px 20px 14px 48px; border-radius: 16px; background: var(--card); border: 1px solid var(--border); color: var(--text); font-size: 15px; outline: none; transition: border-color 0.2s; }
+.search-box input:focus { border-color: var(--accent); }
+.search-box .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--text2); }
+.progress-bar { height: 4px; background: var(--border); border-radius: 4px; margin-top: 8px; overflow: hidden; }
+.progress-bar .fill { height: 100%; border-radius: 4px; background: var(--grad1); transition: width 0.5s; }
+.footer { text-align: center; padding: 40px; color: var(--text2); font-size: 13px; border-top: 1px solid var(--border); }
+@media (max-width: 900px) {
+  .sidebar { display: none; } .main { margin-left: 0; }
+  .cards-grid { grid-template-columns: 1fr; } .detail-panel { padding: 24px; }
+  .detail-body .kp-grid { grid-template-columns: 1fr; }
+  .hero { padding: 48px 24px 40px; } .content { padding: 32px 16px 48px; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header"><h2>2027考研数学</h2><p>三十讲核心知识体系</p></div>
+  <div class="sidebar-section"><h3>高等数学（第1~16讲）</h3>
+    <a href="#lec1" onclick="scrollToCard('lec1')">第1讲 函数极限与连续</a>
+    <a href="#lec2" onclick="scrollToCard('lec2')">第2讲 导数与微分</a>
+    <a href="#lec3" onclick="scrollToCard('lec3')">第3讲 中值定理与导数应用</a>
+    <a href="#lec4" onclick="scrollToCard('lec4')">第4讲 不定积分</a>
+    <a href="#lec5" onclick="scrollToCard('lec5')">第5讲 定积分</a>
+    <a href="#lec6" onclick="scrollToCard('lec6')">第6讲 定积分的应用</a>
+    <a href="#lec7" onclick="scrollToCard('lec7')">第7讲 微分方程</a>
+    <a href="#lec8" onclick="scrollToCard('lec8')">第8讲 多元函数微分学</a>
+    <a href="#lec9" onclick="scrollToCard('lec9')">第9讲 二重积分</a>
+    <a href="#lec10" onclick="scrollToCard('lec10')">第10讲 三重积分</a>
+    <a href="#lec11" onclick="scrollToCard('lec11')">第11讲 曲线与曲面积分</a>
+    <a href="#lec12" onclick="scrollToCard('lec12')">第12讲 无穷级数</a>
+    <a href="#lec13" onclick="scrollToCard('lec13')">第13讲 空间解析几何</a>
+    <a href="#lec14" onclick="scrollToCard('lec14')">第14讲 方向导数与梯度</a>
+    <a href="#lec15" onclick="scrollToCard('lec15')">第15讲 傅里叶级数</a>
+    <a href="#lec16" onclick="scrollToCard('lec16')">第16讲 积分的对称性</a>
+  </div>
+  <div class="sidebar-section"><h3>线性代数（第17~23讲）</h3>
+    <a href="#lec17" onclick="scrollToCard('lec17')">第17讲 行列式</a>
+    <a href="#lec18" onclick="scrollToCard('lec18')">第18讲 矩阵及其运算</a>
+    <a href="#lec19" onclick="scrollToCard('lec19')">第19讲 向量与线性方程组</a>
+    <a href="#lec20" onclick="scrollToCard('lec20')">第20讲 特征值与特征向量</a>
+    <a href="#lec21" onclick="scrollToCard('lec21')">第21讲 二次型</a>
+    <a href="#lec22" onclick="scrollToCard('lec22')">第22讲 线性空间与变换</a>
+    <a href="#lec23" onclick="scrollToCard('lec23')">第23讲 线代综合</a>
+  </div>
+  <div class="sidebar-section"><h3>概率统计（第24~30讲）</h3>
+    <a href="#lec24" onclick="scrollToCard('lec24')">第24讲 随机事件与概率</a>
+    <a href="#lec25" onclick="scrollToCard('lec25')">第25讲 一维随机变量</a>
+    <a href="#lec26" onclick="scrollToCard('lec26')">第26讲 多维随机变量</a>
+    <a href="#lec27" onclick="scrollToCard('lec27')">第27讲 数字特征</a>
+    <a href="#lec28" onclick="scrollToCard('lec28')">第28讲 大数定律</a>
+    <a href="#lec29" onclick="scrollToCard('lec29')">第29讲 数理统计</a>
+    <a href="#lec30" onclick="scrollToCard('lec30')">第30讲 参数估计与检验</a>
+  </div>
+</aside>
+
+<div class="main">
+<section class="hero">
+  <div class="badge">2027 考研数学 · 基础夯实</div>
+  <h1>考研数学三十讲<br>核心知识体系可视化</h1>
+  <p class="sub">覆盖高等数学、线性代数、概率论与数理统计全部考点，构建完整知识框架</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">30</div><div class="label">知识讲次</div></div>
+    <div class="hero-stat"><div class="num">3</div><div class="label">学科模块</div></div>
+    <div class="hero-stat"><div class="num">200+</div><div class="label">核心考点</div></div>
+    <div class="hero-stat"><div class="num">500+</div><div class="label">关键公式与方法</div></div>
+  </div>
+  <div style="margin-top:32px;">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="搜索知识点、公式、题型..." oninput="filterCards()">
+    </div>
+  </div>
+</section>
+
+<div class="content">
+
+<div class="part-divider part-gaoshu" id="part-gaoshu">
+  <div class="part-icon">📐</div><div><h2>高等数学</h2><p>第 1~16 讲 · 考研数学占比最大模块（数一约56%、数二约78%、数三约56%）</p></div>
+</div>
+<div class="cards-grid" id="gaoshu-cards">
+
+<div class="lecture-card" id="lec1" onclick="openDetail('lec1')"><div class="lec-num">LECTURE 01</div><div class="lec-title">函数、极限与连续</div><div class="lec-desc">极限是微积分的基石。掌握七种未定式、洛必达法则、泰勒展开、无穷小替换四大计算工具。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag">极限计算</span><span class="lec-tag formula">洛必达</span><span class="lec-tag formula">泰勒</span></div><div class="progress-bar"><div class="fill" style="width:0%"></div></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec2" onclick="openDetail('lec2')"><div class="lec-num">LECTURE 02</div><div class="lec-title">导数与微分</div><div class="lec-desc">一元函数微分学基础，包括导数定义、求导法则、高阶导数、隐函数与参数方程求导。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag">求导法则</span><span class="lec-tag formula">链式法则</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec3" onclick="openDetail('lec3')"><div class="lec-num">LECTURE 03</div><div class="lec-title">微分中值定理与导数应用</div><div class="lec-desc">罗尔、拉格朗日、柯西、泰勒四大中值定理；单调性、极值、凹凸性、渐近线的判定。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag">中值定理</span><span class="lec-tag formula">泰勒公式</span><span class="lec-tag">极值问题</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec4" onclick="openDetail('lec4')"><div class="lec-num">LECTURE 04</div><div class="lec-title">不定积分</div><div class="lec-desc">原函数与不定积分的概念，换元积分法、分部积分法、有理函数积分三大计算方法。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag">积分法</span><span class="lec-tag formula">分部积分</span><span class="lec-tag formula">凑微分</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec5" onclick="openDetail('lec5')"><div class="lec-num">LECTURE 05</div><div class="lec-title">定积分</div><div class="lec-desc">定积分定义与性质、微积分基本定理（N-L公式）、变限积分求导、反常积分敛散性判别。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag formula">N-L公式</span><span class="lec-tag">变限积分</span><span class="lec-tag">反常积分</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec6" onclick="openDetail('lec6')"><div class="lec-num">LECTURE 06</div><div class="lec-title">定积分的应用</div><div class="lec-desc">微元法思想。求平面图形面积、旋转体体积、弧长、物理应用（功、水压力、引力）。</div><div class="lec-tags"><span class="lec-tag">几何应用</span><span class="lec-tag">物理应用</span><span class="lec-tag formula">微元法</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec7" onclick="openDetail('lec7')"><div class="lec-num">LECTURE 07</div><div class="lec-title">微分方程</div><div class="lec-desc">一阶方程（可分离变量、齐次、线性、伯努利）、可降阶高阶方程、二阶线性常系数方程。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag">常微分方程</span><span class="lec-tag formula">特征方程</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec8" onclick="openDetail('lec8')"><div class="lec-num">LECTURE 08</div><div class="lec-title">多元函数微分学</div><div class="lec-desc">偏导数、全微分、方向导数的计算；隐函数存在定理；多元函数极值与条件极值（拉格朗日乘数法）。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag">偏导数</span><span class="lec-tag">极值</span><span class="lec-tag formula">链式法则</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec9" onclick="openDetail('lec9')"><div class="lec-num">LECTURE 09</div><div class="lec-title">二重积分</div><div class="lec-desc">二重积分的概念、性质与计算。直角坐标与极坐标下的累次积分，积分次序交换。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag">极坐标变换</span><span class="lec-tag">积分次序</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec10" onclick="openDetail('lec10')"><div class="lec-num">LECTURE 10</div><div class="lec-title">三重积分</div><div class="lec-desc">三重积分的概念与计算，直角坐标、柱坐标、球坐标三种坐标系下的积分方法。（数一重点）</div><div class="lec-tags"><span class="lec-tag">数一重点</span><span class="lec-tag">柱坐标</span><span class="lec-tag formula">球坐标</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec11" onclick="openDetail('lec11')"><div class="lec-num">LECTURE 11</div><div class="lec-title">曲线积分与曲面积分</div><div class="lec-desc">第一类/第二类曲线积分、格林公式、曲面积分、高斯公式、斯托克斯公式。（数一重点）</div><div class="lec-tags"><span class="lec-tag">数一重点</span><span class="lec-tag formula">格林公式</span><span class="lec-tag formula">高斯公式</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec12" onclick="openDetail('lec12')"><div class="lec-num">LECTURE 12</div><div class="lec-title">无穷级数</div><div class="lec-desc">数项级数敛散性判别、幂级数收敛域与和函数、函数展开为幂级数、傅里叶级数入门。（数一、数三）</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag">幂级数</span><span class="lec-tag formula">收敛半径</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec13" onclick="openDetail('lec13')"><div class="lec-num">LECTURE 13</div><div class="lec-title">向量代数与空间解析几何</div><div class="lec-desc">向量运算、平面与直线方程、空间曲面与曲线、旋转曲面、二次曲面分类。（数一重点）</div><div class="lec-tags"><span class="lec-tag">数一重点</span><span class="lec-tag">空间几何</span><span class="lec-tag">二次曲面</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec14" onclick="openDetail('lec14')"><div class="lec-num">LECTURE 14</div><div class="lec-title">方向导数与梯度</div><div class="lec-desc">方向导数的定义与计算、梯度的概念与几何意义、梯度与方向导数的关系。（数一）</div><div class="lec-tags"><span class="lec-tag">数一专项</span><span class="lec-tag">梯度</span><span class="lec-tag formula">方向导数</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec15" onclick="openDetail('lec15')"><div class="lec-num">LECTURE 15</div><div class="lec-title">傅里叶级数</div><div class="lec-desc">周期函数的傅里叶展开、正弦级数与余弦级数、狄利克雷收敛定理。（数一）</div><div class="lec-tags"><span class="lec-tag">数一专项</span><span class="lec-tag formula">傅里叶系数</span><span class="lec-tag">狄利克雷</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec16" onclick="openDetail('lec16')"><div class="lec-num">LECTURE 16</div><div class="lec-title">积分的对称性方法</div><div class="lec-desc">利用积分区域的对称性与被积函数的奇偶性简化计算——贯穿定积分、重积分、线面积分的通用技巧。</div><div class="lec-tags"><span class="lec-tag important">通用技巧</span><span class="lec-tag">对称性</span><span class="lec-tag">奇偶性</span><span class="lec-tag formula">轮换对称</span></div><div class="expand-hint">→</div></div>
+
+</div>
+
+<div class="part-divider part-xiandai" id="part-xiandai">
+  <div class="part-icon">📊</div><div><h2>线性代数</h2><p>第 17~23 讲 · 考研数学约占比22%（数一/二/三均约34分）</p></div>
+</div>
+<div class="cards-grid" id="xiandai-cards">
+
+<div class="lecture-card" id="lec17" onclick="openDetail('lec17')"><div class="lec-num">LECTURE 17</div><div class="lec-title">行列式</div><div class="lec-desc">行列式的定义、性质、展开定理。数值型与抽象型行列式的计算，范德蒙行列式、爪型行列式。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag formula">展开定理</span><span class="lec-tag">范德蒙</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec18" onclick="openDetail('lec18')"><div class="lec-num">LECTURE 18</div><div class="lec-title">矩阵及其运算</div><div class="lec-desc">矩阵的基本运算、逆矩阵、伴随矩阵、矩阵方程、初等变换与初等矩阵、矩阵的秩。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag">求逆</span><span class="lec-tag formula">秩</span><span class="lec-tag">伴随矩阵</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec19" onclick="openDetail('lec19')"><div class="lec-num">LECTURE 19</div><div class="lec-title">向量组与线性方程组</div><div class="lec-desc">向量组的线性相关性、极大无关组、基础解系；齐次与非齐次方程组的解的结构与判定。</div><div class="lec-tags"><span class="lec-tag important">绝对核心</span><span class="lec-tag">线性相关</span><span class="lec-tag formula">基础解系</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec20" onclick="openDetail('lec20')"><div class="lec-num">LECTURE 20</div><div class="lec-title">特征值与特征向量</div><div class="lec-desc">特征值与特征向量的定义和计算、相似矩阵、矩阵可对角化的条件、实对称矩阵的正交对角化。</div><div class="lec-tags"><span class="lec-tag important">绝对核心</span><span class="lec-tag formula">对角化</span><span class="lec-tag">正交矩阵</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec21" onclick="openDetail('lec21')"><div class="lec-num">LECTURE 21</div><div class="lec-title">二次型</div><div class="lec-desc">二次型的矩阵表示、合同变换、配方法与正交变换化标准形、正定性判定、惯性定理。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag">标准形</span><span class="lec-tag formula">正定性</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec22" onclick="openDetail('lec22')"><div class="lec-num">LECTURE 22</div><div class="lec-title">线性空间与线性变换</div><div class="lec-desc">向量空间（线性空间）的公理化定义、基与维数、线性变换及其矩阵表示。（数一重点）</div><div class="lec-tags"><span class="lec-tag">数一重点</span><span class="lec-tag">基变换</span><span class="lec-tag formula">过渡矩阵</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec23" onclick="openDetail('lec23')"><div class="lec-num">LECTURE 23</div><div class="lec-title">线性代数综合</div><div class="lec-desc">各章节知识的综合运用：矩阵的秩与方程组的解、特征值与二次型的交叉命题、证明题技巧。</div><div class="lec-tags"><span class="lec-tag important">综合提分</span><span class="lec-tag">证明题</span><span class="lec-tag">跨章节</span></div><div class="expand-hint">→</div></div>
+
+</div>
+
+<div class="part-divider part-gailv" id="part-gailv">
+  <div class="part-icon">🎲</div><div><h2>概率论与数理统计</h2><p>第 24~30 讲 · 考研数学约占比22%（数一/数三均约34分，数二不考）</p></div>
+</div>
+<div class="cards-grid" id="gailv-cards">
+
+<div class="lecture-card" id="lec24" onclick="openDetail('lec24')"><div class="lec-num">LECTURE 24</div><div class="lec-title">随机事件与概率</div><div class="lec-desc">样本空间与事件、古典概型与几何概型、条件概率与独立性、全概率公式与贝叶斯公式。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag formula">贝叶斯</span><span class="lec-tag formula">全概率</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec25" onclick="openDetail('lec25')"><div class="lec-num">LECTURE 25</div><div class="lec-title">一维随机变量及其分布</div><div class="lec-desc">分布函数、离散型（二项、泊松、几何）与连续型（均匀、指数、正态）分布及其数字特征。</div><div class="lec-tags"><span class="lec-tag important">绝对核心</span><span class="lec-tag formula">正态分布</span><span class="lec-tag">分布函数</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec26" onclick="openDetail('lec26')"><div class="lec-num">LECTURE 26</div><div class="lec-title">多维随机变量及其分布</div><div class="lec-desc">联合分布、边缘分布、条件分布；随机变量的独立性；二维均匀分布与二维正态分布。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag">联合分布</span><span class="lec-tag">独立性</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec27" onclick="openDetail('lec27')"><div class="lec-num">LECTURE 27</div><div class="lec-title">随机变量的数字特征</div><div class="lec-desc">期望、方差、协方差、相关系数、矩的定义与计算；常见分布的数字特征汇总。</div><div class="lec-tags"><span class="lec-tag important">高频核心</span><span class="lec-tag formula">协方差</span><span class="lec-tag">相关系数</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec28" onclick="openDetail('lec28')"><div class="lec-num">LECTURE 28</div><div class="lec-title">大数定律与中心极限定理</div><div class="lec-desc">切比雪夫不等式、依概率收敛、大数定律、列维-林德伯格中心极限定理与棣莫弗-拉普拉斯定理。</div><div class="lec-tags"><span class="lec-tag">数一/三</span><span class="lec-tag formula">CLT</span><span class="lec-tag">切比雪夫</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec29" onclick="openDetail('lec29')"><div class="lec-num">LECTURE 29</div><div class="lec-title">数理统计的基本概念</div><div class="lec-desc">总体与样本、统计量、三大抽样分布（χ²、t、F）、正态总体的样本均值与样本方差的分布。</div><div class="lec-tags"><span class="lec-tag important">重要基础</span><span class="lec-tag formula">χ²分布</span><span class="lec-tag formula">t分布</span><span class="lec-tag formula">F分布</span></div><div class="expand-hint">→</div></div>
+
+<div class="lecture-card" id="lec30" onclick="openDetail('lec30')"><div class="lec-num">LECTURE 30</div><div class="lec-title">参数估计与假设检验</div><div class="lec-desc">矩估计与最大似然估计、估计量的评价标准（无偏性、有效性、相合性）、区间估计、假设检验。（数一）</div><div class="lec-tags"><span class="lec-tag important">高频大题</span><span class="lec-tag formula">MLE</span><span class="lec-tag">置信区间</span></div><div class="expand-hint">→</div></div>
+
+</div>
+
+</div><!-- /content -->
+
+<div class="footer">
+  <p>2027 考研数学三十讲 · 核心知识体系可视化 · 基于考研数学通用大纲整理</p>
+  <p style="margin-top:4px;font-size:11px;">知识点内容依据教育部考研数学考试大纲，独立整理编写</p>
+</div>
+
+</div><!-- /main -->
+
+<div class="detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeDetail()">
+  <div class="detail-panel" id="detailPanel"></div>
+</div>
+
+<script>
+const lectureData = {
+lec1:{num:'01',title:'函数、极限与连续',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 函数概念与特性</h4><p>单值函数vs多值函数（铅直画线法判定）；复合函数的三层结构；反函数（水平画线法判定）及求导公式：(f⁻¹)'(y)=1/f'(x)；隐函数由F(x,y)=0确定。</p></div>
+<div class="kp-item"><h4>2. 函数的四种特性</h4><p><strong>有界性</strong>：必须指明区间，常见有界函数sinx,cosx,arctanx。<strong>单调性</strong>：定义法（充要）、求导法（充分）。<strong>奇偶性</strong>：求导奇偶交替；复合"内偶则偶，内奇同外"。<strong>周期性</strong>：f(ax+b)周期T/|a|。</p></div>
+<div class="kp-item"><h4>3. 极限的概念与性质</h4><p>ε-δ定义的理解；左右极限存在且相等⇔极限存在。三大性质：<strong>唯一性</strong>（极限唯一）、<strong>局部有界性</strong>（极限存在则局部有界）、<strong>保号性</strong>（极限正⇒局部正）。</p></div>
+<div class="kp-item"><h4>4. 无穷小与无穷大</h4><p>无穷小的定义（极限为0）；无穷大（极限为∞）。无穷小的比较：高阶、同阶、等价、k阶。等价无穷小替换是极限计算的核心技巧！</p></div>
+<div class="kp-item"><h4>5. 七种未定式</h4><p>0/0、∞/∞、0·∞、∞−∞、1^∞、∞^0、0^0。每种未定式都有对应的处理套路。1^∞是最高频考点，套路是凑重要极限或取对数。</p></div>
+<div class="kp-item"><h4>6. 连续与间断</h4><p>连续三要素：f(x₀)有定义+极限存在+极限值=函数值。间断点四类：<strong>可去</strong>（极限存在但不等于函数值）、<strong>跳跃</strong>（左右极限存在但不相等）、<strong>无穷</strong>（极限为∞）、<strong>振荡</strong>（极限不存在且不为∞）。</p></div>
+<div class="kp-item"><h4>7. 闭区间上连续函数性质</h4><p>四大定理：<strong>最值定理</strong>（闭区间连续⇒必有最大最小值）、<strong>有界定理</strong>、<strong>介值定理</strong>、<strong>零点定理</strong>（f(a)f(b)<0⇒存在ξ使f(ξ)=0）。零点定理是证明题高频工具。</p></div>
+<div class="kp-item"><h4>8. 数列极限</h4><p>数列极限与函数极限的关系（海涅定理）。单调有界准则（单调有界数列必收敛）。夹逼准则。递推数列求极限的通用方法。</p></div>
+</div>
+
+<h3>二、极限计算七大方法</h3>
+<ul class="method-list">
+<li><span class="step-num">1</span><strong>四则运算法则</strong> — 和差积商的极限=极限的和差积商（前提：各自极限存在且分母极限不为0）。注意：存在+不存在=不存在；不存在+不存在=不确定。</li>
+<li><span class="step-num">2</span><strong>等价无穷小替换</strong> — 核心公式：sinx~x, tanx~x, arcsinx~x, arctanx~x, ln(1+x)~x, eˣ−1~x, (1+x)ᵃ−1~ax, 1−cosx~x²/2, aˣ−1~xlna。替换原则：乘除可换，加减慎换（仅在拆开后各自极限存在时可换）。</li>
+<li><span class="step-num">3</span><strong>洛必达法则</strong> — 0/0或∞/∞型，分子分母分别求导再求极限。三要素验证：①0/0或∞/∞型 ②分子分母在去心邻域可导 ③求导后的极限存在或为∞。</li>
+<li><span class="step-num">4</span><strong>泰勒公式展开</strong> — 在x=0处展开：eˣ=1+x+x²/2!+x³/3!+o(x³)；sinx=x−x³/3!+x⁵/5!+o(x⁵)；cosx=1−x²/2!+x⁴/4!+o(x⁴)；ln(1+x)=x−x²/2+x³/3+o(x³)；(1+x)ᵅ=1+αx+α(α−1)x²/2+o(x²)。展开到足够高阶！</li>
+<li><span class="step-num">5</span><strong>两个重要极限</strong> — lim(x→0)sinx/x=1；lim(x→∞)(1+1/x)ˣ=e（或lim(x→0)(1+x)^(1/x)=e）。</li>
+<li><span class="step-num">6</span><strong>夹逼准则</strong> — 找到上下界函数（常用放缩技巧），夹逼出极限值。适用于含n项和的数列极限、含取整函数的极限。</li>
+<li><span class="step-num">7</span><strong>单调有界准则</strong> — 单调有界数列必有极限。第一步证单调性（归纳法、作差法、比值法），第二步证有界性，第三步设极限为A解方程。</li>
+</ul>
+
+<h3>三、核心公式汇总</h3>
+<div class="formula-box">
+<strong>常用泰勒展开（x=0）：</strong><br>
+eˣ = 1 + x + x²/2! + x³/3! + x⁴/4! + o(x⁴)<br>
+sinx = x − x³/3! + x⁵/5! − x⁷/7! + o(x⁷)<br>
+cosx = 1 − x²/2! + x⁴/4! − x⁶/6! + o(x⁶)<br>
+ln(1+x) = x − x²/2 + x³/3 − x⁴/4 + o(x⁴)<br>
+arctanx = x − x³/3 + x⁵/5 − x⁷/7 + o(x⁷)<br>
+tanx = x + x³/3 + 2x⁵/15 + o(x⁵)<br>
+(1+x)ᵅ = 1 + αx + α(α−1)x²/2! + o(x²)
+</div>
+
+<div class="formula-box">
+<strong>等价无穷小汇总（x→0）：</strong><br>
+sinx~x, tanx~x, arcsinx~x, arctanx~x<br>
+ln(1+x)~x, eˣ−1~x, aˣ−1~x·lna<br>
+(1+x)ᵅ−1~αx, 1−cosx~x²/2<br>
+x−sinx~x³/6, tanx−x~x³/3, arcsinx−x~x³/6<br>
+x−ln(1+x)~x²/2, eˣ−1−x~x²/2
+</div>
+
+<div class="tips-box">1^∞型极限万能套路：若lim f(x)=1且lim g(x)=∞，则lim f(x)^g(x)=exp(lim g(x)[f(x)−1])。证明要点：利用e的连续性将对数取到极限号外。</div>
+
+<div class="warn-box">用洛必达前必须验证"0/0或∞/∞"条件！n阶可导只能用到(n−1)阶洛必达。等价无穷小替换仅在乘除法中随意使用，加减法中替换需要验证条件。</div>
+
+<div class="exam-box">极限计算题在考研中每年必考（选择/填空/解答）。重点掌握：①1^∞型极限 ②泰勒展开+等价替换的组合运用 ③含变限积分的极限 ④数列极限的夹逼/单调有界</div>
+`},lec2:{num:'02',title:'导数与微分',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 导数的定义</h4><p>f'(x₀)=lim(Δx→0)[f(x₀+Δx)−f(x₀)]/Δx = lim(x→x₀)[f(x)−f(x₀)]/(x−x₀)。左导数、右导数存在且相等⇔可导。可导⇒连续（逆不真，反例：|x|在x=0处）。</p></div>
+<div class="kp-item"><h4>2. 导数的几何意义</h4><p>f'(x₀)是曲线在点(x₀,f(x₀))处切线的斜率。切线方程：y−f(x₀)=f'(x₀)(x−x₀)。法线方程：y−f(x₀)=−1/f'(x₀)·(x−x₀)。</p></div>
+<div class="kp-item"><h4>3. 求导法则</h4><p>四则运算：(u±v)'=u'±v'；(uv)'=u'v+uv'；(u/v)'=(u'v−uv')/v²。复合函数链式法则：dy/dx=dy/du·du/dx。反函数求导：dx/dy=1/(dy/dx)。</p></div>
+<div class="kp-item"><h4>4. 隐函数与参数方程求导</h4><p>隐函数：方程两边同时对x求导，y视为x的函数。参数方程x=φ(t), y=ψ(t)：dy/dx=ψ'(t)/φ'(t)，d²y/dx²=[d(dy/dx)/dt]/φ'(t)。</p></div>
+<div class="kp-item"><h4>5. 高阶导数</h4><p>逐次求导法、莱布尼茨公式：(uv)^(n)=ΣC(n,k)u^(k)v^(n−k)。常见n阶导公式：sinx^(n)=sin(x+nπ/2)；cosx^(n)=cos(x+nπ/2)；e^(ax)的n阶导=a^n·e^(ax)。</p></div>
+<div class="kp-item"><h4>6. 微分</h4><p>dy=f'(x)dx。微分的几何意义：切线纵坐标的增量（线性主部）。一阶微分形式不变性：无论u是自变量还是中间变量，dy=f'(u)du形式不变。</p></div>
+</div>
+
+<h3>二、常考题型与方法</h3>
+<ul class="method-list">
+<li><span class="step-num">1</span><strong>导数定义题</strong> — 给出抽象函数在某点的极限关系，反推导数。核心：凑导数定义式，识别f'(x₀)=lim(h→0)[f(x₀+h)−f(x₀)]/h的各种变形。</li>
+<li><span class="step-num">2</span><strong>复合函数求导</strong> — 画树形图理清变量依赖关系。多元复合函数：∂z/∂x=(∂z/∂u)(∂u/∂x)+(∂z/∂v)(∂v/∂x)。</li>
+<li><span class="step-num">3</span><strong>隐函数求导</strong> — F(x,y)=0两边对x求导，解出y'。或直接用公式：y'=−F_x/F_y。</li>
+<li><span class="step-num">4</span><strong>参数方程求导</strong> — 一阶：dy/dx=y'(t)/x'(t)。二阶：d²y/dx²=[y''(t)x'(t)−y'(t)x''(t)]/[x'(t)]³。</li>
+<li><span class="step-num">5</span><strong>高阶导数计算</strong> — ①先求低阶找规律 ②利用莱布尼茨公式 ③利用已知n阶导公式 ④利用幂级数展开（系数关系）。</li>
+</ul>
+
+<div class="formula-box">
+<strong>必背高阶导数公式：</strong><br>
+(sinx)^(n) = sin(x + nπ/2)<br>
+(cosx)^(n) = cos(x + nπ/2)<br>
+(e^(ax))^(n) = a^n·e^(ax)<br>
+(ln(1+x))^(n) = (−1)^(n−1)·(n−1)!/(1+x)^n<br>
+(1/(ax+b))^(n) = (−1)^n·n!·a^n/(ax+b)^(n+1)<br>
+莱布尼茨：(uv)^(n) = Σ_{k=0}^n C(n,k)·u^(k)·v^(n−k)
+</div>
+
+<div class="tips-box">可导性判断：①先检查连续性（不连续必不可导）②检查左右导数是否相等（分段函数分段点）③定义法是最可靠的判断方法。</div>
+
+<div class="warn-box">f'(x₀)存在的充要条件是左右导数存在且相等。注意：f'_+(x₀)≠lim(x→x₀+)f'(x)，前者是右导数，后者是右极限导数，两者不是一回事！</div>
+
+<div class="exam-box">考研重点：①导数定义求抽象函数在某点的导数 ②分段函数分段点的可导性 ③参数方程的二阶导数 ④隐函数的二阶导数</div>
+`},
+
+lec3:{num:'03',title:'微分中值定理与导数应用',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 罗尔定理</h4><p><strong>条件</strong>：f(x)在[a,b]连续、(a,b)可导、f(a)=f(b)。<strong>结论</strong>：存在ξ∈(a,b)使f'(ξ)=0。关键是构造辅助函数使其满足f(a)=f(b)。</p></div>
+<div class="kp-item"><h4>2. 拉格朗日中值定理</h4><p><strong>条件</strong>：f(x)在[a,b]连续、(a,b)可导。<strong>结论</strong>：∃ξ∈(a,b)使f(b)−f(a)=f'(ξ)(b−a)。罗尔定理的推广。常用于证明不等式。</p></div>
+<div class="kp-item"><h4>3. 柯西中值定理</h4><p><strong>条件</strong>：f,g在[a,b]连续、(a,b)可导，g'(x)≠0。<strong>结论</strong>：∃ξ∈(a,b)使[f(b)−f(a)]/[g(b)−g(a)]=f'(ξ)/g'(ξ)。拉格朗日的参数方程形式。</p></div>
+<div class="kp-item"><h4>4. 泰勒中值定理</h4><p><strong>拉格朗日余项</strong>：R_n=f^(n+1)(ξ)/(n+1)!·(x−x₀)^(n+1)。<strong>皮亚诺余项</strong>：R_n=o((x−x₀)^n)。泰勒公式的本质是用多项式逼近函数。</p></div>
+<div class="kp-item"><h4>5. 单调性与极值</h4><p>f'(x)≥0⇒单调不减（严格单调需要f'(x)>0）。极值第一充分条件：f'(x)在x₀两侧变号。极值第二充分条件：f'(x₀)=0且f''(x₀)≠0（f''(x₀)>0极小，<0极大）。</p></div>
+<div class="kp-item"><h4>6. 凹凸性与拐点</h4><p>f''(x)>0⇒凹（下凸/∪）；f''(x)<0⇒凸（上凸/∩）。拐点是凹凸性改变的点，必要条件f''(x)=0或不存在，核心是f''变号。</p></div>
+<div class="kp-item"><h4>7. 渐近线</h4><p><strong>水平</strong>：lim(x→∞)f(x)=A⇒y=A。<strong>铅直</strong>：lim(x→a)f(x)=∞⇒x=a（找无定义点和分段点）。<strong>斜</strong>：k=lim(x→∞)f(x)/x，b=lim(x→∞)[f(x)−kx]（k≠0且k≠∞）。</p></div>
+<div class="kp-item"><h4>8. 曲率与曲率半径（数一/二）</h4><p>曲率K=|y''|/(1+y'²)^(3/2)，曲率半径ρ=1/K。曲率圆与曲率中心的计算。</p></div>
+</div>
+
+<h3>二、中值定理证明题核心方法</h3>
+<ul class="method-list">
+<li><span class="step-num">1</span><strong>构造辅助函数（核心技巧）</strong> — 证存在ξ使某个等式成立⇒构造F(x)使F'(ξ)为目标式，再用罗尔定理。常用构造方法：还原法、常数变易法、积分因子法。</li>
+<li><span class="step-num">2</span><strong>多中值问题</strong> — 一个等式含两个不同的ξ⇒通常需要两次应用中值定理。先在[a,b]上应用一次，再在子区间上应用一次。</li>
+<li><span class="step-num">3</span><strong>泰勒展开证明</strong> — 证高阶导数相关的不等式⇒在适当点展开f(x)，利用余项进行放缩。展开到合适阶数。</li>
+<li><span class="step-num">4</span><strong>拉格朗日证明不等式</strong> — 利用f(b)−f(a)=f'(ξ)(b−a)，根据ξ的范围对f'(ξ)进行估计。</li>
+</ul>
+
+<div class="formula-box">
+<strong>函数作图的关键步骤：</strong><br>
+①求定义域，判断奇偶性、周期性<br>
+②求f'(x)，确定单调区间和极值点<br>
+③求f''(x)，确定凹凸区间和拐点<br>
+④求渐近线（水平、铅直、斜）<br>
+⑤计算关键点函数值，绘制草图
+</div>
+
+<div class="tips-box">中值定理选型指南：含f'的等式→罗尔定理；证|f(b)−f(a)|≤M|b−a|→拉格朗日；含两个函数的增量比→柯西；涉及高阶导数→泰勒。构造辅助函数时，目标式=0即为F'(ξ)。</div>
+
+<div class="warn-box">罗尔定理三条件缺一不可！闭区间连续、开区间可导、端点函数值相等。端点值不相等时考虑拉格朗日或柯西。泰勒展开时注意选择合适的展开点和阶数。</div>
+
+<div class="exam-box">中值定理考证明题（10分大题）；单调极值渐近线考小题或应用题；函数作图考综合题。证明题是区分度最高的题型。</div>
+`},
+
+lec4:{num:'04',title:'不定积分',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 原函数与不定积分</h4><p>F'(x)=f(x)⇔F是f的原函数。∫f(x)dx=F(x)+C。不定积分与导数互为逆运算。所有原函数之间只差常数。</p></div>
+<div class="kp-item"><h4>2. 第一类换元法（凑微分）</h4><p>∫f[g(x)]·g'(x)dx = ∫f(u)du = F(u)+C。核心"把g'(x)dx凑成d[g(x)]"。常用凑微分：dx=d(x±a)，eˣdx=deˣ，1/x dx=dln|x|，cosxdx=dsinx等。</p></div>
+<div class="kp-item"><h4>3. 第二类换元法（变量代换）</h4><p>令x=φ(t)，dx=φ'(t)dt。三角代换：√(a²−x²)→x=asint；√(a²+x²)→x=atant；√(x²−a²)→x=asect。倒代换：x=1/t。整体根式代换。</p></div>
+<div class="kp-item"><h4>4. 分部积分法</h4><p>∫udv = uv − ∫vdu。"反对幂指三"口诀选u（优先级从高到低）：反三角函数、对数函数、幂函数、指数函数、三角函数。</p></div>
+<div class="kp-item"><h4>5. 有理函数积分</h4><p>假分式先化真分式，真分式分解为部分分式（分母一次因式→A/(x−a)；二次不可约因式→(Ax+B)/(x²+px+q)），再逐项积分。</p></div>
+<div class="kp-item"><h4>6. 三角有理式积分</h4><p>万能代换t=tan(x/2)（通用但繁琐）；R(sinx)cosxdx型→凑dsinx；R(cosx)sinxdx型→凑dcosx；R(tanx)dx型→凑dtanx。优先找凑微分路径！</p></div>
+</div>
+
+<h3>二、常用凑微分一览</h3>
+<div class="formula-box">
+xⁿdx = d(xⁿ⁺¹/(n+1))<br>
+eˣdx = deˣ；1/x dx = d(ln|x|)<br>
+cosxdx = d(sinx)；sinxdx = −d(cosx)<br>
+sec²xdx = d(tanx)；csc²xdx = −d(cotx)<br>
+1/√(1−x²) dx = d(arcsinx)<br>
+1/(1+x²) dx = d(arctanx)<br>
+dx/(x√(x²−1)) = d(arcsecx)
+</div>
+
+<h3>三、必背积分公式</h3>
+<div class="formula-box">
+<strong>三角函数积分：</strong><br>
+∫tanx dx = −ln|cosx| + C<br>
+∫cotx dx = ln|sinx| + C<br>
+∫secx dx = ln|secx + tanx| + C<br>
+∫cscx dx = ln|cscx − cotx| + C<br>
+<strong>有理函数积分：</strong><br>
+∫dx/(a²+x²) = (1/a)arctan(x/a) + C<br>
+∫dx/√(a²−x²) = arcsin(x/a) + C<br>
+∫dx/(x²−a²) = (1/2a)ln|(x−a)/(x+a)| + C<br>
+∫dx/√(x²±a²) = ln|x+√(x²±a²)| + C
+</div>
+
+<div class="tips-box">分部积分中"反对幂指三"的优先级本质上是：容易求导→不容易求积的作u。遇到eˣsinx型（指数×三角），取谁做u都行，关键是两次分部积分后移项解方程。</div>
+
+<div class="warn-box">不定积分一定要加常数C！换元后要换回原变量。分部积分的u和dv选择直接影响计算量，错误选择可能导致更复杂的积分。有理函数分解前务必化真分式。</div>
+
+<div class="exam-box">考研中不定积分一般不单独出大题，但作为定积分、微分方程的基础工具，熟练度直接影响后续所有积分的计算速度和准确率。</div>
+`},
+
+lec5:{num:'05',title:'定积分',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 定积分定义</h4><p>∫ₐᵇf(x)dx = lim(λ→0)Σf(ξᵢ)Δxᵢ（λ=maxΔxᵢ）。分割、取点、求和、取极限。可积条件：连续或有有限个第一类间断点（有界是可积的必要条件）。</p></div>
+<div class="kp-item"><h4>2. 牛顿-莱布尼茨公式</h4><p>∫ₐᵇf(x)dx = F(b)−F(a)，其中F'(x)=f(x)。连接定积分与不定积分的桥梁——微积分基本定理。使用前提：f(x)在[a,b]连续，F(x)在[a,b]连续且在(a,b)可导。</p></div>
+<div class="kp-item"><h4>3. 变限积分函数</h4><p>Φ(x)=∫ₐˣf(t)dt ⇒ Φ'(x)=f(x)。上限是函数时：d/dx∫ₐ^(u(x))f(t)dt = f(u(x))·u'(x)。这是考研超高频考点！</p></div>
+<div class="kp-item"><h4>4. 定积分的性质</h4><p>线性性；区间可加性；保号性（f(x)≥0⇒积分≥0）；估值定理；积分中值定理：∃ξ∈[a,b]使∫ₐᵇf(x)dx=f(ξ)(b−a)。</p></div>
+<div class="kp-item"><h4>5. 对称性简化</h4><p>奇函数在对称区间积分为0，偶函数为2倍半区间。周期函数：∫ₐ^(a+T)f(x)dx=∫₀ᵀf(x)dx。这是简化计算的最强工具。</p></div>
+<div class="kp-item"><h4>6. 反常积分</h4><p><strong>无穷限反常积分</strong>：∫ₐ^∞f(x)dx=lim(b→∞)∫ₐᵇf(x)dx。<strong>瑕积分</strong>（无界函数）：若lim(x→a+)f(x)=∞，则∫ₐᵇf(x)dx=lim(ε→0+)∫_{a+ε}ᵇf(x)dx。</p></div>
+<div class="kp-item"><h4>7. 反常积分敛散性判别</h4><p><strong>比较判别法</strong>：0≤f≤g，g收敛⇒f收敛。<strong>极限比较法</strong>：limf/g=l（0<l<∞时代数敛散性相同）。<strong>p-积分</strong>：∫₁^∞1/xᵖdx，p>1收敛；∫₀¹1/xᵖdx，p<1收敛。</p></div>
+<div class="kp-item"><h4>8. Γ函数（数一）</h4><p>Γ(s)=∫₀^∞x^(s−1)e^(−x)dx。递推：Γ(s+1)=sΓ(s)。Γ(n+1)=n!。Γ(1/2)=√π。</p></div>
+</div>
+
+<h3>二、变限积分求导类型</h3>
+<div class="formula-box">
+<strong>类型一：</strong>d/dx ∫ₐˣ f(t)dt = f(x)<br>
+<strong>类型二：</strong>d/dx ∫ₐ^(u(x)) f(t)dt = f(u(x))·u'(x)<br>
+<strong>类型三：</strong>d/dx ∫_{v(x)}^(u(x)) f(t)dt = f(u(x))u'(x) − f(v(x))v'(x)<br>
+<strong>类型四：</strong>被积函数含x时：d/dx ∫ₐˣ xf(t)dt，需将x提到积分号外或使用莱布尼茨公式：d/dx ∫_{a(x)}^{b(x)} f(x,t)dt = f(x,b(x))b'(x) − f(x,a(x))a'(x) + ∫_{a(x)}^{b(x)} ∂f/∂x dt
+</div>
+
+<div class="tips-box">定积分中的对称性是提分利器！先判断积分区间是否对称，再判断被积函数的奇偶性。对于复杂积分，优先考虑对称性简化。周期函数的定积分常用性质：∫₀^(nT)f(x)dx=n∫₀ᵀf(x)dx。</div>
+
+<div class="warn-box">N-L公式使用前提：f在[a,b]连续！若f有间断点，不能直接代公式。变限积分求导时，上限必须是x的连续可导函数。反常积分必须按定义取极限，不能直接代上限。</div>
+
+<div class="exam-box">考研重点题型：①变限积分函数求导（选择/填空高频）②反常积分敛散性判别 ③利用对称性和周期性简化定积分计算 ④积分中值定理的证明应用</div>
+`},lec6:{num:'06',title:'定积分的应用',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 微元法（元素法）</h4><p>核心思想：在微小局部以直代曲、以匀代变，得到微元表达式dQ=f(x)dx，再积分求和Q=∫ₐᵇf(x)dx。关键是正确写出微元dQ。</p></div>
+<div class="kp-item"><h4>2. 平面图形的面积</h4><p>直角坐标：S=∫ₐᵇ[f(x)−g(x)]dx（上下曲线之差）。极坐标：S=½∫r²(θ)dθ。参数方程：S=∫|y(t)x'(t)|dt。</p></div>
+<div class="kp-item"><h4>3. 旋转体体积</h4><p>绕x轴（圆盘法）：V=π∫ₐᵇf²(x)dx。绕y轴（柱壳法）：V=2π∫ₐᵇx·f(x)dx。两曲线间的旋转体体积：V=π∫ₐᵇ[f²(x)−g²(x)]dx。</p></div>
+<div class="kp-item"><h4>4. 已知截面面积求体积</h4><p>V=∫ₐᵇA(x)dx，其中A(x)是x处垂直于x轴的截面面积。适用于截面为规则图形（三角形、正方形、半圆等）的立体。</p></div>
+<div class="kp-item"><h4>5. 弧长</h4><p>直角坐标：s=∫ₐᵇ√(1+y'²)dx。参数方程：s=∫√(x'²+y'²)dt。极坐标：s=∫√(r²+r'²)dθ。</p></div>
+<div class="kp-item"><h4>6. 旋转曲面面积（数一/二）</h4><p>绕x轴旋转：S=2π∫ₐᵇ|f(x)|√(1+f'²(x))dx。绕y轴：S=2π∫ₐᵇ|x|√(1+f'²(x))dx。</p></div>
+<div class="kp-item"><h4>7. 物理应用</h4><p>变力做功：W=∫ₐᵇF(x)dx。水压力：P=ρg∫ₐᵇxh(x)dx（ρ液体密度，h(x)深度）。抽水做功：W=ρg∫ₐᵇA(h)·h·dh。引力、质心、转动惯量。</p></div>
+<div class="kp-item"><h4>8. 平均值</h4><p>函数在区间上的平均值：f̄=(1/(b−a))∫ₐᵇf(x)dx。积分中值定理就是平均值的体现。</p></div>
+</div>
+
+<h3>二、几何应用核心公式</h3>
+<div class="formula-box">
+<strong>面积公式汇总：</strong><br>
+直角坐标：S=∫ₐᵇ[f(x)−g(x)]dx 或 S=∫ₐᵇ[φ(y)−ψ(y)]dy<br>
+极坐标：S=½∫_α^β r²(θ)dθ<br>
+<strong>体积公式汇总：</strong><br>
+圆盘法（绕x轴）：V=π∫ₐᵇf²(x)dx<br>
+柱壳法（绕y轴）：V=2π∫ₐᵇx·f(x)dx<br>
+截面法：V=∫ₐᵇA(x)dx
+</div>
+
+<h3>三、常用解题步骤</h3>
+<ul class="method-list">
+<li><span class="step-num">1</span><strong>画图</strong> — 画出曲线的大致形状，确定积分区域。这是最关键的第一步。</li>
+<li><span class="step-num">2</span><strong>确定积分变量</strong> — 选择合适的积分变量（x还是y，直角还是极坐标），原则是使积分区域表达简洁。</li>
+<li><span class="step-num">3</span><strong>确定积分限</strong> — 求交点→确定上下限。注意分清上限和下限。</li>
+<li><span class="step-num">4</span><strong>写出积分表达式</strong> — 应用微元法写出正确的积分式。</li>
+<li><span class="step-num">5</span><strong>计算积分</strong> — 运用定积分计算技巧求解。</li>
+</ul>
+
+<div class="tips-box">绕y轴旋转用柱壳法往往比圆盘法简便（不用解x=f⁻¹(y)）。面积问题先画图再列式，搞清楚"谁在上、谁在下"或"谁在右、谁在左"。</div>
+<div class="warn-box">面积不是简单的∫(f−g)dx，必须确保f≥g！如果两条曲线交叉，需要分段处理。旋转体体积注意区分绕x轴还是y轴，公式不同。</div>
+<div class="exam-box">定积分应用每年必考，常以计算题形式出现。侧重考查：平面图形面积+旋转体体积的组合题、极坐标下的面积、已知截面面积求体积。</div>
+`},
+
+lec7:{num:'07',title:'微分方程',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 基本概念</h4><p>微分方程的阶=最高阶导数的阶数。通解=含n个独立任意常数的解（n=阶数）。特解=确定了常数的解。初始条件确定特解。</p></div>
+<div class="kp-item"><h4>2. 可分离变量方程</h4><p>g(y)dy=f(x)dx⇒两边积分。分离变量是最基础的解法，许多方程通过换元最终都化为此形式。</p></div>
+<div class="kp-item"><h4>3. 齐次方程</h4><p>dy/dx=φ(y/x)。令u=y/x⇒y=xu⇒dy/dx=u+x·du/dx，化为可分离变量：du/[φ(u)−u]=dx/x。</p></div>
+<div class="kp-item"><h4>4. 一阶线性方程</h4><p>y'+P(x)y=Q(x)。通解公式：y=e^(−∫Pdx)[∫Q·e^(∫Pdx)dx+C]。关键是识别P(x)和Q(x)。</p></div>
+<div class="kp-item"><h4>5. 伯努利方程</h4><p>y'+P(x)y=Q(x)yⁿ（n≠0,1）。令z=y^(1−n)，化为z的一阶线性方程。n=0就是一阶线性，n=1是可分离变量。</p></div>
+<div class="kp-item"><h4>6. 可降阶的高阶方程</h4><p>y^(n)=f(x)型→逐次积分；y''=f(x,y')型（缺y）→令p=y'⇒p'=f(x,p)；y''=f(y,y')型（缺x）→令p=y'⇒y''=p·dp/dy。</p></div>
+<div class="kp-item"><h4>7. 二阶常系数线性方程</h4><p><strong>齐次</strong>y''+py'+qy=0：特征方程r²+pr+q=0。Δ>0：y=C₁e^(r₁x)+C₂e^(r₂x)；Δ=0：y=(C₁+C₂x)e^(rx)；Δ<0：y=e^(αx)(C₁cosβx+C₂sinβx)。<strong>非齐次</strong>：y=y_h+y_p，待定系数法求y_p。</p></div>
+<div class="kp-item"><h4>8. 欧拉方程（数一）</h4><p>x²y''+pxy'+qy=f(x)。令x=eᵗ（或t=ln|x|），化为常系数线性方程。推广：x^n·y^(n)+...+y=f(x)都可用此方法。</p></div>
+</div>
+
+<h3>二、非齐次特解待定系数法</h3>
+<div class="formula-box">
+<strong>类型一：f(x)=Pₘ(x)e^(λx)</strong><br>
+特解形式：y*=xᵏ·Qₘ(x)e^(λx)<br>
+k = λ作为特征根的重数（0、1、2）<br>
+Qₘ(x)是与Pₘ(x)同次的多项式（待定系数）
+
+<strong>类型二：f(x)=e^(λx)[Pₘ(x)cosβx+Qₙ(x)sinβx]</strong><br>
+特解形式：y*=xᵏe^(λx)[Aₘ(x)cosβx+Bₘ(x)sinβx]<br>
+k = λ+iβ作为特征根的重数（0或1）<br>
+取m=max(m,n)，Aₘ,Bₘ为m次多项式
+</div>
+
+<h3>三、解题流程</h3>
+<ul class="method-list">
+<li><span class="step-num">1</span><strong>判断方程类型</strong> — 一阶/高阶？线性/非线性？常系数/变系数？齐次/非齐次？</li>
+<li><span class="step-num">2</span><strong>选择对应解法</strong> — 一阶：可分离→齐次→线性→伯努利；高阶：可降阶→常系数线性。</li>
+<li><span class="step-num">3</span><strong>求通解</strong> — 对应方法求出含任意常数的通解（齐次通解+非齐次特解）。</li>
+<li><span class="step-num">4</span><strong>代入初始条件</strong> — 确定任意常数，得特解。</li>
+</ul>
+
+<div class="tips-box">二阶常系数非齐次方程求特解时，先判断f(x)属于哪种类型，再根据特征根确定k（λ与特征根的关系是核心）。有叠加原理：若f(x)=f₁(x)+f₂(x)，则y_p=y_p₁+y_p₂。</div>
+<div class="warn-box">一阶线性方程的通解公式中，负号容易漏！注意是e^(−∫Pdx)。伯努利方程要先除以yⁿ再换元。待定系数法求特解时，多项式的次数不能写低了。</div>
+<div class="exam-box">微分方程是考研必考大题（通常10分）。重点：一阶线性方程+二阶常系数线性方程的组合；由解反求方程；微分方程与定积分、级数的综合题。</div>
+`},
+
+lec8:{num:'08',title:'多元函数微分学',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 偏导数</h4><p>∂f/∂x=lim(Δx→0)[f(x₀+Δx,y₀)−f(x₀,y₀)]/Δx。固定其他变量，对某一变量求导。偏导数存在不能推出连续（与一元不同！）。</p></div>
+<div class="kp-item"><h4>2. 全微分</h4><p>dz=(∂z/∂x)dx+(∂z/∂y)dy。可微的充分条件：偏导数连续。可微的必要条件：偏导数存在。可微⇒连续且方向导数存在（与一元不同）。</p></div>
+<div class="kp-item"><h4>3. 链式法则（多元复合求导）</h4><p>z=f(u,v), u=u(x,y), v=v(x,y)→∂z/∂x=(∂z/∂u)(∂u/∂x)+(∂z/∂v)(∂v/∂x)。画树形图！每个路径对应一项。</p></div>
+<div class="kp-item"><h4>4. 隐函数求导</h4><p>F(x,y)=0→dy/dx=−Fₓ/F_y。F(x,y,z)=0→∂z/∂x=−Fₓ/F_z。雅可比行列式∂(F,G)/∂(u,v)用于方程组确定的隐函数。</p></div>
+<div class="kp-item"><h4>5. 方向导数</h4><p>∂f/∂l=fₓcosα+f_ycosβ+f_zcosγ。方向导数=梯度在方向上的投影。沿梯度方向增长最快。</p></div>
+<div class="kp-item"><h4>6. 梯度</h4><p>grad f=(fₓ, f_y, f_z)。梯度方向是函数增长最快的方向。∇f⟂等值面（线）。</p></div>
+<div class="kp-item"><h4>7. 无条件极值</h4><p>驻点：fₓ=f_y=0。判别式：A=fₓₓ, B=fₓ_y, C=f_yy。AC−B²>0且A>0⇒极小；AC−B²>0且A<0⇒极大；AC−B²<0⇒非极值；AC−B²=0⇒无法判定。</p></div>
+<div class="kp-item"><h4>8. 条件极值（拉格朗日乘数法）</h4><p>目标f(x,y,z)在约束φ(x,y,z)=0下的极值。构造L(x,y,z,λ)=f(x,y,z)+λφ(x,y,z)。解∂L/∂x=∂L/∂y=∂L/∂z=∂L/∂λ=0。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>全微分与近似计算：</strong><br>
+Δz≈dz = fₓ(x₀,y₀)Δx + f_y(x₀,y₀)Δy<br>
+f(x₀+Δx, y₀+Δy) ≈ f(x₀,y₀) + fₓ(x₀,y₀)Δx + f_y(x₀,y₀)Δy
+
+<strong>隐函数求导公式：</strong><br>
+F(x,y)=0 ⇒ dy/dx = −Fₓ/F_y<br>
+F(x,y,z)=0 ⇒ ∂z/∂x = −Fₓ/F_z, ∂z/∂y = −F_y/F_z
+</div>
+
+<div class="tips-box">"偏导连续⇒可微⇒偏导存在+连续+方向导数存在"是单向推导链。判断可微性的三步法：①检查偏导是否存在②若存在，验Δz−dz是否为√(Δx²+Δy²)的高阶无穷小（即极限是否为0）。</div>
+<div class="warn-box">多元函数"偏导数存在"推不出"连续"（与一元不同！）。典型反例：f(x,y)=xy/(x²+y²)在(0,0)处偏导存在但不连续。多元函数的极值点一定是驻点，但驻点不一定是极值点（可能是鞍点）。</div>
+<div class="exam-box">必考题型：①复合函数偏导数计算（链式法则）②隐函数求偏导 ③多元函数极值（无条件+条件）④方向导数与梯度的计算（数一）。条件极值的大题几乎每年都考。</div>
+`},
+
+lec9:{num:'09',title:'二重积分',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 二重积分的概念</h4><p>∬_D f(x,y)dσ=lim Σf(ξᵢ,ηᵢ)Δσᵢ。几何意义：曲顶柱体的（带符号）体积（被积函数≥0时为体积，<0时为负体积）。</p></div>
+<div class="kp-item"><h4>2. 二重积分的性质</h4><p>线性性、区域可加性、保号性。对称性是最重要的简化工具：域关于x轴对称且f关于y为奇⇒积分为0。</p></div>
+<div class="kp-item"><h4>3. 直角坐标计算</h4><p>X型：∬f(x,y)dxdy=∫ₐᵇdx∫_{y₁(x)}^{y₂(x)}f(x,y)dy。Y型：∬f(x,y)dxdy=∫_c^ddy∫_{x₁(y)}^{x₂(y)}f(x,y)dx。</p></div>
+<div class="kp-item"><h4>4. 极坐标计算</h4><p>∬_D f(x,y)dxdy=∫dθ∫f(rcosθ,rsinθ)·r dr。关键时刻：区域为圆/圆环/扇形，或被积函数含x²+y²。别忘了r！</p></div>
+<div class="kp-item"><h4>5. 积分次序交换</h4><p>先画出积分区域→根据区域重新确定积分次序→写出新的积分限。有时交换次序能将"不可积"变成"可积"。</p></div>
+<div class="kp-item"><h4>6. 坐标变换（雅可比行列式）</h4><p>x=x(u,v), y=y(u,v)→dxdy=|∂(x,y)/∂(u,v)|dudv=|J|dudv。极坐标就是J=r的特例。一般坐标变换用于椭圆区域。</p></div>
+<div class="kp-item"><h4>7. 无界区域上的二重积分</h4><p>广义二重积分按定义取极限处理，判别敛散性。常见：∫∫e^(−x²−y²)dxdy在全平面的积分=π（用极坐标可证）。</p></div>
+<div class="kp-item"><h4>8. 二重积分的应用</h4><p>体积V=∬_D f(x,y)dxdy；曲面面积A=∬_D √(1+fₓ²+f_y²)dxdy；平面薄片质量M=∬_D ρ(x,y)dxdy；质心坐标。</p></div>
+</div>
+
+<h3>二、积分次序交换技巧</h3>
+<ul class="method-list">
+<li><span class="step-num">1</span><strong>画积分区域</strong> — 根据给定的积分限在坐标平面上画出区域。注意：内层积分限通常是外层积分变量的函数。</li>
+<li><span class="step-num">2</span><strong>判断区域类型</strong> — 是X型还是Y型？或者需要拆分成多个子区域？</li>
+<li><span class="step-num">3</span><strong>写出新次序的积分限</strong> — X型→Y型（或相反），把原来的上下限关系反过来表达。</li>
+<li><span class="step-num">4</span><strong>验证</strong> — 确保新次序下区域描述正确。</li>
+</ul>
+
+<div class="formula-box">
+<strong>极坐标变换</strong>：x=rcosθ, y=rsinθ, dxdy=rdrdθ<br>
+<strong>一般坐标变换</strong>：dxdy=|∂(x,y)/∂(u,v)|dudv=|x_u·y_v−x_v·y_u|dudv<br>
+<strong>常用雅可比</strong>：椭圆域x²/a²+y²/b²≤1→x=arcosθ, y=brsinθ, J=abr
+</div>
+
+<div class="tips-box">选择积分次序的核心原则：①哪个次序的积分限容易表达 ②哪个次序积分更好算（先积的那个变量要好积）。当一种次序积分困难时，果断交换次序。</div>
+<div class="warn-box">极坐标下面积元素是r·dr·dθ，初学者最容易忘记r！积分限使用外层积分限为常数、内层积分限是外层变量函数的原则。判断X型还是Y型：画图后看谁的范围是常数。</div>
+<div class="exam-box">二重积分是每年必考题型（计算大题），常考：①直角坐标与极坐标的转换计算 ②积分次序交换 ③利用对称性简化计算。对称性+极坐标是高分组合。</div>
+`},
+
+lec10:{num:'10',title:'三重积分',exams:{s1:true,s2:false,s3:false},content:`
+<h3>一、核心知识框架（数一）</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 三重积分的概念</h4><p>∭_Ω f(x,y,z)dv=lim Σf(ξᵢ,ηᵢ,ζᵢ)Δvᵢ。几何意义：四维空间中超曲面的"体积"（抽象）。物理意义：空间物体的质量。</p></div>
+<div class="kp-item"><h4>2. 直角坐标——投影法（先一后二）</h4><p>向xOy面投影→∭f dv=∬_{D_xy}[∫_{z₁(x,y)}^{z₂(x,y)}f dz]dxdy。适用于区域上下表面是z的函数。</p></div>
+<div class="kp-item"><h4>3. 直角坐标——截面法（先二后一）</h4><p>用z=常数截立体→∭f dv=∫dz∬_{D_z}f dxdy。适用于截面面积易求或f只与z有关。</p></div>
+<div class="kp-item"><h4>4. 柱坐标计算</h4><p>x=rcosθ, y=rsinθ, z=z。dv=rdrdθdz。适用于区域为圆柱体、旋转抛物面、圆锥体等（z轴方向对称）。</p></div>
+<div class="kp-item"><h4>5. 球坐标计算</h4><p>x=ρsinφcosθ, y=ρsinφsinθ, z=ρcosφ。dv=ρ²sinφ dρdφdθ。适用于区域为球体、锥体等（球对称或原点对称）。</p></div>
+<div class="kp-item"><h4>6. 对称性方法</h4><p>区域关于坐标面对称+被积函数关于对应变量为奇⇒积分为0。轮换对称性：若Ω中等地位变量可互换，则∭f(x)dv=∭f(y)dv=∭f(z)dv。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>柱坐标变换</strong>：x=rcosθ, y=rsinθ, z=z, dv=rdrdθdz<br>
+<strong>球坐标变换</strong>：x=ρsinφcosθ, y=ρsinφsinθ, z=ρcosφ, dv=ρ²sinφdρdφdθ<br>
+ρ≥0, 0≤φ≤π, 0≤θ≤2π
+
+<strong>常用区域的坐标选择：</strong><br>
+圆柱体/柱面：柱坐标（r,θ,z）<br>
+球体/球壳：球坐标（ρ,φ,θ）<br>
+锥体：柱坐标或球坐标<br>
+长方体/一般区域：直角坐标
+</div>
+
+<div class="tips-box">截面法vs投影法的选择：当被积函数只含一个变量且截面面积有规律时，用截面法可以大幅简化。判断标准：被积函数f(z)与截面面积D_z有简单关系时优先截面法。</div>
+<div class="warn-box">球坐标中φ是从z轴正向开始量（0≤φ≤π），不是从xOy面！球坐标体积元素ρ²sinφ不要漏掉sinφ。变量范围：ρ由0到球面方程，φ由0到π，θ由0到2π（或按实际区域）。</div>
+<div class="exam-box">数一常考三重积分计算题，重点：①选择合适坐标系（直角/柱/球）②用对称性简化被积函数 ③截面法处理"先二后一"的特殊情形。</div>
+`},lec11:{num:'11',title:'曲线积分与曲面积分',exams:{s1:true,s2:false,s3:false},content:`
+<h3>一、核心知识框架（数一）</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 第一类曲线积分（对弧长）</h4><p>∫_L f(x,y)ds。与方向无关，ds=√(dx²+dy²)=√(1+y'²)dx=√(x'²+y'²)dt。物理意义：曲线质量（密度为f）。</p></div>
+<div class="kp-item"><h4>2. 第二类曲线积分（对坐标）</h4><p>∫_L Pdx+Qdy。与方向有关（反向则变号）。计算方法：①参数化直接计算 ②格林公式（闭曲线→二重积分）③与路径无关时选最简路径。</p></div>
+<div class="kp-item"><h4>3. 格林公式</h4><p>∮_L Pdx+Qdy=∬_D (∂Q/∂x−∂P/∂y)dxdy。L为正向（沿L走时D在左侧）。区域含奇点时挖洞处理。</p></div>
+<div class="kp-item"><h4>4. 曲线积分与路径无关</h4><p>等价条件：①∂P/∂y=∂Q/∂x（单连通域）②∮Pdx+Qdy=0（任一闭曲线）③存在势函数u使du=Pdx+Qdy。</p></div>
+<div class="kp-item"><h4>5. 第一类曲面积分（对面积）</h4><p>∬_Σ f(x,y,z)dS。dS=√(1+zₓ²+z_y²)dxdy。与侧无关。物理意义：曲面质量。</p></div>
+<div class="kp-item"><h4>6. 第二类曲面积分（对坐标）</h4><p>∬_Σ Pdydz+Qdzdx+Rdxdy。与侧有关（外侧/内侧）。计算：投影到对应坐标面，注意符号。</p></div>
+<div class="kp-item"><h4>7. 高斯公式</h4><p>∯_Σ Pdydz+Qdzdx+Rdxdy=∭_Ω (Pₓ+Q_y+R_z)dv。闭曲面外侧（Σ取外侧）。散度：divF=Pₓ+Q_y+R_z。</p></div>
+<div class="kp-item"><h4>8. 斯托克斯公式</h4><p>∮_L Pdx+Qdy+Rdz=∬_Σ (R_y−Q_z)dydz+(P_z−Rₓ)dzdx+(Qₓ−P_y)dxdy。旋度：rotF=∇×F。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>三大公式统一视角：</strong><br>
+格林：∮_∂D Pdx+Qdy = ∬_D (Qₓ−P_y)dxdy<br>
+高斯：∯_∂Ω F·dS = ∭_Ω divF dv<br>
+斯托克斯：∮_∂Σ F·dr = ∬_Σ rotF·dS
+
+<strong>散度</strong>：divF = Pₓ+Q_y+R_z<br>
+<strong>旋度</strong>：rotF = (R_y−Q_z, P_z−Rₓ, Qₓ−P_y)
+</div>
+
+<div class="tips-box">判断用哪个公式的法则：①二维闭曲线→格林 ②三维闭曲面→高斯 ③空间闭曲线→斯托克斯。不是闭的考虑补线/补面（补完后减掉）。</div>
+<div class="warn-box">第二类曲线积分方向至关重要！反向走要加负号。格林公式要求L正向，即"沿L走D在左侧"。高斯公式要求Σ取外侧。含奇点时要挖去奇点再用公式。</div>
+`},
+
+lec12:{num:'12',title:'无穷级数',exams:{s1:true,s2:false,s3:true},content:`
+<h3>一、核心知识框架（数一、数三）</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 数项级数基本概念</h4><p>Σa_n收敛⇔部分和S_n有极限。收敛的必要条件：a_n→0（逆不真，如调和级数）。柯西收敛准则。</p></div>
+<div class="kp-item"><h4>2. 正项级数敛散性判别</h4><p>五大判别法：①比较判别法（放缩法）②极限比较法 ③比值法（达朗贝尔）④根值法（柯西）⑤积分判别法。p-级数Σ1/nᵖ：p>1收敛。</p></div>
+<div class="kp-item"><h4>3. 交错级数</h4><p>莱布尼茨判别法：a_n单调递减且趋于0⇒Σ(−1)^(n−1)a_n收敛。|Σa_n−Σ^N a_n|≤a_{N+1}（截断误差估计）。</p></div>
+<div class="kp-item"><h4>4. 绝对收敛与条件收敛</h4><p>Σ|a_n|收敛⇒Σa_n绝对收敛（任意重排和不变）。Σa_n收敛但Σ|a_n|发散⇒条件收敛。绝对收敛级数的乘积级数也收敛。</p></div>
+<div class="kp-item"><h4>5. 幂级数</h4><p>Σa_n(x−x₀)^n。收敛半径R=1/lim|a_n|^(1/n)或R=lim|a_n/a_{n+1}|。收敛区间(x₀−R,x₀+R)，端点单独检验。和函数S(x)在收敛区间内可逐项求导、逐项积分。</p></div>
+<div class="kp-item"><h4>6. 函数展开为幂级数</h4><p>利用已知展开式（eˣ, sinx, cosx, ln(1+x), (1+x)^α, 1/(1−x)）通过变量代换、逐项求导、逐项积分推导新展开式。</p></div>
+<div class="kp-item"><h4>7. 傅里叶级数（数一）</h4><p>周期2l的函数：f(x)=a₀/2+Σ(a_n cos(nπx/l)+b_n sin(nπx/l))。系数：a_n=(1/l)∫f(x)cos(nπx/l)dx, b_n=(1/l)∫f(x)sin(nπx/l)dx。</p></div>
+<div class="kp-item"><h4>8. 狄利克雷收敛定理（数一）</h4><p>f满足狄利克雷条件时，傅里叶级数收敛于[f(x+)+f(x−)]/2。连续点处收敛于f(x)，间断点处收敛于左右极限平均值。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>常用幂级数展开（x=0处）：</strong><br>
+eˣ=Σx^n/n! (R=∞)；sinx=Σ(−1)^n x^(2n+1)/(2n+1)! (R=∞)<br>
+cosx=Σ(−1)^n x^(2n)/(2n)! (R=∞)<br>
+1/(1−x)=Σx^n (R=1)；ln(1+x)=Σ(−1)^(n−1)x^n/n (R=1)<br>
+(1+x)^α=1+αx+α(α−1)x²/2!+⋯ (R=1)<br>
+arctanx=Σ(−1)^n x^(2n+1)/(2n+1) (R=1)
+</div>
+
+<div class="tips-box">求和函数的万能策略：①利用已知展开式 ②逐项求导消去分母中的n ③逐项积分消去分子中的n ④建立微分方程。端点单独检验敛散性决定收敛域的开闭。</div>
+<div class="warn-box">比值法失效时（极限=1）要用其他判别法。级数收敛的必要条件是通项→0，不满足直接判发散。幂级数的和函数在收敛区间内可导，但收敛域端点不一定可导。</div>
+<div class="exam-box">级数大题几乎每年必考（数一/三）：①数项级数敛散性判别（小题）②幂级数求和函数（10分大题）③函数展开为幂级数 ④傅里叶级数的系数计算（数一）。</div>
+`},
+
+lec13:{num:'13',title:'向量代数与空间解析几何',exams:{s1:true,s2:false,s3:false},content:`
+<h3>一、核心知识框架（数一）</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 向量基本运算</h4><p><strong>数量积</strong>：a·b=|a||b|cosθ=a₁b₁+a₂b₂+a₃b₃。<strong>向量积</strong>：|a×b|=|a||b|sinθ，方向由右手法则确定。<strong>混合积</strong>：(a×b)·c=|det(a,b,c)|=平行六面体体积。</p></div>
+<div class="kp-item"><h4>2. 平面方程</h4><p><strong>点法式</strong>：A(x−x₀)+B(y−y₀)+C(z−z₀)=0，法向量n=(A,B,C)。<strong>一般式</strong>：Ax+By+Cz+D=0。两平面夹角=法向量夹角。</p></div>
+<div class="kp-item"><h4>3. 直线方程</h4><p><strong>点向式（对称式）</strong>：(x−x₀)/m=(y−y₀)/n=(z−z₀)/p，方向向量s=(m,n,p)。<strong>参数式</strong>：x=x₀+mt等。线面夹角=|cos(法向量,方向向量)|的余角。</p></div>
+<div class="kp-item"><h4>4. 点线面的距离</h4><p>点到面：d=|Ax₀+By₀+Cz₀+D|/√(A²+B²+C²)。点到线：d=|PM×s|/|s|。两异面直线距离：d=|(P₁P₂·(s₁×s₂))|/|s₁×s₂|。</p></div>
+<div class="kp-item"><h4>5. 旋转曲面</h4><p>曲线f(y,z)=0绕z轴旋转：f(√(x²+y²),z)=0。口诀：绕谁转，谁不变，另一个变量换成√(另二变量的平方和)。</p></div>
+<div class="kp-item"><h4>6. 柱面</h4><p>母线平行于z轴的柱面方程：F(x,y)=0（缺z项）。准线为空间曲线时可消去参数得到。</p></div>
+<div class="kp-item"><h4>7. 二次曲面</h4><p>椭球面、单/双叶双曲面、椭圆抛物面、双曲抛物面（马鞍面）、二次锥面、椭圆柱面等。通过截痕法识别曲面类型。</p></div>
+<div class="kp-item"><h4>8. 空间曲线的投影</h4><p>空间曲线Γ由两曲面交线确定，消去z得柱面→投影到xOy面的投影柱面方程。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>常见二次曲面记忆口诀：</strong><br>
+椭球面：x²/a²+y²/b²+z²/c²=1（压缩的球）<br>
+椭圆抛物面：z=x²/a²+y²/b²（碗形）<br>
+双曲抛物面：z=x²/a²−y²/b²（马鞍形）<br>
+单叶双曲面：x²/a²+y²/b²−z²/c²=1（腰鼓形）<br>
+锥面：x²/a²+y²/b²−z²/c²=0（喇叭形）
+</div>
+
+<div class="tips-box">识别曲面类型的最快方法是"截痕法"：用z=k截曲面，看截口是什么曲线。椭圆抛物面的截口是椭圆，双曲抛物面的截口是双曲线（正z）或双曲线（负z）。</div>
+<div class="warn-box">向量积不满足交换律：a×b=−b×a！方向用右手定则。混合积的几何意义是有向体积。旋转曲面方程中绕z轴旋转时，x和y都以√(x²+y²)的形式出现。</div>
+`},
+
+lec14:{num:'14',title:'方向导数与梯度',exams:{s1:true,s2:false,s3:false},content:`
+<h3>一、核心知识框架（数一）</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 方向导数定义</h4><p>∂f/∂l|_{P₀}=lim(t→0+)[f(P₀+tl)−f(P₀)]/t。表示函数沿方向l的变化率。</p></div>
+<div class="kp-item"><h4>2. 方向导数计算公式</h4><p>∂f/∂l=fₓcosα+f_ycosβ+f_zcosγ。其中l₀=(cosα,cosβ,cosγ)为单位方向向量。注意：必须使用单位方向向量！</p></div>
+<div class="kp-item"><h4>3. 梯度定义</h4><p>gradf=∇f=(fₓ,f_y,f_z)。梯度是向量，指向函数值增长最快的方向。</p></div>
+<div class="kp-item"><h4>4. 梯度与方向导数的关系</h4><p>∂f/∂l=gradf·l₀=|gradf|·cosθ。最大方向导数=|gradf|（沿梯度方向）；最小方向导数=−|gradf|（沿负梯度方向）。</p></div>
+<div class="kp-item"><h4>5. 梯度的几何意义</h4><p>gradf⟂等值面f(x,y,z)=C。梯度方向是等值面的法向量方向。曲面的切平面法向量=梯度。</p></div>
+<div class="kp-item"><h4>6. 应用</h4><p>空间曲面的切平面与法线。f(x,y,z)=0在点P₀的切平面：fₓ(P₀)(x−x₀)+f_y(P₀)(y−y₀)+f_z(P₀)(z−z₀)=0。法线：梯度方向。</p></div>
+</div>
+<div class="tips-box">方向导数计算三步：①求梯度 ②单位化方向向量 ③点积。最大方向导数=梯度的模，最小方向导数=负梯度的模。</div>
+<div class="warn-box">方向向量必须单位化！直接用(fₓ,f_y)·(m,n)会错（除非(m,n)本身就是单位向量）。梯度的维度和自变量维度一致。</div>
+`},
+
+lec15:{num:'15',title:'傅里叶级数',exams:{s1:true,s2:false,s3:false},content:`
+<h3>一、核心知识框架（数一）</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 三角函数的正交性</h4><p>∫_{−π}^{π}sin(mx)sin(nx)dx=∫_{−π}^{π}cos(mx)cos(nx)dx=0 (m≠n)；∫_{−π}^{π}sin(mx)cos(nx)dx=0 (∀m,n)。这是傅里叶级数的基石。</p></div>
+<div class="kp-item"><h4>2. 周期2π的傅里叶级数</h4><p>f(x)=a₀/2+Σ(a_n cos nx+b_n sin nx)。a_n=(1/π)∫_{−π}^{π}f(x)cos(nx)dx；b_n=(1/π)∫_{−π}^{π}f(x)sin(nx)dx。</p></div>
+<div class="kp-item"><h4>3. 周期2l的傅里叶级数</h4><p>f(x)=a₀/2+Σ[a_n cos(nπx/l)+b_n sin(nπx/l)]。a_n=(1/l)∫_{−l}^{l}f(x)cos(nπx/l)dx；b_n类似。</p></div>
+<div class="kp-item"><h4>4. 正弦级数与余弦级数</h4><p>奇函数→只有正弦项（a_n=0）→正弦级数。偶函数→只有余弦项（b_n=0）→余弦级数。奇偶延拓可用来在半区间上展开。</p></div>
+<div class="kp-item"><h4>5. 狄利克雷收敛定理</h4><p>f在[−l,l]上分段单调且仅有有限个第一类间断点→傅里叶级数收敛于[f(x+)+f(x−)]/2。连续点收敛于f(x)。</p></div>
+<div class="kp-item"><h4>6. 帕塞瓦尔等式</h4><p>a₀²/2+Σ(a_n²+b_n²)=(1/l)∫_{−l}^{l}f²(x)dx。联系了频域能量和时域能量。</p></div>
+</div>
+<div class="formula-box">
+<strong>常见函数的傅里叶展开：</strong><br>
+f(x)=x(−π<x<π)：2Σ(−1)^(n+1)(sin nx)/n<br>
+f(x)=|x|(−π≤x≤π)：π/2−4/π·Σcos(2n−1)x/(2n−1)²<br>
+f(x)=x²(−π≤x≤π)：π²/3+4Σ(−1)^n(cos nx)/n²
+</div>
+<div class="tips-box">计算傅里叶系数时利用奇偶性可简化计算。周期延拓后函数的傅里叶级数以周期重复延拓的图形。在区间端点处关注收敛值。</div>
+`},
+
+lec16:{num:'16',title:'积分的对称性方法',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 定积分的对称性</h4><p>∫_{−a}^{a}f(x)dx=0（f奇）；=2∫₀^{a}f(x)dx（f偶）。这是最基本的对称性应用，推广到重积分即为核心技巧。</p></div>
+<div class="kp-item"><h4>2. 二重积分的对称性</h4><p>区域关于x轴对称：f关于y为奇→0；f关于y为偶→2倍上半区域。区域关于y轴对称同理。区域关于原点对称：f关于(x,y)奇→0。</p></div>
+<div class="kp-item"><h4>3. 三重积分的对称性</h4><p>区域关于xOy面对称：f关于z为奇→0；f关于z为偶→2倍上半区域。同理可推关于xOz面、yOz面对称。</p></div>
+<div class="kp-item"><h4>4. 轮换对称性</h4><p>若积分区域Ω中x,y,z可互换而Ω不变，则∭f(x)dv=∭f(y)dv=∭f(z)dv。可推得∭x²dv=∭y²dv=∭z²dv=(1/3)∭(x²+y²+z²)dv。</p></div>
+<div class="kp-item"><h4>5. 曲线/曲面积分的对称性</h4><p>第一类（对弧长/面积）：与方向无关，对称性类似重积分。第二类（对坐标）：需同时考虑区域对称性与方向（可能叠加而非抵消）。</p></div>
+<div class="kp-item"><h4>6. 综合策略</h4><p>做题前三步：①观察积分区域是否对称 ②判断被积函数的奇偶性 ③考虑轮换对称性。这三步往往能省去大量繁琐计算。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>轮换对称经典结论：</strong><br>
+若Ω={(x,y,z):x²+y²+z²≤R²}，则<br>
+∭Ω x²dv = ∭Ω y²dv = ∭Ω z²dv<br>
+∭Ω x dv = ∭Ω y dv = ∭Ω z dv = 0 (奇函数)<br>
+∭Ω(x²+y²+z²)dv = 3∭Ω z²dv
+</div>
+
+<div class="tips-box">对称性口诀："域对称看奇偶，轮换对称可互换"。做题前花30秒观察对称性，往往能省去大量计算。遇到积分区域对称但被积函数既非奇又非偶时，可拆分为奇函数部分+偶函数部分，奇函数部分积分为0。</div>
+<div class="warn-box">曲线/曲面积分应用对称性时注意：第一类（对弧长/面积）对称性规则同重积分；第二类（对坐标）需考虑方向和侧的影响，奇偶性规则要慎重。</div>
+<div class="exam-box">对称性是考场上"秒杀"部分选择题和填空题的法宝。大题中恰当应用对称性可简化计算。轮换对称性在球域、正方体域中特别有用。</div>
+`},lec17:{num:'17',title:'行列式',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 行列式的定义</h4><p>n阶行列式是n!项的代数和，每项取自不同行不同列的n个元素之积，符号由列标排列的逆序数决定。二阶：ad−bc；三阶：对角线法则。</p></div>
+<div class="kp-item"><h4>2. 行列式的性质</h4><p>①转置值不变|A^T|=|A| ②互换两行（列）变号 ③某行公因子可提出 ④两行成比例⇔值为0 ⑤某行的k倍加到另一行值不变 ⑥|kA|=k^n|A|。</p></div>
+<div class="kp-item"><h4>3. 行列式展开定理</h4><p>按第i行展开：|A|=Σ_{j=1}^n a_{ij}A_{ij}。代数余子式A_{ij}=(−1)^{i+j}M_{ij}。异行异列的展开和为0：Σa_{ik}A_{jk}=0 (i≠j)。</p></div>
+<div class="kp-item"><h4>4. 特殊行列式</h4><p>上/下三角行列式=对角线乘积。范德蒙行列式=Π(x_j−x_i)。爪型行列式→消去非对角线元素化三角。箭型行列式同理。</p></div>
+<div class="kp-item"><h4>5. 抽象行列式计算</h4><p>|AB|=|A||B|；|A⁻¹|=1/|A|；|A*|=|A|^{n−1}；|A^T|=|A|。相似矩阵行列式相等：A∼B⇒|A|=|B|。特征值乘积=|A|。</p></div>
+<div class="kp-item"><h4>6. 克莱姆法则</h4><p>n元线性方程组系数行列式D≠0⇔有唯一解：x_j=D_j/D。D_j是将D第j列换成常数列所得行列式。仅适用于方程数=未知数且D≠0。</p></div>
+</div>
+<div class="formula-box">
+<strong>范德蒙行列式：</strong><br>
+|1 1 ⋯ 1|<br>
+|x₁ x₂ ⋯ x_n| = Π_{1≤i<j≤n}(x_j−x_i)<br>
+|⋮ ⋮ ⋱ ⋮|<br>
+|x₁^{n−1} x₂^{n−1} ⋯ x_n^{n−1}|
+
+<strong>重要公式：</strong><br>
+|AB|=|A|·|B|；|A^k|=|A|^k<br>
+|A⁻¹|=|A|^{-1}；|A*|=|A|^{n−1}<br>
+|λA|=λ^n|A|；|−A|=(−1)^n|A|
+</div>
+<div class="tips-box">抽象行列式的核心思路：①利用矩阵运算关系转化为已知行列式 ②利用特征值（|A|=Πλ_i）③利用相似/合同关系 ④利用分块矩阵公式。</div>
+<div class="warn-box">行列式展开时注意代数余子式的符号(−1)^{i+j}！处理抽象行列式时，牢记|kA|=kⁿ|A|（n是阶数，不是k的指数）。|A+B|≠|A|+|B|！</div>
+<div class="exam-box">行列式在小题中以计算题形式出现。重点：①数值型行列式（三角化法、展开法）②抽象行列式（利用关系和特征值）③范德蒙行列式的识别与应用。</div>
+`},
+
+lec18:{num:'18',title:'矩阵及其运算',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 矩阵的基本运算</h4><p>加减法（必须同型）；数乘（每个元素乘k）；乘法（AB——A的列数=B的行数，一般AB≠BA）；转置（(AB)^T=B^T A^T）；方幂A^k。</p></div>
+<div class="kp-item"><h4>2. 逆矩阵</h4><p>A⁻¹A=AA⁻¹=E。可逆⇔|A|≠0⇔r(A)=n⇔A的列向量线性无关。求逆方法：①伴随矩阵法A⁻¹=A*/|A| ②初等变换法(A|E)→(E|A⁻¹)。</p></div>
+<div class="kp-item"><h4>3. 伴随矩阵</h4><p>A*=(A_{ji})_{n×n}（注意下标是ji不是ij！）。AA*=A*A=|A|E。重要性质：|A*|=|A|^{n−1}；r(A*)=n(r=n), 1(r=n−1), 0(r≤n−2)。</p></div>
+<div class="kp-item"><h4>4. 矩阵的秩</h4><p>秩=非零子式的最高阶数=行阶梯形非零行数=行秩=列秩。初等变换不改变秩。r(AB)≤min(r(A),r(B))。满秩⇔可逆。</p></div>
+<div class="kp-item"><h4>5. 初等变换与初等矩阵</h4><p>三种初等行变换各对应一个初等矩阵。左乘初等矩阵=行变换；右乘=列变换。可逆矩阵可分解为有限个初等矩阵的乘积。</p></div>
+<div class="kp-item"><h4>6. 矩阵方程</h4><p>AX=B→X=A⁻¹B；XA=B→X=BA⁻¹；AXB=C→X=A⁻¹CB⁻¹。必须注意左乘和右乘的区别！</p></div>
+<div class="kp-item"><h4>7. 分块矩阵</h4><p>分块对角矩阵的逆=各块求逆。分块矩阵的行列式和秩有对应公式。分块上三角矩阵的行列式=对角块行列式之积。</p></div>
+<div class="kp-item"><h4>8. 重要秩公式汇总</h4><p>r(A^T)=r(A)；r(A^T A)=r(A)；若AB=0则r(A)+r(B)≤n；r(A+B)≤r(A)+r(B)；r(AB)≥r(A)+r(B)−n（Sylvester不等式）。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>伴随矩阵核心公式：</strong><br>
+AA* = A*A = |A|E<br>
+|A*| = |A|^{n−1}（n≥2）<br>
+(A*)* = |A|^{n−2}A（n≥3）<br>
+(kA)* = k^{n−1}A*<br>
+(A*)⁻¹ = (A⁻¹)* = A/|A|<br>
+(A*)ᵀ = (Aᵀ)*
+</div>
+
+<div class="tips-box">求逆矩阵优先用初等变换法（更高效），理论分析用伴随矩阵法。解矩阵方程的关键：分清X在左还是右，决定左乘还是右乘A⁻¹。秩为1的矩阵可表为列向量×行向量。</div>
+<div class="warn-box">矩阵乘法不满足交换律！AB和BA通常不同（甚至维度不同）。(AB)⁻¹=B⁻¹A⁻¹（顺序反转）。|A+B|一般不等于|A|+|B|。AB=0不能推出A=0或B=0。</div>
+<div class="exam-box">矩阵运算是线代基础，贯穿所有章节。重点：①求逆矩阵（初等变换法）②求矩阵的秩 ③伴随矩阵的性质 ④解矩阵方程。秩的相关证明题是难点。</div>
+`},
+
+lec19:{num:'19',title:'向量组与线性方程组',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 向量组的线性相关性</h4><p>存在不全为零的k_i使Σk_iα_i=0⇔线性相关。全部k_i=0才成立⇔线性无关。n个n维向量线性相关⇔行列式=0。"维数<向量个数⇒相关"。</p></div>
+<div class="kp-item"><h4>2. 极大无关组与向量组的秩</h4><p>极大无关组：能线性表出任一向量且自身无关的"最大"子集。秩=极大无关组中向量个数=构成矩阵的秩。等价向量组有相同的秩。</p></div>
+<div class="kp-item"><h4>3. 线性表出</h4><p>β可由α₁,...,αₙ线性表出⇔方程组x₁α₁+⋯+xₙαₙ=β有解。向量组等价：两组向量可以互相线性表出。</p></div>
+<div class="kp-item"><h4>4. 齐次方程组Ax=0</h4><p>有非零解⇔r(A)<n（未知数个数）。基础解系：n−r(A)个线性无关的解向量。通解=基础解系的任意线性组合。</p></div>
+<div class="kp-item"><h4>5. 非齐次方程组Ax=b</h4><p>有解⇔r(A)=r(A|b)（系数矩阵的秩=增广矩阵的秩）。有解时：r=n⇒唯一解；r<n⇒无穷多解（通解=特解+导出组通解）。</p></div>
+<div class="kp-item"><h4>6. 向量空间的基本概念</h4><p>向量空间（线性空间）对加法和数乘封闭。子空间：包含于V且自身也是线性空间的子集。基：最大无关组；维数=基中向量个数。</p></div>
+<div class="kp-item"><h4>7. 解空间</h4><p>Ax=0的全部解构成一个向量空间（解空间），维数=n−r(A)。基础解系就是解空间的一组基。</p></div>
+<div class="kp-item"><h4>8. 四大关系总结</h4><p>①解空间的维数与秩的关系 ②线性相关性与秩的关系 ③线性表出与方程组解的关系 ④向量组等价与矩阵等价的关系。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>解的存在性与唯一性判定：</strong><br>
+Ax=0：r(A)=n⇔唯一零解；r(A)<n⇔无穷多解<br>
+Ax=b：r(A)≠r(A|b)⇔无解<br>
+r(A)=r(A|b)=n⇔唯一解<br>
+r(A)=r(A|b)<n⇔无穷多解<br>
+通解 = ξ（一个特解）+ k₁η₁+⋯+k_{n−r}η_{n−r}
+</div>
+
+<div class="tips-box">判断线性相关性的快速方法：列向量个数>维数⇒必然相关。向量组的秩=构成矩阵的秩→初等行变换化阶梯形。线性相关性的证明题常用反证法或秩不等式。</div>
+<div class="warn-box">r(A)=r(A|b)是有解的条件，两个秩必须相等。若r不同，即出现"0=非零数"的矛盾行，则无解。线性无关的向量组不一定正交。</div>
+<div class="exam-box">线性方程组是线代绝对核心（每年必考大题）。重点：①含参数方程组的解的讨论 ②基础解系的求法 ③向量组线性相关性的判定与证明。</div>
+`},
+
+lec20:{num:'20',title:'特征值与特征向量',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 特征值与特征向量的定义</h4><p>Aξ=λξ（ξ≠0），λ是特征值，ξ是对应的特征向量。特征向量是经过A变换后方向不变（仅伸缩）的非零向量。</p></div>
+<div class="kp-item"><h4>2. 特征值与特征向量的求法</h4><p>①解特征方程|A−λE|=0⇒特征值。②对每个λ_i，解(A−λ_i E)x=0⇒特征向量（基础解系）。</p></div>
+<div class="kp-item"><h4>3. 特征值的性质</h4><p>Σλ_i=tr(A)（迹=主对角线元素和）；Πλ_i=|A|。A可逆⇔所有λ≠0。λ是A的特征值⇒λ^k是A^k的特征值，1/λ是A⁻¹的特征值。</p></div>
+<div class="kp-item"><h4>4. 特征向量的性质</h4><p>不同特征值对应的特征向量线性无关。同一特征值的特征向量的任意非零线性组合仍是该特征值的特征向量。</p></div>
+<div class="kp-item"><h4>5. 相似矩阵</h4><p>A∼B⇔∃可逆P使P⁻¹AP=B。相似矩阵有相同的特征值、相同的行列式、相同的迹和相同的秩（反之不成立）。</p></div>
+<div class="kp-item"><h4>6. 矩阵可对角化的条件</h4><p>A可对角化⇔A有n个线性无关的特征向量⇔每个特征值的几何重数=代数重数。充分条件：A有n个互异特征值或A为实对称矩阵。</p></div>
+<div class="kp-item"><h4>7. 实对称矩阵的对角化</h4><p>实对称矩阵的特征值全为实数；不同特征值的特征向量正交；一定可正交对角化：∃正交矩阵Q使Q⁻¹AQ=Q^T AQ=Λ。</p></div>
+<div class="kp-item"><h4>8. 施密特正交化</h4><p>将线性无关向量组化为正交向量组：β₁=α₁；β₂=α₂−(⟨α₂,β₁⟩/⟨β₁,β₁⟩)β₁；β₃=α₃−投影到β₁的分量−投影到β₂的分量。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>特征值与矩阵运算的关系：</strong><br>
+A:λ_i → A^T:λ_i → A^k:λ_i^k → A⁻¹:1/λ_i<br>
+A*:|A|/λ_i → f(A):f(λ_i)（多项式函数）<br>
+相似变换不改变特征值：P⁻¹AP∼A→特征值相同<br>
+迹=Σλ_i，行列式=Πλ_i
+
+<strong>正交对角化步骤：</strong><br>
+①求|A−λE|=0得特征值 ②对每个λ求(A−λE)x=0的基础解系<br>
+③不同λ的特征向量已正交；同一λ的做施密特正交化<br>
+④单位化所有向量→列向量构成正交矩阵Q ⑤Q⁻¹AQ=QᵀAQ=Λ
+</div>
+
+<div class="tips-box">判断矩阵是否可对角化的简便方法：①看是否实对称→是则一定可 ②看特征值是否全部互异→是则一定可 ③如有重特征值，检查该特征值的几何重数（即(A−λE)x=0解空间的维数）是否等于代数重数。</div>
+<div class="warn-box">相似矩阵的特征值相同，但特征向量不一定相同！Aξ=λξ⇒(P⁻¹AP)(P⁻¹ξ)=λ(P⁻¹ξ)，所以P⁻¹ξ是相似矩阵的特征向量。不是所有矩阵都可对角化（如A=[1 1;0 1]不可对角化）。</div>
+<div class="exam-box">特征值问题常考：①求特征值和特征向量 ②判断矩阵是否可对角化 ③实对称矩阵的正交对角化 ④利用特征值求行列式和迹。对角化是后续二次型的基础。</div>
+`},
+
+lec21:{num:'21',title:'二次型',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 二次型与矩阵的对应</h4><p>f(x₁,...,x_n)=x^T Ax，A为实对称矩阵。二次型与实对称矩阵一一对应。A的元素：a_{ii}是x_i²的系数，a_{ij}=a_{ji}是x_ix_j系数的一半。</p></div>
+<div class="kp-item"><h4>2. 合同变换</h4><p>A与B合同⇔∃可逆C使C^T AC=B。合同变换保持对称性和惯性指数。合同⇔秩相等且正负惯性指数分别相等。</p></div>
+<div class="kp-item"><h4>3. 标准形</h4><p>f=d₁y₁²+⋯+d_ny_n²（只有平方项）。化标准形方法：①配方法 ②正交变换法。正交变换法得到的标准形系数就是特征值。</p></div>
+<div class="kp-item"><h4>4. 规范形</h4><p>标准形系数为1、−1或0。正平方项个数=正惯性指数p，负平方项个数=负惯性指数q，惯性定理保证(p,q)是合同不变量。</p></div>
+<div class="kp-item"><h4>5. 正定二次型/正定矩阵</h4><p>对所有x≠0有f>0⇔A正定。充要条件：①所有特征值>0 ②所有顺序主子式>0 ③A合同于单位阵E ④∃可逆P使A=P^TP。</p></div>
+<div class="kp-item"><h4>6. 其他定性</h4><p>负定⇔所有特征值<0⇔−A正定。半正定⇔所有特征值≥0。不定⇔有正特征值也有负特征值。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>配方法化标准形：</strong><br>
+步骤：①有平方项→配完全平方 ②无平方项但有交叉项→先做变换x_i=y_i+y_j, x_j=y_i−y_j造出平方项 ③重复直到只剩平方项
+
+<strong>正定性判定方法：</strong><br>
+方法一：特征值法（所有特征值>0）<br>
+方法二：顺序主子式法（所有顺序主子式>0→赫尔维茨定理）<br>
+方法三：配方法（完全平方和，正项个数=n）<br>
+方法四：合同于单位阵
+</div>
+
+<div class="tips-box">由二次型写矩阵的关键：平方项系数直接填入对角线；交叉项系数的1/2填入对称位置。合同与相似的区别：实对称矩阵的正交相似对角化即是正交合同对角化（Q⁻¹=Q^T）。</div>
+<div class="warn-box">二次型的矩阵必须是实对称矩阵！交叉项x_ix_j(i≠j)对应的矩阵元素是系数的一半。正定性判定中，顺序主子式全大于0是实对称矩阵正定的充要条件。</div>
+<div class="exam-box">二次型每年必考。重点：①二次型化标准形（配方法/正交变换）②正定性判定 ③惯性定理的理解 ④与特征值的综合题。正交变换法化标准形=实对称矩阵对角化。</div>
+`},lec22:{num:'22',title:'线性空间与线性变换',exams:{s1:true,s2:false,s3:false},content:`
+<h3>一、核心知识框架（数一）</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 线性空间的公理化定义</h4><p>非空集合V，定义加法和数乘，满足八条公理（加法结合律/交换律/零元/负元，数乘结合律/分配律×2/单位元）。验证子空间只需验证对加法和数乘封闭。</p></div>
+<div class="kp-item"><h4>2. 基、维数与坐标</h4><p>基={ε₁,...,ε_n}：线性无关且能表出V中任一向量。维数dimV=n=基中向量个数。向量在基下的坐标：α=x₁ε₁+⋯+x_nε_n，坐标向量x=(x₁,...,x_n)^T。</p></div>
+<div class="kp-item"><h4>3. 基变换与过渡矩阵</h4><p>新旧基的关系：(β₁,...,β_n)=(α₁,...,α_n)P，P为过渡矩阵（从旧基到新基）。坐标变换：x_旧=P·x_新（坐标变"反向"）。</p></div>
+<div class="kp-item"><h4>4. 线性变换的定义</h4><p>T:V→W满足T(α+β)=Tα+Tβ, T(kα)=kTα。T由基的像唯一确定：T(ε₁,...,ε_n)=(ε₁,...,ε_n)A。A是T在基{ε_i}下的矩阵。</p></div>
+<div class="kp-item"><h4>5. 线性变换在不同基下的矩阵</h4><p>若T在基(Ⅰ)下矩阵为A，在基(Ⅱ)下矩阵为B，基变换公式(Ⅱ)=(Ⅰ)P，则B=P⁻¹AP（相似关系）。线性变换的矩阵在相似意义下唯一。</p></div>
+<div class="kp-item"><h4>6. 值域与核（像空间与零空间）</h4><p>R(T)={Tα:α∈V}（值域=像空间）；N(T)={α∈V:Tα=0}（核=零空间）。维数公式：dim R(T)+dim N(T)=dim V。</p></div>
+</div>
+<div class="formula-box">
+<strong>基变换坐标变换公式：</strong><br>
+(新基)=(旧基)P ⇒ x_旧 = P·x_新<br>
+T在旧基下矩阵A，新基下矩阵B：B=P⁻¹AP<br>
+<strong>维数公式：</strong>dim R(T) + dim N(T) = dim V
+</div>
+<div class="tips-box">过渡矩阵的列是新基向量在旧基下的坐标。坐标变换"反向"是常见错误点。线性变换找矩阵的通用方法：求出基向量的像在原基下的坐标，按列排出矩阵。</div>
+`},
+
+lec23:{num:'23',title:'线性代数综合',exams:{s1:true,s2:true,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 秩——线代的灵魂</h4><p>矩阵的秩连接着行列式（|A|≠0⇔满秩）、方程组（解的存在性和唯一性由秩决定）、向量组（线性无关⇔秩=向量个数）、特征值（A可逆⇔所有特征值≠0⇔满秩）。</p></div>
+<div class="kp-item"><h4>2. 六大核心概念关系链</h4><p>行列式↔矩阵↔向量组↔方程组↔特征值↔二次型，形成了完整的线代知识网络。秩和特征值是贯穿全书的红线。</p></div>
+<div class="kp-item"><h4>3. 等价、相似、合同的区别</h4><p>等价（A≅B）：∃可逆P,Q使PAQ=B⇔秩相等。相似（A∼B）：∃可逆P使P⁻¹AP=B⇔特征值相同+某些不变子空间条件。合同（A≃B）：∃可逆P使P^T AP=B⇔惯性指数相同。</p></div>
+<div class="kp-item"><h4>4. 证明题通用技法</h4><p>证AB=0→从r(A)+r(B)≤n入手；证可对角化→找n个线性无关的特征向量；证正定→用特征值或顺序主子式；证A=0→反证法或用迹。</p></div>
+<div class="kp-item"><h4>5. Aⁿ的计算方法</h4><p>①对角化法A=PΛP⁻¹⇒Aⁿ=PΛⁿP⁻¹。②秩为1矩阵A=αβ^T⇒Aⁿ=(β^T α)^{n−1}A。③找规律（如循环矩阵等）。④二项展开（A=B+C, BC=CB）。</p></div>
+<div class="kp-item"><h4>6. 常见易错点汇总</h4><p>(AB)⁻¹=B⁻¹A⁻¹顺序易反；(A+B)²≠A²+2AB+B²（因为AB≠BA）；|A±B|≠|A|±|B|；AB=0不能推A=0或B=0；相似⇒特征值相同但反之不成立；合同不一定相似。</p></div>
+</div>
+<div class="tips-box">线代大题通常是综合题，跨多个章节。看到"秩"就要联想到方程组解的个数、向量组的线性相关性、行列式是否为0、特征值是否含0等。秩是线代的万能钥匙。</div>
+<div class="warn-box">区分"等价""相似""合同"三种关系：等价最宽泛（仅秩相等即可），相似在等价基础上有特征值约束，合同在等价基础上有惯性指数约束。实对称矩阵的相似和合同通过正交变换统一。</div>
+<div class="exam-box">线代综合大题常考：已知方程组的解反求参数和矩阵+讨论特征值特征向量；二次型+特征值的综合题；向量组线性相关性+秩的证明题。线代大题通常跨2-3个章节。</div>
+`},
+
+lec24:{num:'24',title:'随机事件与概率',exams:{s1:true,s2:false,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 样本空间与事件</h4><p>样本空间Ω：所有可能结果的集合。事件：Ω的子集。基本事件：单个样本点。必然事件Ω，不可能事件∅。事件的关系与运算（并、交、差、补、包含）。</p></div>
+<div class="kp-item"><h4>2. 概率的公理化定义</h4><p>①非负性：P(A)≥0；②规范性：P(Ω)=1；③可列可加性：互不相容事件的可列并集概率=概率之和。由公理可推导概率的全部性质。</p></div>
+<div class="kp-item"><h4>3. 概率的基本性质</h4><p>P(∅)=0；P(Ā)=1−P(A)；A⊂B⇒P(A)≤P(B)；P(A−B)=P(A)−P(AB)；加法公式P(A∪B)=P(A)+P(B)−P(AB)。</p></div>
+<div class="kp-item"><h4>4. 条件概率</h4><p>P(B|A)=P(AB)/P(A) [P(A)>0]。乘法公式P(AB)=P(A)·P(B|A)。推广：P(A₁A₂A₃)=P(A₁)P(A₂|A₁)P(A₃|A₁A₂)。</p></div>
+<div class="kp-item"><h4>5. 全概率公式</h4><p>若A₁,...,A_n为Ω的一个完备事件组（互斥+全覆盖），则P(B)=ΣP(A_i)·P(B|A_i)。"全概率=先分类再汇总"。</p></div>
+<div class="kp-item"><h4>6. 贝叶斯公式</h4><p>P(A_k|B)=P(A_k)P(B|A_k)/[ΣP(A_i)P(B|A_i)]。"知果求因"公式。P(A_k)是先验概率，P(A_k|B)是后验概率。</p></div>
+<div class="kp-item"><h4>7. 事件的独立性</h4><p>A与B独立⇔P(AB)=P(A)P(B)⇔P(B|A)=P(B)（P(A)>0时）。两两独立不等价于相互独立（三个事件需验证四个等式）。</p></div>
+<div class="kp-item"><h4>8. 古典概型与几何概型</h4><p>古典概型：P(A)=有利情况数/总情况数。几何概型：P(A)=A的度量（长度/面积/体积）/Ω的度量。贝特朗奇论提醒注意"等可能"的假设。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>核心公式合集：</strong><br>
+加法：P(A∪B)=P(A)+P(B)−P(AB)<br>
+条件概率：P(B|A)=P(AB)/P(A)<br>
+乘法：P(AB)=P(A)P(B|A)<br>
+全概率：P(B)=ΣP(Aᵢ)P(B|Aᵢ)<br>
+贝叶斯：P(Aₖ|B)=P(Aₖ)P(B|Aₖ)/P(B)
+</div>
+
+<div class="tips-box">全概率公式和贝叶斯公式是概率论最重要的计算工具。全概率"从因推果"，贝叶斯"从果推因"。解题时关键是找到完备事件组（划分），通常是导致结果的不同"原因"或"路径"。</div>
+<div class="warn-box">独立与互不相容是两个不同概念！A,B互不相容⇒P(AB)=0；A,B独立⇒P(AB)=P(A)P(B)。两者一般不兼任（除非P(A)=0或P(B)=0）。不要混淆！</div>
+<div class="exam-box">概率基本概念常考选择/填空。重点是全概率+贝叶斯的应用题、古典概型的计数问题、独立性的判定。贝叶斯公式是应用题经典考查点。</div>
+`},
+
+lec25:{num:'25',title:'一维随机变量及其分布',exams:{s1:true,s2:false,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 分布函数</h4><p>F(x)=P(X≤x)。性质：单调不减、右连续、0≤F(x)≤1、F(−∞)=0,F(+∞)=1。P(a<X≤b)=F(b)−F(a)。分布函数完整描述了随机变量的统计规律。</p></div>
+<div class="kp-item"><h4>2. 离散型随机变量</h4><p>分布律P(X=x_k)=p_k。常见分布：0-1分布B(1,p)、二项分布B(n,p)、泊松分布P(λ)(λ=np的极限)、几何分布Ge(p)、超几何分布。</p></div>
+<div class="kp-item"><h4>3. 连续型随机变量</h4><p>概率密度f(x)≥0且∫f(x)dx=1。均匀分布U(a,b):f(x)=1/(b−a)；指数分布E(λ):f(x)=λe^{−λx}(x>0)；正态分布N(μ,σ²)。</p></div>
+<div class="kp-item"><h4>4. 正态分布（重中之重）</h4><p>f(x)=(1/√(2π)σ)exp(−(x−μ)²/(2σ²))。标准化Z=(X−μ)/σ∼N(0,1)。Φ(−x)=1−Φ(x)。3σ原则：P(|X−μ|<3σ)≈99.7%。线性变换保持正态性。</p></div>
+<div class="kp-item"><h4>5. 随机变量函数的分布</h4><p>Y=g(X)，分布函数法：F_Y(y)=P(Y≤y)=P(g(X)≤y)。若g严格单调：f_Y(y)=f_X(h(y))·|h'(y)|（h=g⁻¹）。</p></div>
+<div class="kp-item"><h4>6. 常见分布的数字特征</h4><p>B(n,p):E=np, D=np(1−p)；P(λ):E=D=λ；U(a,b):E=(a+b)/2, D=(b−a)²/12；E(λ):E=1/λ, D=1/λ²；N(μ,σ²):E=μ, D=σ²。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>正态分布的性质：</strong><br>
+X~N(μ,σ²)⇒aX+b~N(aμ+b, a²σ²)<br>
+X₁~N(μ₁,σ₁²), X₂~N(μ₂,σ₂²)独立⇒X₁±X₂~N(μ₁±μ₂, σ₁²+σ₂²)<br>
+Φ(−x)=1−Φ(x)；P(|X−μ|<kσ)=2Φ(k)−1<br>
+上α分位数z_α：P(X>z_α)=α
+</div>
+
+<div class="tips-box">求Y=g(X)的分布用分布函数法最保险：①写出F_Y(y)=P(Y≤y) ②转化为关于X的不等式 ③用X的分布表达 ④对y求导得密度。即使g非单调也用此法！</div>
+<div class="warn-box">正态分布标准化后不要忘记除以σ：Z=(X−μ)/σ，不是X−μ。指数分布的λ和1/λ：期望是1/λ不是λ。分布函数右连续意味着F(x)=F(x+)，在跳跃点处右连续。</div>
+<div class="exam-box">一维随机变量是概率论核心基础。重点：①正态分布的概率计算（标准化+查表）②随机变量函数的分布（分布函数法）③常见分布的数字特征。正态分布贯穿后续所有章节。</div>
+`},
+
+lec26:{num:'26',title:'多维随机变量及其分布',exams:{s1:true,s2:false,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 联合分布函数</h4><p>F(x,y)=P(X≤x,Y≤y)。性质：单调不减、右连续、F(−∞,y)=F(x,−∞)=0、F(+∞,+∞)=1。联合分布完整描述了多维随机变量。</p></div>
+<div class="kp-item"><h4>2. 联合分布律与联合密度</h4><p>离散型：P(X=x_i,Y=y_j)=p_{ij}。连续型：F(x,y)=∫_{−∞}^x∫_{−∞}^y f(u,v)dudv。求联合密度通常需要确定"有效区域"。</p></div>
+<div class="kp-item"><h4>3. 边缘分布</h4><p>F_X(x)=F(x,+∞)。离散边缘：p_{i·}=Σ_j p_{ij}。"行和"和"列和"。连续边缘：f_X(x)=∫_{−∞}^∞ f(x,y)dy。边缘分布由联合分布唯一确定（反之不然）。</p></div>
+<div class="kp-item"><h4>4. 条件分布</h4><p>离散型：P(Y=y_j|X=x_i)=p_{ij}/p_{i·}。连续型：f_{Y|X}(y|x)=f(x,y)/f_X(x)。条件分布=联合/边缘。</p></div>
+<div class="kp-item"><h4>5. 随机变量的独立性</h4><p>X与Y独立⇔F(x,y)=F_X(x)F_Y(y)⇔f(x,y)=f_X(x)f_Y(y)⇔P(X=x_i,Y=y_j)=P(X=x_i)P(Y=y_j)。</p></div>
+<div class="kp-item"><h4>6. 多维随机变量函数的分布</h4><p>Z=X+Y（卷积）：f_Z(z)=∫f(x,z−x)dx=∫f(z−y,y)dy（X,Y独立时）。Z=max/min(X,Y)：F_max(z)=F_X(z)F_Y(z)；F_min(z)=1−[1−F_X(z)][1−F_Y(z)]。</p></div>
+<div class="kp-item"><h4>7. 二维均匀分布</h4><p>D⊂R²，f(x,y)=1/|D|((x,y)∈D)。几何概率：P((X,Y)∈A)=|A∩D|/|D|。</p></div>
+<div class="kp-item"><h4>8. 二维正态分布 N(μ₁,μ₂,σ₁²,σ₂²,ρ)</h4><p>密度函数含5个参数。边缘分布仍为正态。独立⇔ρ=0（不相关）。线性组合仍为正态。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>关键公式：</strong><br>
+Z=X+Y（独立）：f_Z(z)=∫f_X(x)f_Y(z−x)dx<br>
+Z=max(X,Y)（独立）：F_Z(z)=F_X(z)F_Y(z)<br>
+Z=min(X,Y)（独立）：F_Z(z)=1−[1−F_X(z)][1−F_Y(z)]<br>
+边缘密度：f_X(x)=∫f(x,y)dy<br>
+条件密度：f(y|x)=f(x,y)/f_X(x)
+</div>
+
+<div class="tips-box">求边缘密度时关键是确定积分区间（y的范围依赖于x）。画联合密度支撑区域图可以帮助确定上下限。独立性的判定：联合密度（分布律）能分解为仅含x和仅含y的因子乘积。</div>
+<div class="warn-box">由边缘分布不能确定联合分布（除非独立）！卷积公式仅在X,Y独立时成立，不独立时需用联合密度f(x,y)计算。max/min的分布公式也要求独立性。</div>
+<div class="exam-box">多维随机变量是概率论大题常考题型：①联合密度→边缘密度→条件密度→独立性判定→函数分布的完整推理链 ②卷积公式（Z=X+Y）③max/min分布。</div>
+`},
+
+lec27:{num:'27',title:'随机变量的数字特征',exams:{s1:true,s2:false,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 数学期望</h4><p>EX=Σx_k p_k或∫xf(x)dx。期望的线性性：E(aX+bY+c)=aEX+bEY+c（无论X,Y是否独立）。E[g(X)]=∫g(x)f(x)dx。</p></div>
+<div class="kp-item"><h4>2. 方差</h4><p>DX=E(X−EX)²=EX²−(EX)²。D(aX+b)=a²DX。D(X±Y)=DX+DY±2Cov(X,Y)。标准化：X*=(X−EX)/√DX。</p></div>
+<div class="kp-item"><h4>3. 协方差</h4><p>Cov(X,Y)=E[(X−EX)(Y−EY)]=E(XY)−EX·EY。Cov(aX,bY)=ab·Cov(X,Y)。对称性和双线性性。</p></div>
+<div class="kp-item"><h4>4. 相关系数</h4><p>ρ_XY=Cov(X,Y)/√(DX·DY)。|ρ|≤1；ρ=0⇔不相关；|ρ|=1⇔P(Y=aX+b)=1。独立⇒不相关，不相关未必独立（正态分布除外：正态下不相关=独立）。</p></div>
+<div class="kp-item"><h4>5. 矩、协方差矩阵</h4><p>k阶原点矩：EX^k；k阶中心矩：E(X−EX)^k。协方差矩阵：Σ=(Cov(X_i,X_j))_{n×n}，对角线是方差，非对角线是协方差。</p></div>
+<div class="kp-item"><h4>6. 常用分布数字特征表</h4><p>B(n,p):E=np,D=npq；P(λ):E=D=λ；U(a,b):E=(a+b)/2,D=(b−a)²/12；E(λ):E=1/λ,D=1/λ²；N(μ,σ²):E=μ,D=σ²；G(p):E=1/p,D=q/p²。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>方差与协方差核心公式：</strong><br>
+DX=E(X²)−(EX)²<br>
+D(aX±bY)=a²DX+b²DY±2abCov(X,Y)<br>
+Cov(X,Y)=E(XY)−EX·EY<br>
+X,Y独立⇒Cov(X,Y)=0且E(XY)=EX·EY<br>
+|ρ_XY|≤1；ρ=0⇔Cov=0
+</div>
+
+<div class="tips-box">求数字特征时优先使用性质简化计算：期望的线性性不需要独立；方差的和需要协方差项；独立时协方差为0。计算EXY时若X,Y独立可分解为EX·EY。</div>
+<div class="warn-box">不相关≠独立！ρ=0只说明没有线性关系，可能存在非线性关系（如Y=X²，ρ可能为0但明显不独立）。但在二维正态分布中ρ=0⇔独立。</div>
+<div class="exam-box">数字特征每年必考。重点：①求期望和方差（包括随机变量函数的期望）②协方差和相关系数的计算 ③不相关与独立的区分 ④利用数字特征去解题。</div>
+`},lec28:{num:'28',title:'大数定律与中心极限定理',exams:{s1:true,s2:false,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 切比雪夫不等式</h4><p>P(|X−EX|≥ε) ≤ DX/ε²。仅需方差存在即可给出偏离期望的概率上界，是证明大数定律的重要工具。不等式的界较粗但通用性强。</p></div>
+<div class="kp-item"><h4>2. 依概率收敛</h4><p>X_n→X(P)：∀ε>0, lim P(|X_n−X|≥ε)=0。弱收敛的一种形式。大数定律一般结论形式：样本均值依概率收敛于期望。</p></div>
+<div class="kp-item"><h4>3. 辛钦大数定律</h4><p>{X_n}独立同分布且EX=μ存在，则X̄_n=(1/n)ΣX_i→μ(P)。不需要方差存在！条件比分位数定理更弱。</p></div>
+<div class="kp-item"><h4>4. 伯努利大数定律</h4><p>n次独立重复试验中事件A发生的频率f_n(A)→p=P(A)。辛钦大数定律的特例（X_i~B(1,p)）。频率的稳定性——概率的统计学意义。</p></div>
+<div class="kp-item"><h4>5. 列维-林德伯格中心极限定理</h4><p>{X_n}独立同分布，EX=μ,DX=σ²存在且>0，则ΣX_i近似~N(nμ,nσ²)。标准化形式：(ΣX_i−nμ)/(√n σ)→N(0,1)。</p></div>
+<div class="kp-item"><h4>6. 棣莫弗-拉普拉斯定理</h4><p>Y_n~B(n,p)，则Y_n近似~N(np,np(1−p))。当n充分大时可用正态分布近似二项分布概率。实际应用中n需满足np≥5且n(1−p)≥5。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>切比雪夫不等式：</strong>P(|X−μ|≥ε) ≤ σ²/ε²<br>
+<strong>中心极限定理应用：</strong><br>
+P(a<ΣX_i<b) ≈ Φ((b−nμ)/(√n σ)) − Φ((a−nμ)/(√n σ))<br>
+<strong>二项正态近似：</strong>Y~B(n,p)⇒(Y−np)/√(npq) 近似~N(0,1)
+</div>
+
+<div class="tips-box">大数定律回答"为什么频率能估计概率"，中心极限定理回答"为什么数据近似正态"。应用题中，判效量大的独立随机变量之和→用中心极限定理做正态近似。</div>
+<div class="warn-box">大数定律只保证收敛性，没说收敛速度！中心极限定理要求方差存在（辛钦只要求期望存在）。正态近似二项分布时注意连续性校正。</div>
+`},
+
+lec29:{num:'29',title:'数理统计的基本概念',exams:{s1:true,s2:false,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 总体与样本</h4><p>总体X∼F。简单随机样本：X₁,...,X_n独立同分布（i.i.d.）。统计量：不含未知参数的样本函数。样本均值X̄=ΣX_i/n；样本方差S²=Σ(X_i−X̄)²/(n−1)；样本k阶矩A_k=ΣX_iᵏ/n。</p></div>
+<div class="kp-item"><h4>2. 三大抽样分布——χ²分布</h4><p>若Z_i∼N(0,1)独立，则χ²=ΣZ_i²∼χ²(n)。期望E(χ²(n))=n，方差D(χ²(n))=2n。可加性：χ₁²+χ₂²∼χ²(n₁+n₂)。</p></div>
+<div class="kp-item"><h4>3. 三大抽样分布——t分布</h4><p>若Z∼N(0,1)与χ²∼χ²(n)独立，则T=Z/√(χ²/n)∼t(n)。t(n)的密度类似于正态但尾巴更厚。n→∞时t(n)→N(0,1)。</p></div>
+<div class="kp-item"><h4>4. 三大抽样分布——F分布</h4><p>若χ₁²∼χ²(m)与χ₂²∼χ²(n)独立，则F=(χ₁²/m)/(χ₂²/n)∼F(m,n)。性质：F_{1−α}(m,n)=1/F_α(n,m)。</p></div>
+<div class="kp-item"><h4>5. 正态总体的抽样定理</h4><p>设X₁,...,X_n∼N(μ,σ²)独立，则：X̄∼N(μ,σ²/n)；X̄与S²独立；(n−1)S²/σ²∼χ²(n−1)；√n(X̄−μ)/S∼t(n−1)。</p></div>
+<div class="kp-item"><h4>6. 分位数</h4><p>上α分位数u_α：P(U>u_α)=α。对称分布双侧分位数。标准正态：z_α；χ²分位数：χ²_α(n)；t分位数：t_α(n)；F分位数：F_α(m,n)。</p></div>
+</div>
+
+<div class="formula-box">
+<strong>三大抽样分布定义：</strong><br>
+χ²(n)=Z₁²+⋯+Z_n²（n个独立标准正态平方和）<br>
+t(n)=Z/√(χ²/n)（标准正态/独立χ²的平方根）<br>
+F(m,n)=(χ_m²/m)/(χ_n²/n)（两个独立χ²的比）
+
+<strong>正态总体样本：</strong><br>
+X̄~N(μ,σ²/n)<br>
+(n−1)S²/σ²~χ²(n−1)<br>
+√n(X̄−μ)/S~t(n−1)
+</div>
+
+<div class="tips-box">找抽样分布的通用思路：①标准化正态变量变成N(0,1)②平方和变成χ²③正态/√(χ²/n)变成t④两个χ²比变成F。遇到S²先想到除σ²乘(n−1)得χ²(n−1)。</div>
+<div class="warn-box">样本方差的分母是n−1（不是n）！这是为了无偏性(E(S²)=σ²)。χ²分布的自由度是n−1（用了X̄估计μ损失了一个自由度）。注意F分位数的倒数对称性。</div>
+<div class="exam-box">数理统计在考研中占比可观，重点：①三大抽样分布的识别与使用 ②正态总体下的统计量分布 ③分位数的计算和使用。这部分是参数估计和假设检验的基础。</div>
+`},
+
+lec30:{num:'30',title:'参数估计与假设检验',exams:{s1:true,s2:false,s3:true},content:`
+<h3>一、核心知识框架</h3>
+<div class="kp-grid">
+<div class="kp-item"><h4>1. 矩估计法</h4><p>用样本矩代替总体矩，解方程组求参数的估计量。思路：令E(X^k)=A_k（样本k阶原点矩），解出参数。简单直观，不一定最优。</p></div>
+<div class="kp-item"><h4>2. 最大似然估计（MLE）</h4><p>写出似然函数L(θ)=Πf(x_i;θ)→取对数lnL→求导d(lnL)/dθ=0→解似然方程→θ̂。MLE具有相合性和渐近有效性。</p></div>
+<div class="kp-item"><h4>3. 估计量的评价标准</h4><p><strong>无偏性</strong>：E(θ̂)=θ。<strong>有效性</strong>：无偏估计中方差最小者为有效。<strong>相合性（一致性）</strong>：n→∞时θ̂→θ(P)。MLE在大样本下具有良好的渐近性质。</p></div>
+<div class="kp-item"><h4>4. 区间估计</h4><p>置信区间：P(θ₁<θ<θ₂)=1−α。正态总体均值的置信区间（σ已知用z，σ未知用t）。正态总体方差的置信区间（用χ²分布）。</p></div>
+<div class="kp-item"><h4>5. 假设检验的基本概念（数一）</h4><p>原假设H₀和备择假设H₁。两类错误：第一类（弃真）概率α；第二类（取伪）概率β。显著性水平α的检验。</p></div>
+<div class="kp-item"><h4>6. 一个正态总体的检验（数一）</h4><p>均值检验：σ已知用U检验；σ未知用t检验。方差检验：用χ²检验。拒绝域的确定依赖于备择假设的方向（双侧/左侧/右侧）。</p></div>
+</div>
+
+<h3>二、最大似然估计完整步骤</h3>
+<ul class="method-list">
+<li><span class="step-num">1</span><strong>写出似然函数</strong>L(θ)=Π_{i=1}^n f(x_i;θ)（连续型用密度，离散型用分布律）</li>
+<li><span class="step-num">2</span><strong>取对数</strong>lnL(θ)=Σlnf(x_i;θ)。乘积变求和，简化求导。</li>
+<li><span class="step-num">3</span><strong>求导</strong>d(lnL)/dθ=0，得到似然方程。</li>
+<li><span class="step-num">4</span><strong>解方程</strong>得θ̂（MLE）。注意：有时方程无显式解，需直接分析L(θ)的单调性。</li>
+<li><span class="step-num">5</span><strong>验证</strong>是否为最大值点（二阶导数<0或根据实际问题判断）。</li>
+</ul>
+
+<div class="formula-box">
+<strong>正态总体参数的置信区间（置信度1−α）：</strong><br>
+μ（σ²已知）：(X̄−z_{α/2}·σ/√n, X̄+z_{α/2}·σ/√n)<br>
+μ（σ²未知）：(X̄−t_{α/2}(n−1)·S/√n, X̄+t_{α/2}(n−1)·S/√n)<br>
+σ²：( (n−1)S²/χ²_{α/2}(n−1), (n−1)S²/χ²_{1−α/2}(n−1) )
+</div>
+
+<div class="tips-box">MLE求不出显式解时，判断lnL(θ)的单调性，参数取边界值为MLE。例如均匀分布U(0,θ)的MLE是θ̂=max{X_i}（使似然函数最大）。</div>
+<div class="warn-box">矩估计和MLE不一定相同！矩估计更依赖矩的存在性，MLE更依赖似然函数形状。MLE并非总是无偏的（如正态分布σ²的MLE是Σ(X_i−X̄)²/n，是有偏的；S²=Σ(X_i−X̄)²/(n−1)才是无偏的）。</div>
+<div class="exam-box">参数估计是考研概率论必考大题（10分以上）。重点：①MLE的计算（含多参数的情形）②估计量无偏性和有效性的判定 ③正态总体的置信区间。</div>
+`}
+};
+
+function scrollToCard(id) {
+  const el = document.getElementById(id);
+  if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.style.boxShadow = '0 0 0 3px var(--accent)'; setTimeout(() => { el.style.boxShadow = ''; }, 1500); }
+}
+
+function openDetail(id) {
+  const data = lectureData[id];
+  if (!data) return;
+  let examTags = '';
+  if (data.exams.s1) examTags += '<span class="exam-tag s1">数一</span>';
+  if (data.exams.s2) examTags += '<span class="exam-tag s2">数二</span>';
+  if (data.exams.s3) examTags += '<span class="exam-tag s3">数三</span>';
+  const html = '<button class="close-btn" onclick="closeDetail()">✕</button><div class="detail-header"><div class="lec-num">第'+data.num+'讲</div><h2>'+data.title+'</h2><div>'+examTags+'</div></div><div class="detail-body">'+data.content+'</div>';
+  document.getElementById('detailPanel').innerHTML = html;
+  document.getElementById('detailOverlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => { renderMathInElement(document.getElementById('detailPanel'), { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}] }); }, 100);
+  const card = document.getElementById(id);
+  if (card) { const bar = card.querySelector('.progress-bar .fill'); if (bar) bar.style.width = '100%'; }
+}
+
+function closeDetail() { document.getElementById('detailOverlay').classList.remove('show'); document.body.style.overflow = ''; }
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDetail(); });
+
+function filterCards() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.lecture-card').forEach(card => { card.style.display = card.textContent.toLowerCase().includes(query) ? '' : 'none'; });
+}
+
+const sidebarLinks = document.querySelectorAll('.sidebar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  document.querySelectorAll('.lecture-card').forEach(card => { if (card.getBoundingClientRect().top < 300) current = card.id; });
+  sidebarLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + current) a.classList.add('active'); });
+});
+
+window.addEventListener('load', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+</script>
+</body>
+</html>
