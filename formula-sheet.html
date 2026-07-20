@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>考研数学公式速查表 - 2027考研数学三十讲</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<style>
+:root {
+  --bg: #0b1120;
+  --card: #151d30;
+  --border: #1e2d4a;
+  --text: #e2e8f0;
+  --text2: #8899b4;
+  --accent: #38bdf8;
+  --accent2: #818cf8;
+  --pink: #f472b6;
+  --green: #4ade80;
+  --warn: #fbbf24;
+  --radius: 12px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+.top-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(11,17,32,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap;
+}
+.top-bar .logo {
+  font-size: 18px; font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+.top-bar input {
+  flex: 1; min-width: 200px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 16px;
+  color: var(--text); font-size: 14px; outline: none;
+  transition: border-color 0.2s;
+}
+.top-bar input:focus { border-color: var(--accent); }
+.top-bar input::placeholder { color: #555; }
+.back-link {
+  color: var(--accent); text-decoration: none; font-size: 13px;
+  white-space: nowrap;
+}
+.back-link:hover { text-decoration: underline; }
+
+.quick-nav {
+  position: sticky; top: 72px; z-index: 99;
+  background: rgba(11,17,32,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 24px;
+  display: flex; gap: 8px; overflow-x: auto;
+  scrollbar-width: none;
+}
+.quick-nav::-webkit-scrollbar { display: none; }
+.quick-nav a {
+  white-space: nowrap; font-size: 12px; color: var(--text2);
+  text-decoration: none; padding: 5px 12px;
+  border-radius: 14px; border: 1px solid transparent;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.quick-nav a:hover, .quick-nav a.active {
+  color: var(--accent); border-color: var(--accent);
+  background: rgba(56,189,248,0.06);
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+.page-header {
+  text-align: center; padding: 40px 20px 20px;
+}
+.page-header h1 {
+  font-size: 36px; font-weight: 900;
+  background: linear-gradient(135deg, #e2e8f0 20%, #38bdf8 50%, #818cf8 80%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+.page-header .subtitle { color: var(--text2); font-size: 15px; }
+
+.module-divider {
+  margin: 40px 0 24px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, rgba(56,189,248,0.06), rgba(129,140,248,0.06));
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  display: flex; align-items: center; gap: 14px;
+}
+.module-divider .m-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 16px; color: #fff;
+}
+.module-divider h2 { font-size: 22px; font-weight: 700; }
+
+.section-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.section-header {
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  user-select: none;
+  transition: background 0.2s;
+}
+.section-header:hover { background: rgba(255,255,255,0.02); }
+.section-header h3 {
+  font-size: 17px; font-weight: 700;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-header .arrow {
+  font-size: 12px; color: var(--text2);
+  transition: transform 0.3s;
+}
+.section-block.open .section-header .arrow { transform: rotate(180deg); }
+.section-body { display: none; padding: 0 20px 20px; }
+.section-block.open .section-body { display: block; }
+
+.subsection { margin-bottom: 18px; }
+.subsection h4 {
+  font-size: 14px; font-weight: 700; color: var(--accent);
+  margin-bottom: 10px; padding-bottom: 6px;
+  border-bottom: 1px solid rgba(56,189,248,0.12);
+}
+.formula-list { display: flex; flex-direction: column; gap: 6px; }
+.formula-item {
+  display: flex; align-items: baseline; gap: 14px;
+  padding: 8px 14px; border-radius: 6px;
+  background: rgba(255,255,255,0.015);
+  transition: background 0.2s;
+}
+.formula-item:hover { background: rgba(56,189,248,0.04); }
+.formula-item .f-name {
+  font-size: 13px; color: var(--text2);
+  min-width: 100px; max-width: 140px; flex-shrink: 0;
+}
+.formula-item .f-katex {
+  font-size: 15px; overflow-x: auto;
+  flex: 1;
+}
+.formula-item .f-katex .katex { font-size: 1.05em; }
+
+.tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px;
+  border-radius: 10px; font-weight: 600;
+}
+.tag-s1 { background: rgba(56,189,248,0.15); color: #38bdf8; }
+.tag-s2 { background: rgba(129,140,248,0.15); color: #818cf8; }
+.tag-s3 { background: rgba(244,114,182,0.15); color: #f472b6; }
+
+.back-top {
+  position: fixed; bottom: 30px; right: 30px;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--accent); color: #fff; border: none;
+  font-size: 20px; cursor: pointer; opacity: 0.7;
+  transition: opacity 0.2s; z-index: 50;
+}
+.back-top:hover { opacity: 1; }
+
+.print-header { display: none; }
+
+@media print {
+  body { background: #fff; color: #000; }
+  .top-bar, .quick-nav, .back-top { display: none; }
+  .section-block { break-inside: avoid; border: 1px solid #ccc; background: #fff; }
+  .section-body { display: block !important; }
+  .section-header { pointer-events: none; }
+  .module-divider { background: #f5f5f5; }
+  .print-header { display: block; text-align: center; margin-bottom: 20px; }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 12px; }
+  .page-header h1 { font-size: 24px; }
+  .formula-item { flex-direction: column; gap: 4px; }
+  .formula-item .f-name { max-width: none; }
+  .top-bar { padding: 10px 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="print-header"><h1>考研数学公式速查表</h1></div>
+
+<div class="top-bar">
+  <span class="logo">公式速查表</span>
+  <input type="text" id="searchInput" placeholder="搜索公式... (如: 泰勒、格林、特征值)" oninput="searchFormulas()">
+  <a href="index.html" class="back-link">← 返回三十讲主页</a>
+</div>
+
+<nav class="quick-nav" id="quickNav">
+  <a href="#module1">高等数学</a>
+  <a href="#sec-limits">极限</a>
+  <a href="#sec-derivatives">导数</a>
+  <a href="#sec-mvt">中值定理</a>
+  <a href="#sec-indefinite">不定积分</a>
+  <a href="#sec-definite">定积分</a>
+  <a href="#sec-applications">定积分应用</a>
+  <a href="#sec-diffeq">微分方程</a>
+  <a href="#sec-multivariable">多元微分</a>
+  <a href="#sec-double-int">二重积分</a>
+  <a href="#sec-triple-int">三重积分</a>
+  <a href="#sec-line-surface">曲线曲面积分</a>
+  <a href="#sec-series">无穷级数</a>
+  <a href="#sec-geometry">解析几何</a>
+  <a href="#module2">线性代数</a>
+  <a href="#sec-determinant">行列式</a>
+  <a href="#sec-matrix">矩阵</a>
+  <a href="#sec-vector">向量与方程组</a>
+  <a href="#sec-eigen">特征值与二次型</a>
+  <a href="#module3">概率统计</a>
+  <a href="#sec-prob-basic">概率基础</a>
+  <a href="#sec-rv">随机变量</a>
+  <a href="#sec-numeric">数字特征</a>
+  <a href="#sec-stats">数理统计</a>
+</nav>
+
+<div class="container">
+<div class="page-header">
+  <h1>考研数学 · 公式速查表</h1>
+  <p class="subtitle">高等数学 · 线性代数 · 概率统计 — 核心公式一站速查</p>
+</div>
+
+<!-- ============ 高等数学 ============ -->
+<div class="module-divider" id="module1">
+  <div class="m-num">1</div>
+  <h2>高等数学 <span style="font-size:14px;color:var(--text2);font-weight:400;margin-left:8px;">第 1 - 16 讲</span></h2>
+</div>
+
+<!-- 极限与连续 -->
+<div class="section-block open" id="sec-limits">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>极限与连续</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>重要极限</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">第一重要极限</span><span class="f-katex">$$\lim_{x \to 0} \frac{\sin x}{x} = 1$$</span></div>
+<div class="formula-item"><span class="f-name">第二重要极限</span><span class="f-katex">$$\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e$$</span></div>
+<div class="formula-item"><span class="f-name">变体形式</span><span class="f-katex">$$\lim_{x \to 0} (1 + x)^{\frac{1}{x}} = e$$</span></div>
+<div class="formula-item"><span class="f-name">对数形式</span><span class="f-katex">$$\lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$$</span></div>
+<div class="formula-item"><span class="f-name">指数形式</span><span class="f-katex">$$\lim_{x \to 0} \frac{e^x - 1}{x} = 1$$</span></div>
+<div class="formula-item"><span class="f-name">幂指形式</span><span class="f-katex">$$\lim_{x \to 0} \frac{(1+x)^a - 1}{x} = a$$</span></div>
+<div class="formula-item"><span class="f-name">1−cos</span><span class="f-katex">$$\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>等价无穷小替换 (x → 0)</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">sin x ~ x</span><span class="f-katex">$$\sin x \sim x$$</span></div>
+<div class="formula-item"><span class="f-name">tan x ~ x</span><span class="f-katex">$$\tan x \sim x$$</span></div>
+<div class="formula-item"><span class="f-name">arcsin x ~ x</span><span class="f-katex">$$\arcsin x \sim x$$</span></div>
+<div class="formula-item"><span class="f-name">arctan x ~ x</span><span class="f-katex">$$\arctan x \sim x$$</span></div>
+<div class="formula-item"><span class="f-name">ln(1+x) ~ x</span><span class="f-katex">$$\ln(1+x) \sim x$$</span></div>
+<div class="formula-item"><span class="f-name">eˣ−1 ~ x</span><span class="f-katex">$$e^x - 1 \sim x$$</span></div>
+<div class="formula-item"><span class="f-name">aˣ−1 ~ xlna</span><span class="f-katex">$$a^x - 1 \sim x\ln a$$</span></div>
+<div class="formula-item"><span class="f-name">(1+x)ᵃ−1 ~ ax</span><span class="f-katex">$$(1+x)^a - 1 \sim ax$$</span></div>
+<div class="formula-item"><span class="f-name">1−cos x ~ ½x²</span><span class="f-katex">$$1 - \cos x \sim \frac{1}{2}x^2$$</span></div>
+<div class="formula-item"><span class="f-name">x − sin x</span><span class="f-katex">$$x - \sin x \sim \frac{1}{6}x^3$$</span></div>
+<div class="formula-item"><span class="f-name">arcsin x − x</span><span class="f-katex">$$\arcsin x - x \sim \frac{1}{6}x^3$$</span></div>
+<div class="formula-item"><span class="f-name">tan x − x</span><span class="f-katex">$$\tan x - x \sim \frac{1}{3}x^3$$</span></div>
+<div class="formula-item"><span class="f-name">x − arctan x</span><span class="f-katex">$$x - \arctan x \sim \frac{1}{3}x^3$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>泰勒公式（麦克劳林展开）</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">eˣ 展开</span><span class="f-katex">$$e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots + \frac{x^n}{n!} + o(x^n)$$</span></div>
+<div class="formula-item"><span class="f-name">sin x 展开</span><span class="f-katex">$$\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots + (-1)^n\frac{x^{2n+1}}{(2n+1)!} + o(x^{2n+1})$$</span></div>
+<div class="formula-item"><span class="f-name">cos x 展开</span><span class="f-katex">$$\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots + (-1)^n\frac{x^{2n}}{(2n)!} + o(x^{2n})$$</span></div>
+<div class="formula-item"><span class="f-name">ln(1+x) 展开</span><span class="f-katex">$$\ln(1+x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots + (-1)^{n-1}\frac{x^n}{n} + o(x^n)$$</span></div>
+<div class="formula-item"><span class="f-name">(1+x)ᵅ 展开</span><span class="f-katex">$$(1+x)^\alpha = 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!}x^2 + \cdots + \binom{\alpha}{n}x^n + o(x^n)$$</span></div>
+<div class="formula-item"><span class="f-name">1/(1−x)</span><span class="f-katex">$$\frac{1}{1-x} = 1 + x + x^2 + \cdots + x^n + o(x^n)$$</span></div>
+<div class="formula-item"><span class="f-name">1/(1+x)</span><span class="f-katex">$$\frac{1}{1+x} = 1 - x + x^2 - x^3 + \cdots + (-1)^n x^n + o(x^n)$$</span></div>
+<div class="formula-item"><span class="f-name">arctan x</span><span class="f-katex">$$\arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \cdots + (-1)^n\frac{x^{2n+1}}{2n+1} + o(x^{2n+2})$$</span></div>
+<div class="formula-item"><span class="f-name">tan x</span><span class="f-katex">$$\tan x = x + \frac{1}{3}x^3 + \frac{2}{15}x^5 + o(x^5)$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>洛必达法则条件</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">0/0 或 ∞/∞ 型</span><span class="f-katex">$$\lim \frac{f(x)}{g(x)} = \lim \frac{f'(x)}{g'(x)}$$</span></div>
+<div class="formula-item"><span class="f-name">使用前提</span><span class="f-katex">f(x), g(x) \text{ 可导}, g'(x) \neq 0, \lim \frac{f'}{g'} \text{ 存在}$$</span></div>
+<div class="formula-item"><span class="f-name">0·∞ 型转化</span><span class="f-katex">$$f \cdot g = \frac{f}{1/g} \text{ 或 } \frac{g}{1/f}$$</span></div>
+<div class="formula-item"><span class="f-name">∞−∞ 型</span><span class="f-katex">$$\text{通分或有理化转化为 } \frac{0}{0} \text{ 型}$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 导数 -->
+<div class="section-block" id="sec-derivatives">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>导数与微分</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>基本求导公式</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">C' = 0</span><span class="f-katex">$$(C)' = 0$$</span></div>
+<div class="formula-item"><span class="f-name">(xⁿ)'</span><span class="f-katex">$$(x^n)' = nx^{n-1}$$</span></div>
+<div class="formula-item"><span class="f-name">(aˣ)'</span><span class="f-katex">$$(a^x)' = a^x \ln a$$</span></div>
+<div class="formula-item"><span class="f-name">(eˣ)'</span><span class="f-katex">$$(e^x)' = e^x$$</span></div>
+<div class="formula-item"><span class="f-name">(logₐx)'</span><span class="f-katex">$$(\log_a x)' = \frac{1}{x\ln a}$$</span></div>
+<div class="formula-item"><span class="f-name">(ln x)'</span><span class="f-katex">$$(\ln x)' = \frac{1}{x}$$</span></div>
+<div class="formula-item"><span class="f-name">(sin x)'</span><span class="f-katex">$$(\sin x)' = \cos x$$</span></div>
+<div class="formula-item"><span class="f-name">(cos x)'</span><span class="f-katex">$$(\cos x)' = -\sin x$$</span></div>
+<div class="formula-item"><span class="f-name">(tan x)'</span><span class="f-katex">$$(\tan x)' = \sec^2 x$$</span></div>
+<div class="formula-item"><span class="f-name">(cot x)'</span><span class="f-katex">$$(\cot x)' = -\csc^2 x$$</span></div>
+<div class="formula-item"><span class="f-name">(sec x)'</span><span class="f-katex">$$(\sec x)' = \sec x \tan x$$</span></div>
+<div class="formula-item"><span class="f-name">(csc x)'</span><span class="f-katex">$$(\csc x)' = -\csc x \cot x$$</span></div>
+<div class="formula-item"><span class="f-name">(arcsin x)'</span><span class="f-katex">$$(\arcsin x)' = \frac{1}{\sqrt{1-x^2}}$$</span></div>
+<div class="formula-item"><span class="f-name">(arccos x)'</span><span class="f-katex">$$(\arccos x)' = -\frac{1}{\sqrt{1-x^2}}$$</span></div>
+<div class="formula-item"><span class="f-name">(arctan x)'</span><span class="f-katex">$$(\arctan x)' = \frac{1}{1+x^2}$$</span></div>
+<div class="formula-item"><span class="f-name">(arccot x)'</span><span class="f-katex">$$(\operatorname{arccot} x)' = -\frac{1}{1+x^2}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>求导运算法则</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">四则运算</span><span class="f-katex">$$(u \pm v)' = u' \pm v',\quad (uv)' = u'v + uv'$$</span></div>
+<div class="formula-item"><span class="f-name">商法则</span><span class="f-katex">$$\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}$$</span></div>
+<div class="formula-item"><span class="f-name">链式法则</span><span class="f-katex">$$\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}$$</span></div>
+<div class="formula-item"><span class="f-name">参数方程</span><span class="f-katex">$$\frac{dy}{dx} = \frac{dy/dt}{dx/dt} = \frac{y'(t)}{x'(t)}$$</span></div>
+<div class="formula-item"><span class="f-name">参数方程二阶</span><span class="f-katex">$$\frac{d^2y}{dx^2} = \frac{d}{dt}\!\left(\frac{dy/dt}{dx/dt}\right) \! \Big/ \frac{dx}{dt}$$</span></div>
+<div class="formula-item"><span class="f-name">隐函数求导</span><span class="f-katex">$$F(x,y)=0 \Rightarrow \frac{dy}{dx} = -\frac{F_x}{F_y}$$</span></div>
+<div class="formula-item"><span class="f-name">反函数求导</span><span class="f-katex">$$\frac{dx}{dy} = \frac{1}{dy/dx}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>高阶导数公式</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">莱布尼兹公式</span><span class="f-katex">$$(uv)^{(n)} = \sum_{k=0}^{n} \binom{n}{k} u^{(n-k)} v^{(k)}$$</span></div>
+<div class="formula-item"><span class="f-name">(sin x)⁽ⁿ⁾</span><span class="f-katex">$$(\sin x)^{(n)} = \sin\!\left(x + \frac{n\pi}{2}\right)$$</span></div>
+<div class="formula-item"><span class="f-name">(cos x)⁽ⁿ⁾</span><span class="f-katex">$$(\cos x)^{(n)} = \cos\!\left(x + \frac{n\pi}{2}\right)$$</span></div>
+<div class="formula-item"><span class="f-name">(eᵅˣ)⁽ⁿ⁾</span><span class="f-katex">$$(e^{ax})^{(n)} = a^n e^{ax}$$</span></div>
+<div class="formula-item"><span class="f-name">(ln x)⁽ⁿ⁾</span><span class="f-katex">$$(\ln x)^{(n)} = (-1)^{n-1}\frac{(n-1)!}{x^n}$$</span></div>
+<div class="formula-item"><span class="f-name">(xᵐ)⁽ⁿ⁾</span><span class="f-katex">$$(x^m)^{(n)} = m(m-1)\cdots(m-n+1)x^{m-n}$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 中值定理 -->
+<div class="section-block" id="sec-mvt">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>中值定理</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>三大中值定理</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">罗尔定理</span><span class="f-katex">$$f(a)=f(b) \Rightarrow \exists \xi \in (a,b),\; f'(\xi) = 0$$</span></div>
+<div class="formula-item"><span class="f-name">拉格朗日</span><span class="f-katex">$$\exists \xi \in (a,b),\; f'(\xi) = \frac{f(b)-f(a)}{b-a}$$</span></div>
+<div class="formula-item"><span class="f-name">柯西中值</span><span class="f-katex">$$\exists \xi \in (a,b),\; \frac{f(b)-f(a)}{g(b)-g(a)} = \frac{f'(\xi)}{g'(\xi)}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>泰勒中值定理</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">拉格朗日余项</span><span class="f-katex">$$f(x) = \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k + \frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$$</span></div>
+<div class="formula-item"><span class="f-name">佩亚诺余项</span><span class="f-katex">$$f(x) = \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k + o((x-x_0)^n)$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 不定积分 -->
+<div class="section-block" id="sec-indefinite">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>不定积分</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>基本积分公式</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">∫xⁿdx</span><span class="f-katex">$$\int x^n dx = \frac{x^{n+1}}{n+1} + C \quad (n \neq -1)$$</span></div>
+<div class="formula-item"><span class="f-name">∫1/x dx</span><span class="f-katex">$$\int \frac{1}{x} dx = \ln|x| + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫aˣdx</span><span class="f-katex">$$\int a^x dx = \frac{a^x}{\ln a} + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫eˣdx</span><span class="f-katex">$$\int e^x dx = e^x + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫sin x dx</span><span class="f-katex">$$\int \sin x\,dx = -\cos x + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫cos x dx</span><span class="f-katex">$$\int \cos x\,dx = \sin x + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫tan x dx</span><span class="f-katex">$$\int \tan x\,dx = -\ln|\cos x| + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫cot x dx</span><span class="f-katex">$$\int \cot x\,dx = \ln|\sin x| + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫sec x dx</span><span class="f-katex">$$\int \sec x\,dx = \ln|\sec x + \tan x| + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫csc x dx</span><span class="f-katex">$$\int \csc x\,dx = \ln|\csc x - \cot x| + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫sec²x dx</span><span class="f-katex">$$\int \sec^2 x\,dx = \tan x + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫csc²x dx</span><span class="f-katex">$$\int \csc^2 x\,dx = -\cot x + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫sec x tan x</span><span class="f-katex">$$\int \sec x \tan x\,dx = \sec x + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫csc x cot x</span><span class="f-katex">$$\int \csc x \cot x\,dx = -\csc x + C$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>常用积分公式</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">∫1/(1+x²)</span><span class="f-katex">$$\int \frac{1}{1+x^2} dx = \arctan x + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫1/√(1−x²)</span><span class="f-katex">$$\int \frac{1}{\sqrt{1-x^2}} dx = \arcsin x + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫1/(a²+x²)</span><span class="f-katex">$$\int \frac{1}{a^2+x^2} dx = \frac{1}{a}\arctan\frac{x}{a} + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫1/√(a²−x²)</span><span class="f-katex">$$\int \frac{1}{\sqrt{a^2-x^2}} dx = \arcsin\frac{x}{a} + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫1/(x²−a²)</span><span class="f-katex">$$\int \frac{1}{x^2-a^2} dx = \frac{1}{2a}\ln\left|\frac{x-a}{x+a}\right| + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫1/√(x²±a²)</span><span class="f-katex">$$\int \frac{1}{\sqrt{x^2 \pm a^2}} dx = \ln|x + \sqrt{x^2 \pm a^2}| + C$$</span></div>
+<div class="formula-item"><span class="f-name">∫√(a²−x²)dx</span><span class="f-katex">$$\int \sqrt{a^2-x^2}\,dx = \frac{x}{2}\sqrt{a^2-x^2} + \frac{a^2}{2}\arcsin\frac{x}{a} + C$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>换元法与分部积分</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">第一类换元</span><span class="f-katex">$$\int f(\varphi(x))\varphi'(x)dx = \int f(u)du$$</span></div>
+<div class="formula-item"><span class="f-name">第二类换元</span><span class="f-katex">$$\int f(x)dx = \int f(\psi(t))\psi'(t)dt$$</span></div>
+<div class="formula-item"><span class="f-name">分部积分</span><span class="f-katex">$$\int u\,dv = uv - \int v\,du$$</span></div>
+<div class="formula-item"><span class="f-name">三角代换√(a²−x²)</span><span class="f-katex">$$x = a\sin t$$</span></div>
+<div class="formula-item"><span class="f-name">三角代换√(a²+x²)</span><span class="f-katex">$$x = a\tan t$$</span></div>
+<div class="formula-item"><span class="f-name">三角代换√(x²−a²)</span><span class="f-katex">$$x = a\sec t$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 定积分 -->
+<div class="section-block" id="sec-definite">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>定积分</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>定积分基本公式</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">牛顿-莱布尼兹</span><span class="f-katex">$$\int_a^b f(x)dx = F(b) - F(a)$$</span></div>
+<div class="formula-item"><span class="f-name">变上限积分求导</span><span class="f-katex">$$\frac{d}{dx}\int_a^x f(t)dt = f(x)$$</span></div>
+<div class="formula-item"><span class="f-name">变限一般形式</span><span class="f-katex">$$\frac{d}{dx}\int_{a(x)}^{b(x)} f(t)dt = f(b(x))b'(x) - f(a(x))a'(x)$$</span></div>
+<div class="formula-item"><span class="f-name">积分中值定理</span><span class="f-katex">$$\exists \xi \in [a,b],\; \int_a^b f(x)dx = f(\xi)(b-a)$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>定积分对称性</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">偶函数对称</span><span class="f-katex">$$\int_{-a}^{a} f(x)dx = 2\int_0^a f(x)dx \quad (f\text{ 偶})$$</span></div>
+<div class="formula-item"><span class="f-name">奇函数对称</span><span class="f-katex">$$\int_{-a}^{a} f(x)dx = 0 \quad (f\text{ 奇})$$</span></div>
+<div class="formula-item"><span class="f-name">周期函数</span><span class="f-katex">$$\int_a^{a+T} f(x)dx = \int_0^T f(x)dx$$</span></div>
+<div class="formula-item"><span class="f-name">华里士公式</span><span class="f-katex">$$\int_0^{\pi/2} \sin^n x\,dx = \int_0^{\pi/2} \cos^n x\,dx = \frac{n-1}{n} \cdot \frac{n-3}{n-2} \cdots$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>反常积分</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">无穷限反常积分</span><span class="f-katex">$$\int_a^{+\infty} f(x)dx = \lim_{b \to +\infty} \int_a^b f(x)dx$$</span></div>
+<div class="formula-item"><span class="f-name">Γ函数定义</span><span class="f-katex">$$\Gamma(s) = \int_0^{+\infty} x^{s-1}e^{-x}dx$$</span></div>
+<div class="formula-item"><span class="f-name">Γ函数递推</span><span class="f-katex">$$\Gamma(s+1) = s\Gamma(s),\quad \Gamma(n+1) = n!$$</span></div>
+<div class="formula-item"><span class="f-name">Γ(1/2)</span><span class="f-katex">$$\Gamma\!\left(\frac{1}{2}\right) = \sqrt{\pi}$$</span></div>
+<div class="formula-item"><span class="f-name">∫₀⁺⁰ e⁻ˣ² dx</span><span class="f-katex">$$\int_0^{+\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2}$$</span></div>
+</div></div>
+
+</div></div>
+<!-- 定积分应用 -->
+<div class="section-block" id="sec-applications">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>定积分应用</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>面积</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">直角坐标面积</span><span class="f-katex">$$S = \int_a^b [f(x) - g(x)]dx$$</span></div>
+<div class="formula-item"><span class="f-name">极坐标面积</span><span class="f-katex">$$S = \frac{1}{2}\int_{\alpha}^{\beta} r^2(\theta)d\theta$$</span></div>
+<div class="formula-item"><span class="f-name">参数方程面积</span><span class="f-katex">$$S = \int_{t_1}^{t_2} y(t)x'(t)dt$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>旋转体体积</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">绕x轴 (圆盘法)</span><span class="f-katex">$$V = \pi\int_a^b [f(x)]^2 dx$$</span></div>
+<div class="formula-item"><span class="f-name">绕y轴 (圆盘法)</span><span class="f-katex">$$V = \pi\int_c^d [g(y)]^2 dy$$</span></div>
+<div class="formula-item"><span class="f-name">绕x轴 (柱壳法)</span><span class="f-katex">$$V = 2\pi\int_c^d y \cdot x(y)\,dy \quad (\text{绕 }x\text{ 轴})$$</span></div>
+<div class="formula-item"><span class="f-name">绕y轴 (柱壳法)</span><span class="f-katex">$$V = 2\pi\int_a^b x \cdot f(x)dx \quad (\text{绕 }y\text{ 轴})$$</span></div>
+<div class="formula-item"><span class="f-name">截面面积法</span><span class="f-katex">$$V = \int_a^b A(x)dx$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>弧长</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">直角坐标弧长</span><span class="f-katex">$$s = \int_a^b \sqrt{1 + [f'(x)]^2}\,dx$$</span></div>
+<div class="formula-item"><span class="f-name">参数方程弧长</span><span class="f-katex">$$s = \int_{t_1}^{t_2} \sqrt{[x'(t)]^2 + [y'(t)]^2}\,dt$$</span></div>
+<div class="formula-item"><span class="f-name">极坐标弧长</span><span class="f-katex">$$s = \int_{\alpha}^{\beta} \sqrt{r^2(\theta) + [r'(\theta)]^2}\,d\theta$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>旋转曲面面积</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">绕x轴旋转</span><span class="f-katex">$$S = 2\pi\int_a^b |f(x)|\sqrt{1+[f'(x)]^2}\,dx$$</span></div>
+<div class="formula-item"><span class="f-name">绕y轴旋转</span><span class="f-katex">$$S = 2\pi\int_c^d |x(y)|\sqrt{1+[x'(y)]^2}\,dy$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 微分方程 -->
+<div class="section-block" id="sec-diffeq">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>微分方程</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>一阶微分方程</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">可分离变量</span><span class="f-katex">$$\frac{dy}{dx} = f(x)g(y) \Rightarrow \int \frac{dy}{g(y)} = \int f(x)dx$$</span></div>
+<div class="formula-item"><span class="f-name">齐次方程</span><span class="f-katex">$$\frac{dy}{dx} = \varphi\!\left(\frac{y}{x}\right),\; u=\frac{y}{x}$$</span></div>
+<div class="formula-item"><span class="f-name">一阶线性通解</span><span class="f-katex">$$y' + P(x)y = Q(x) \Rightarrow y = e^{-\int Pdx}\left[\int Q e^{\int Pdx}dx + C\right]$$</span></div>
+<div class="formula-item"><span class="f-name">伯努利方程</span><span class="f-katex">$$y' + P(x)y = Q(x)y^n,\; z = y^{1-n}$$</span></div>
+<div class="formula-item"><span class="f-name">全微分方程</span><span class="f-katex">$$Pdx + Qdy = 0,\; \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>二阶常系数线性微分方程</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">齐次形式</span><span class="f-katex">$$y'' + py' + qy = 0$$</span></div>
+<div class="formula-item"><span class="f-name">特征方程</span><span class="f-katex">$$r^2 + pr + q = 0$$</span></div>
+<div class="formula-item"><span class="f-name">Δ>0 通解</span><span class="f-katex">$$y = C_1 e^{r_1 x} + C_2 e^{r_2 x}$$</span></div>
+<div class="formula-item"><span class="f-name">Δ=0 通解</span><span class="f-katex">$$y = (C_1 + C_2 x)e^{r x}$$</span></div>
+<div class="formula-item"><span class="f-name">Δ<0 通解</span><span class="f-katex">$$y = e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x),\quad r = \alpha \pm i\beta$$</span></div>
+<div class="formula-item"><span class="f-name">特解 Pₙ(x)eᵅˣ</span><span class="f-katex">$$y^* = x^k Q_n(x)e^{\lambda x}$$</span></div>
+<div class="formula-item"><span class="f-name">特解 eᵅˣcos/sin</span><span class="f-katex">$$y^* = x^k e^{\alpha x}(A\cos\beta x + B\sin\beta x)$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>可降阶方程</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">y''=f(x)型</span><span class="f-katex">$$y^{(n)} = f(x),\ \text{逐次积分}$$</span></div>
+<div class="formula-item"><span class="f-name">y''=f(x,y')型</span><span class="f-katex">$$y''=f(x,y'),\ \text{令 }p=y'$$</span></div>
+<div class="formula-item"><span class="f-name">y''=f(y,y')型</span><span class="f-katex">$$y''=f(y,y'),\ \text{令 }p=y',\ y''=p\frac{dp}{dy}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>欧拉方程 <span class="tag tag-s1">数一</span></h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">欧拉方程</span><span class="f-katex">$$x^n y^{(n)} + a_1 x^{n-1} y^{(n-1)} + \cdots + a_n y = f(x)$$</span></div>
+<div class="formula-item"><span class="f-name">求解变换</span><span class="f-katex">$$x = e^t \text{ 或 } t = \ln x$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 多元函数微分 -->
+<div class="section-block" id="sec-multivariable">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>多元函数微分学</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>偏导数与全微分</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">偏导数定义</span><span class="f-katex">$$f_x(x_0,y_0) = \lim_{\Delta x \to 0} \frac{f(x_0+\Delta x, y_0) - f(x_0,y_0)}{\Delta x}$$</span></div>
+<div class="formula-item"><span class="f-name">全微分</span><span class="f-katex">$$dz = \frac{\partial z}{\partial x}dx + \frac{\partial z}{\partial y}dy$$</span></div>
+<div class="formula-item"><span class="f-name">可微充分条件</span><span class="f-katex">$$f_x, f_y \text{ 连续 } \Rightarrow f \text{ 可微}$$</span></div>
+<div class="formula-item"><span class="f-name">链式法则(多元)</span><span class="f-katex">$$\frac{dz}{dt} = \frac{\partial z}{\partial x}\frac{dx}{dt} + \frac{\partial z}{\partial y}\frac{dy}{dt}$$</span></div>
+<div class="formula-item"><span class="f-name">多元链式(一般)</span><span class="f-katex">$$\frac{\partial z}{\partial u} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial u} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial u}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>隐函数求导</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">F(x,y)=0</span><span class="f-katex">$$\frac{dy}{dx} = -\frac{F_x}{F_y}$$</span></div>
+<div class="formula-item"><span class="f-name">F(x,y,z)=0</span><span class="f-katex">$$\frac{\partial z}{\partial x} = -\frac{F_x}{F_z},\quad \frac{\partial z}{\partial y} = -\frac{F_y}{F_z}$$</span></div>
+<div class="formula-item"><span class="f-name">方程组求导</span><span class="f-katex">$$\begin{cases} F(x,y,u,v)=0 \\ G(x,y,u,v)=0 \end{cases} \Rightarrow \text{用雅可比行列式}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>方向导数与梯度 <span class="tag tag-s1">数一</span></h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">方向导数</span><span class="f-katex">$$\frac{\partial f}{\partial \vec{l}} = f_x\cos\alpha + f_y\cos\beta + f_z\cos\gamma$$</span></div>
+<div class="formula-item"><span class="f-name">梯度</span><span class="f-katex">$$\nabla f = \operatorname{grad} f = (f_x, f_y, f_z)$$</span></div>
+<div class="formula-item"><span class="f-name">方向导数=梯度投影</span><span class="f-katex">$$\frac{\partial f}{\partial \vec{l}} = \nabla f \cdot \vec{l}_0$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>多元极值</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">极值必要条件</span><span class="f-katex">$$f_x = 0,\ f_y = 0$$</span></div>
+<div class="formula-item"><span class="f-name">判别式</span><span class="f-katex">$$A = f_{xx},\ B = f_{xy},\ C = f_{yy},\ \Delta = AC - B^2$$</span></div>
+<div class="formula-item"><span class="f-name">极小值条件</span><span class="f-katex">$$\Delta > 0,\ A > 0 \Rightarrow \text{极小值}$$</span></div>
+<div class="formula-item"><span class="f-name">极大值条件</span><span class="f-katex">$$\Delta > 0,\ A < 0 \Rightarrow \text{极大值}$$</span></div>
+<div class="formula-item"><span class="f-name">拉格朗日乘数法</span><span class="f-katex">$$L(x,y,\lambda) = f(x,y) + \lambda\varphi(x,y)$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 二重积分 -->
+<div class="section-block" id="sec-double-int">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>二重积分</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>二重积分计算</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">直角坐标定义</span><span class="f-katex">$$\iint_D f(x,y)d\sigma = \iint_D f(x,y)dxdy$$</span></div>
+<div class="formula-item"><span class="f-name">X型区域</span><span class="f-katex">$$\iint_D f\,dxdy = \int_a^b dx \int_{y_1(x)}^{y_2(x)} f(x,y)dy$$</span></div>
+<div class="formula-item"><span class="f-name">Y型区域</span><span class="f-katex">$$\iint_D f\,dxdy = \int_c^d dy \int_{x_1(y)}^{x_2(y)} f(x,y)dx$$</span></div>
+<div class="formula-item"><span class="f-name">极坐标变换</span><span class="f-katex">$$x = r\cos\theta,\ y = r\sin\theta,\ dxdy = r\,dr d\theta$$</span></div>
+<div class="formula-item"><span class="f-name">极坐标积分</span><span class="f-katex">$$\iint_D f\,dxdy = \int_{\alpha}^{\beta} d\theta \int_{r_1(\theta)}^{r_2(\theta)} f(r\cos\theta,r\sin\theta)r\,dr$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>二重积分换元</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">一般换元</span><span class="f-katex">$$\iint_D f\,dxdy = \iint_{D'} f[x(u,v),y(u,v)] \left|\frac{\partial(x,y)}{\partial(u,v)}\right| du\,dv$$</span></div>
+<div class="formula-item"><span class="f-name">雅可比行列式</span><span class="f-katex">$$J = \frac{\partial(x,y)}{\partial(u,v)} = \begin{vmatrix} x_u & x_v \\ y_u & y_v \end{vmatrix}$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 三重积分 -->
+<div class="section-block" id="sec-triple-int">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>三重积分 <span class="tag tag-s1">数一</span></h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>三重积分坐标变换</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">柱坐标</span><span class="f-katex">$$x = r\cos\theta,\ y = r\sin\theta,\ z = z,\ dV = r\,dr d\theta dz$$</span></div>
+<div class="formula-item"><span class="f-name">球坐标</span><span class="f-katex">$$x = r\sin\varphi\cos\theta,\ y = r\sin\varphi\sin\theta,\ z = r\cos\varphi$$</span></div>
+<div class="formula-item"><span class="f-name">球坐标体积元</span><span class="f-katex">$$dV = r^2\sin\varphi\,dr d\varphi d\theta$$</span></div>
+<div class="formula-item"><span class="f-name">投影法</span><span class="f-katex">$$\iiint_\Omega f\,dV = \iint_D dxdy \int_{z_1}^{z_2} f(x,y,z)dz$$</span></div>
+<div class="formula-item"><span class="f-name">截面法</span><span class="f-katex">$$\iiint_\Omega f\,dV = \int_{z_1}^{z_2} dz \iint_{D_z} f(x,y,z)dxdy$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 曲线曲面积分 -->
+<div class="section-block" id="sec-line-surface">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>曲线积分与曲面积分 <span class="tag tag-s1">数一</span></h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>第一类曲线积分（对弧长）</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">定义</span><span class="f-katex">$$\int_L f(x,y)ds = \lim_{\lambda \to 0}\sum f(\xi_i,\eta_i)\Delta s_i$$</span></div>
+<div class="formula-item"><span class="f-name">参数方程计算</span><span class="f-katex">$$\int_L f(x,y)ds = \int_{\alpha}^{\beta} f(x(t),y(t))\sqrt{[x'(t)]^2+[y'(t)]^2}\,dt$$</span></div>
+<div class="formula-item"><span class="f-name">y=y(x)形式</span><span class="f-katex">$$\int_L f(x,y)ds = \int_a^b f(x,y(x))\sqrt{1+[y'(x)]^2}\,dx$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>第二类曲线积分（对坐标）</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">定义</span><span class="f-katex">$$\int_L Pdx + Qdy$$</span></div>
+<div class="formula-item"><span class="f-name">参数方程计算</span><span class="f-katex">$$\int_L Pdx+Qdy = \int_{\alpha}^{\beta} [P x'(t) + Q y'(t)]dt$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>格林公式</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">格林公式</span><span class="f-katex">$$\oint_L Pdx + Qdy = \iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)dxdy$$</span></div>
+<div class="formula-item"><span class="f-name">积分与路径无关</span><span class="f-katex">$$\frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y} \Leftrightarrow \text{积分与路径无关}$$</span></div>
+<div class="formula-item"><span class="f-name">面积公式(格林)</span><span class="f-katex">$$S = \frac{1}{2}\oint_L xdy - ydx$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>第一类曲面积分（对面积）</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">定义</span><span class="f-katex">$$\iint_\Sigma f(x,y,z)dS$$</span></div>
+<div class="formula-item"><span class="f-name">投影计算</span><span class="f-katex">$$\iint_\Sigma f\,dS = \iint_{D_{xy}} f(x,y,z(x,y))\sqrt{1+z_x^2+z_y^2}\,dxdy$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>第二类曲面积分（对坐标）</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">定义</span><span class="f-katex">$$\iint_\Sigma Pdydz + Qdzdx + Rdxdy$$</span></div>
+<div class="formula-item"><span class="f-name">投影计算</span><span class="f-katex">$$\iint_\Sigma R(x,y,z)dxdy = \pm \iint_{D_{xy}} R(x,y,z(x,y))dxdy$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>高斯公式与斯托克斯公式</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">高斯公式</span><span class="f-katex">$$\oiint_\Sigma Pdydz+Qdzdx+Rdxdy = \iiint_\Omega \left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)dV$$</span></div>
+<div class="formula-item"><span class="f-name">散度</span><span class="f-katex">$$\operatorname{div}\vec{F} = \nabla \cdot \vec{F} = \frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}$$</span></div>
+<div class="formula-item"><span class="f-name">斯托克斯公式</span><span class="f-katex">$$\oint_L Pdx+Qdy+Rdz = \iint_\Sigma \begin{vmatrix} dydz & dzdx & dxdy \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ P & Q & R \end{vmatrix}$$</span></div>
+<div class="formula-item"><span class="f-name">旋度</span><span class="f-katex">$$\operatorname{rot}\vec{F} = \nabla \times \vec{F} = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\ \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\ P & Q & R \end{vmatrix}$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 无穷级数 -->
+<div class="section-block" id="sec-series">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>无穷级数 <span class="tag tag-s1">数一</span><span class="tag tag-s3" style="margin-left:4px;">数三</span></h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>常数项级数敛散性</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">正项级数比较法</span><span class="f-katex">$$0 \leq a_n \leq b_n,\ \sum b_n \text{ 收 } \Rightarrow \sum a_n \text{ 收}$$</span></div>
+<div class="formula-item"><span class="f-name">比值判别法(达朗贝尔)</span><span class="f-katex">$$\lim_{n \to \infty} \left|\frac{a_{n+1}}{a_n}\right| = \rho \begin{cases} <1 \text{ 收敛} \\ >1 \text{ 发散} \\ =1 \text{ 不确定} \end{cases}$$</span></div>
+<div class="formula-item"><span class="f-name">根值判别法(柯西)</span><span class="f-katex">$$\lim_{n \to \infty} \sqrt[n]{|a_n|} = \rho \begin{cases} <1 \text{ 收敛} \\ >1 \text{ 发散} \\ =1 \text{ 不确定} \end{cases}$$</span></div>
+<div class="formula-item"><span class="f-name">莱布尼兹判别法</span><span class="f-katex">$$a_n \geq a_{n+1} > 0,\ \lim a_n = 0 \Rightarrow \sum (-1)^{n-1}a_n \text{ 收敛}$$</span></div>
+<div class="formula-item"><span class="f-name">p级数</span><span class="f-katex">$$\sum_{n=1}^{\infty} \frac{1}{n^p} \begin{cases} p>1 \text{ 收敛} \\ p \leq 1 \text{ 发散} \end{cases}$$</span></div>
+<div class="formula-item"><span class="f-name">几何级数</span><span class="f-katex">$$\sum_{n=0}^{\infty} ar^n \begin{cases} |r|<1 \text{ 收敛于 }\frac{a}{1-r} \\ |r| \geq 1 \text{ 发散} \end{cases}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>幂级数</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">收敛半径(系数)</span><span class="f-katex">$$R = \lim_{n \to \infty} \left|\frac{a_n}{a_{n+1}}\right| \text{ 或 } R = \frac{1}{\lim_{n \to \infty} \sqrt[n]{|a_n|}}$$</span></div>
+<div class="formula-item"><span class="f-name">阿贝尔定理</span><span class="f-katex">$$|x| < R \text{ 绝对收敛}, |x| > R \text{ 发散}$$</span></div>
+<div class="formula-item"><span class="f-name">和函数性质</span><span class="f-katex">$$S(x) \text{ 在 }(-R,R)\text{ 内可逐项积分和逐项求导}$$</span></div>
+<div class="formula-item"><span class="f-name">常用展开1</span><span class="f-katex">$$\frac{1}{1-x} = \sum_{n=0}^{\infty} x^n,\ |x|<1$$</span></div>
+<div class="formula-item"><span class="f-name">常用展开2</span><span class="f-katex">$$e^x = \sum_{n=0}^{\infty} \frac{x^n}{n!},\ |x|<\infty$$</span></div>
+<div class="formula-item"><span class="f-name">常用展开3</span><span class="f-katex">$$\ln(1+x) = \sum_{n=1}^{\infty} (-1)^{n-1}\frac{x^n}{n},\ -1<x\leq 1$$</span></div>
+<div class="formula-item"><span class="f-name">常用展开4</span><span class="f-katex">$$\arctan x = \sum_{n=0}^{\infty} (-1)^n\frac{x^{2n+1}}{2n+1},\ |x|\leq 1$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>傅里叶级数 <span class="tag tag-s1">数一</span></h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">傅里叶级数展开</span><span class="f-katex">$$f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty}(a_n\cos nx + b_n\sin nx)$$</span></div>
+<div class="formula-item"><span class="f-name">系数aₙ</span><span class="f-katex">$$a_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\cos nx\,dx$$</span></div>
+<div class="formula-item"><span class="f-name">系数bₙ</span><span class="f-katex">$$b_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin nx\,dx$$</span></div>
+<div class="formula-item"><span class="f-name">奇函数展开(正弦)</span><span class="f-katex">$$a_n=0,\ b_n=\frac{2}{\pi}\int_0^{\pi} f(x)\sin nx\,dx$$</span></div>
+<div class="formula-item"><span class="f-name">偶函数展开(余弦)</span><span class="f-katex">$$b_n=0,\ a_n=\frac{2}{\pi}\int_0^{\pi} f(x)\cos nx\,dx$$</span></div>
+<div class="formula-item"><span class="f-name">周期2l展开</span><span class="f-katex">$$f(x)=\frac{a_0}{2}+\sum_{n=1}^{\infty}\!\left(a_n\cos\frac{n\pi x}{l}+b_n\sin\frac{n\pi x}{l}\right)$$</span></div>
+<div class="formula-item"><span class="f-name">狄利克雷收敛定理</span><span class="f-katex">$$\text{间断点处级数收敛于 }\frac{f(x^-)+f(x^+)}{2}$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 解析几何 -->
+<div class="section-block" id="sec-geometry">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>向量代数与空间解析几何 <span class="tag tag-s1">数一</span></h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>向量运算</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">数量积(点积)</span><span class="f-katex">$$\vec{a} \cdot \vec{b} = |\vec{a}||\vec{b}|\cos\theta = a_xb_x+a_yb_y+a_zb_z$$</span></div>
+<div class="formula-item"><span class="f-name">向量积(叉积)</span><span class="f-katex">$$\vec{a} \times \vec{b} = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\ a_x & a_y & a_z \\ b_x & b_y & b_z \end{vmatrix}$$</span></div>
+<div class="formula-item"><span class="f-name">混合积</span><span class="f-katex">$$[\vec{a}\vec{b}\vec{c}] = (\vec{a} \times \vec{b}) \cdot \vec{c} = \begin{vmatrix} a_x & a_y & a_z \\ b_x & b_y & b_z \\ c_x & c_y & c_z \end{vmatrix}$$</span></div>
+<div class="formula-item"><span class="f-name">向量投影</span><span class="f-katex">$$\operatorname{proj}_{\vec{b}}\vec{a} = \frac{\vec{a}\cdot\vec{b}}{|\vec{b}|^2}\vec{b}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>平面方程</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">点法式</span><span class="f-katex">$$A(x-x_0) + B(y-y_0) + C(z-z_0) = 0$$</span></div>
+<div class="formula-item"><span class="f-name">一般式</span><span class="f-katex">$$Ax + By + Cz + D = 0$$</span></div>
+<div class="formula-item"><span class="f-name">截距式</span><span class="f-katex">$$\frac{x}{a} + \frac{y}{b} + \frac{z}{c} = 1$$</span></div>
+<div class="formula-item"><span class="f-name">点到平面距离</span><span class="f-katex">$$d = \frac{|Ax_0+By_0+Cz_0+D|}{\sqrt{A^2+B^2+C^2}}$$</span></div>
+<div class="formula-item"><span class="f-name">两平面夹角</span><span class="f-katex">$$\cos\theta = \frac{|\vec{n}_1\cdot\vec{n}_2|}{|\vec{n}_1||\vec{n}_2|}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>直线方程</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">点向式(对称式)</span><span class="f-katex">$$\frac{x-x_0}{m} = \frac{y-y_0}{n} = \frac{z-z_0}{p}$$</span></div>
+<div class="formula-item"><span class="f-name">参数式</span><span class="f-katex">$$\begin{cases} x = x_0 + mt \\ y = y_0 + nt \\ z = z_0 + pt \end{cases}$$</span></div>
+<div class="formula-item"><span class="f-name">一般式(交面式)</span><span class="f-katex">$$\begin{cases} A_1x+B_1y+C_1z+D_1=0 \\ A_2x+B_2y+C_2z+D_2=0 \end{cases}$$</span></div>
+<div class="formula-item"><span class="f-name">点到直线距离</span><span class="f-katex">$$d = \frac{|\vec{s} \times \overrightarrow{M_0M}|}{|\vec{s}|}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>二次曲面 <span class="tag tag-s1">数一</span></h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">椭球面</span><span class="f-katex">$$\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = 1$$</span></div>
+<div class="formula-item"><span class="f-name">单叶双曲面</span><span class="f-katex">$$\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1$$</span></div>
+<div class="formula-item"><span class="f-name">双叶双曲面</span><span class="f-katex">$$\frac{x^2}{a^2} - \frac{y^2}{b^2} - \frac{z^2}{c^2} = 1$$</span></div>
+<div class="formula-item"><span class="f-name">椭圆抛物面</span><span class="f-katex">$$z = \frac{x^2}{a^2} + \frac{y^2}{b^2}$$</span></div>
+<div class="formula-item"><span class="f-name">双曲抛物面</span><span class="f-katex">$$z = \frac{x^2}{a^2} - \frac{y^2}{b^2}$$</span></div>
+<div class="formula-item"><span class="f-name">锥面</span><span class="f-katex">$$\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = 0$$</span></div>
+</div></div>
+
+</div></div>
+<!-- ============ 线性代数 ============ -->
+<div class="module-divider" id="module2">
+  <div class="m-num">2</div>
+  <h2>线性代数 <span style="font-size:14px;color:var(--text2);font-weight:400;margin-left:8px;">第 17 - 23 讲</span></h2>
+</div>
+
+<!-- 行列式 -->
+<div class="section-block" id="sec-determinant">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>行列式</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>行列式性质</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">转置不变</span><span class="f-katex">$$|A^T| = |A|$$</span></div>
+<div class="formula-item"><span class="f-name">互换两行变号</span><span class="f-katex">$$|A| \xrightarrow{r_i \leftrightarrow r_j} -|A|$$</span></div>
+<div class="formula-item"><span class="f-name">数乘一行</span><span class="f-katex">$$|k \cdot r_i| = k|A|$$</span></div>
+<div class="formula-item"><span class="f-name">倍加不变</span><span class="f-katex">$$r_i + kr_j \text{ 行列式值不变}$$</span></div>
+<div class="formula-item"><span class="f-name">|kA|</span><span class="f-katex">$$|kA| = k^n|A| \quad (A \text{ 为 } n \text{ 阶方阵})$$</span></div>
+<div class="formula-item"><span class="f-name">|AB|</span><span class="f-katex">$$|AB| = |A||B|$$</span></div>
+<div class="formula-item"><span class="f-name">|A*|</span><span class="f-katex">$$|A^*| = |A|^{n-1}$$</span></div>
+<div class="formula-item"><span class="f-name">|A⁻¹|</span><span class="f-katex">$$|A^{-1}| = \frac{1}{|A|}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>特殊行列式</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">上/下三角</span><span class="f-katex">$$\begin{vmatrix} a_{11} & & * \\ & \ddots & \\ 0 & & a_{nn} \end{vmatrix} = a_{11}a_{22}\cdots a_{nn}$$</span></div>
+<div class="formula-item"><span class="f-name">范德蒙德</span><span class="f-katex">$$\begin{vmatrix} 1 & x_1 & \cdots & x_1^{n-1} \\ \vdots & \vdots & \ddots & \vdots \\ 1 & x_n & \cdots & x_n^{n-1} \end{vmatrix} = \prod_{1 \leq i < j \leq n} (x_j - x_i)$$</span></div>
+<div class="formula-item"><span class="f-name">分块行列式</span><span class="f-katex">$$\begin{vmatrix} A & 0 \\ 0 & B \end{vmatrix} = |A||B|$$</span></div>
+<div class="formula-item"><span class="f-name">按行展开</span><span class="f-katex">$$|A| = \sum_{j=1}^{n} a_{ij}A_{ij} \quad (\text{按第 }i\text{ 行})$$</span></div>
+<div class="formula-item"><span class="f-name">拉普拉斯展开</span><span class="f-katex">$$|A| = \sum a_{ij}A_{ij} \text{ (按任意一行或一列)}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>克拉默法则</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">克拉默法则</span><span class="f-katex">$$x_i = \frac{|A_i|}{|A|},\quad |A| \neq 0$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 矩阵 -->
+<div class="section-block" id="sec-matrix">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>矩阵</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>矩阵运算</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">矩阵乘法不满足交换律</span><span class="f-katex">$$AB \neq BA \text{ (一般)}$$</span></div>
+<div class="formula-item"><span class="f-name">(AB)ᵀ</span><span class="f-katex">$$(AB)^T = B^T A^T$$</span></div>
+<div class="formula-item"><span class="f-name">(AB)⁻¹</span><span class="f-katex">$$(AB)^{-1} = B^{-1}A^{-1}$$</span></div>
+<div class="formula-item"><span class="f-name">(Aᵀ)⁻¹</span><span class="f-katex">$$(A^T)^{-1} = (A^{-1})^T$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>逆矩阵与伴随矩阵</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">可逆充要条件</span><span class="f-katex">$$|A| \neq 0 \Leftrightarrow A \text{ 可逆}$$</span></div>
+<div class="formula-item"><span class="f-name">逆矩阵公式</span><span class="f-katex">$$A^{-1} = \frac{1}{|A|}A^*$$</span></div>
+<div class="formula-item"><span class="f-name">伴随矩阵定义</span><span class="f-katex">$$A^* = (A_{ji})_{n \times n} \text{ (注意转置)}$$</span></div>
+<div class="formula-item"><span class="f-name">AA* 关系</span><span class="f-katex">$$AA^* = A^*A = |A|E$$</span></div>
+<div class="formula-item"><span class="f-name">二阶伴随</span><span class="f-katex">$$\begin{pmatrix} a & b \\ c & d \end{pmatrix}^* = \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>矩阵的秩</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">秩的定义</span><span class="f-katex">$$r(A) = \text{最高阶非零子式的阶数}$$</span></div>
+<div class="formula-item"><span class="f-name">r(A)=r(Aᵀ)</span><span class="f-katex">$$r(A) = r(A^T)$$</span></div>
+<div class="formula-item"><span class="f-name">r(AB)≤min{r(A),r(B)}</span><span class="f-katex">$$r(AB) \leq \min\{r(A), r(B)\}$$</span></div>
+<div class="formula-item"><span class="f-name">满秩⇔可逆</span><span class="f-katex">$$r(A)=n \Leftrightarrow A \text{ 可逆}$$</span></div>
+<div class="formula-item"><span class="f-name">秩1矩阵性质</span><span class="f-katex">$$r(A)=1 \Rightarrow A^n = [\operatorname{tr}(A)]^{n-1}A$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>分块矩阵</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">分块矩阵乘法</span><span class="f-katex">$$\begin{pmatrix} A & B \\ C & D \end{pmatrix}\begin{pmatrix} X \\ Y \end{pmatrix} = \begin{pmatrix} AX+BY \\ CX+DY \end{pmatrix}$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 向量与方程组 -->
+<div class="section-block" id="sec-vector">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>向量与线性方程组</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>线性相关性</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">线性相关定义</span><span class="f-katex">$$\exists k_i \text{ 不全为0},\ \sum k_i\alpha_i = 0$$</span></div>
+<div class="formula-item"><span class="f-name">n+1个n维向量</span><span class="f-katex">$$n+1 \text{ 个 } n \text{ 维向量必线性相关}$$</span></div>
+<div class="formula-item"><span class="f-name">线性无关⇔|A|≠0</span><span class="f-katex">$$\alpha_1,\cdots,\alpha_n \text{ 线性无关} \Leftrightarrow |A| \neq 0$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>线性方程组解</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">解的判定</span><span class="f-katex">$$Ax=b:\ \begin{cases} r(A)<r(A|b) \text{ 无解} \\ r(A)=r(A|b)=n \text{ 唯一解} \\ r(A)=r(A|b)<n \text{ 无穷多解} \end{cases}$$</span></div>
+<div class="formula-item"><span class="f-name">齐次有非零解</span><span class="f-katex">$$Ax=0 \text{ 有非零解} \Leftrightarrow r(A) < n$$</span></div>
+<div class="formula-item"><span class="f-name">通解结构</span><span class="f-katex">$$x = x_{\text{特}} + k_1\xi_1 + \cdots + k_{n-r}\xi_{n-r}$$</span></div>
+<div class="formula-item"><span class="f-name">解空间维数</span><span class="f-katex">$$\dim N(A) = n - r(A)$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>向量空间</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">基变换公式</span><span class="f-katex">$$(\beta_1,\cdots,\beta_n) = (\alpha_1,\cdots,\alpha_n)P$$</span></div>
+<div class="formula-item"><span class="f-name">坐标变换公式</span><span class="f-katex">$$y = P^{-1}x \text{ 或 } x = Py$$</span></div>
+<div class="formula-item"><span class="f-name">施密特正交化</span><span class="f-katex">$$\beta_k = \alpha_k - \sum_{i=1}^{k-1}\frac{(\alpha_k,\beta_i)}{(\beta_i,\beta_i)}\beta_i$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 特征值与二次型 -->
+<div class="section-block" id="sec-eigen">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>特征值与二次型</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>特征值与特征向量</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">定义</span><span class="f-katex">$$A\alpha = \lambda\alpha,\ \alpha \neq 0$$</span></div>
+<div class="formula-item"><span class="f-name">特征方程</span><span class="f-katex">$$|\lambda E - A| = 0$$</span></div>
+<div class="formula-item"><span class="f-name">迹=特征值和</span><span class="f-katex">$$\operatorname{tr}(A) = \sum \lambda_i = \sum a_{ii}$$</span></div>
+<div class="formula-item"><span class="f-name">行列式=特征值积</span><span class="f-katex">$$|A| = \prod \lambda_i$$</span></div>
+<div class="formula-item"><span class="f-name">不同特征值对应特征向量线性无关</span><span class="f-katex">$$\lambda_i \neq \lambda_j \Rightarrow \alpha_i, \alpha_j \text{ 线性无关}$$</span></div>
+<div class="formula-item"><span class="f-name">对称矩阵的特征向量正交</span><span class="f-katex">$$A=A^T \Rightarrow \text{不同特征值的特征向量正交}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>相似对角化</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">相似定义</span><span class="f-katex">$$A \sim B \Leftrightarrow \exists P \text{ 可逆},\ P^{-1}AP = B$$</span></div>
+<div class="formula-item"><span class="f-name">可对角化条件</span><span class="f-katex">$$A \text{ 有 } n \text{ 个线性无关的特征向量}$$</span></div>
+<div class="formula-item"><span class="f-name">实对称矩阵必可正交对角化</span><span class="f-katex">$$A=A^T \Rightarrow \exists Q \text{ 正交},\ Q^{-1}AQ = Q^TAQ = \Lambda$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>二次型</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">二次型矩阵表示</span><span class="f-katex">$$f(x) = x^T A x \quad (A \text{ 对称})$$</span></div>
+<div class="formula-item"><span class="f-name">标准形</span><span class="f-katex">$$f = \lambda_1 y_1^2 + \lambda_2 y_2^2 + \cdots + \lambda_n y_n^2$$</span></div>
+<div class="formula-item"><span class="f-name">正定条件</span><span class="f-katex">$$A \text{ 正定} \Leftrightarrow \forall \lambda_i > 0 \Leftrightarrow \text{顺序主子式}>0$$</span></div>
+<div class="formula-item"><span class="f-name">惯性定理</span><span class="f-katex">$$\text{正负惯性指数 } p,q \text{ 在合同变换下不变}$$</span></div>
+<div class="formula-item"><span class="f-name">合同定义</span><span class="f-katex">$$A \simeq B \Leftrightarrow \exists P \text{ 可逆},\ P^TAP = B$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- ============ 概率统计 ============ -->
+<div class="module-divider" id="module3">
+  <div class="m-num">3</div>
+  <h2>概率论与数理统计 <span style="font-size:14px;color:var(--text2);font-weight:400;margin-left:8px;">第 24 - 30 讲</span></h2>
+</div>
+
+<!-- 概率基础 -->
+<div class="section-block" id="sec-prob-basic">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>随机事件与概率</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>概率基本公式</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">加法公式</span><span class="f-katex">$$P(A \cup B) = P(A) + P(B) - P(AB)$$</span></div>
+<div class="formula-item"><span class="f-name">三事件加法</span><span class="f-katex">$$P(A\cup B\cup C) = P(A)+P(B)+P(C) - P(AB)-P(BC)-P(AC) + P(ABC)$$</span></div>
+<div class="formula-item"><span class="f-name">条件概率</span><span class="f-katex">$$P(B|A) = \frac{P(AB)}{P(A)},\ P(A)>0$$</span></div>
+<div class="formula-item"><span class="f-name">乘法公式</span><span class="f-katex">$$P(AB) = P(A)P(B|A) = P(B)P(A|B)$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>全概率与贝叶斯</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">全概率公式</span><span class="f-katex">$$P(B) = \sum_{i=1}^{n} P(A_i)P(B|A_i)$$</span></div>
+<div class="formula-item"><span class="f-name">贝叶斯公式</span><span class="f-katex">$$P(A_i|B) = \frac{P(A_i)P(B|A_i)}{\sum_{j=1}^{n} P(A_j)P(B|A_j)}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>独立性</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">A,B独立</span><span class="f-katex">$$P(AB) = P(A)P(B)$$</span></div>
+<div class="formula-item"><span class="f-name">两两独立≠相互独立</span><span class="f-katex">$$P(AB)=P(A)P(B),\ P(BC)=P(B)P(C),\ P(AC)=P(A)P(C) \nRightarrow P(ABC)=P(A)P(B)P(C)$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 随机变量 -->
+<div class="section-block" id="sec-rv">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>随机变量及其分布</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>常见离散型分布</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">0-1分布</span><span class="f-katex">$$P(X=1)=p,\ P(X=0)=1-p,\ EX=p,\ DX=p(1-p)$$</span></div>
+<div class="formula-item"><span class="f-name">二项分布B(n,p)</span><span class="f-katex">$$P(X=k)=\binom{n}{k}p^k(1-p)^{n-k},\ EX=np,\ DX=np(1-p)$$</span></div>
+<div class="formula-item"><span class="f-name">泊松分布P(λ)</span><span class="f-katex">$$P(X=k)=\frac{\lambda^k}{k!}e^{-\lambda},\ EX=\lambda,\ DX=\lambda$$</span></div>
+<div class="formula-item"><span class="f-name">几何分布G(p)</span><span class="f-katex">$$P(X=k)=(1-p)^{k-1}p,\ EX=\frac{1}{p},\ DX=\frac{1-p}{p^2}$$</span></div>
+<div class="formula-item"><span class="f-name">超几何分布</span><span class="f-katex">$$P(X=k)=\frac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{n}}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>常见连续型分布</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">均匀分布U(a,b)</span><span class="f-katex">$$f(x)=\frac{1}{b-a},\ x\in[a,b],\ EX=\frac{a+b}{2},\ DX=\frac{(b-a)^2}{12}$$</span></div>
+<div class="formula-item"><span class="f-name">指数分布E(λ)</span><span class="f-katex">$$f(x)=\lambda e^{-\lambda x},\ x>0,\ EX=\frac{1}{\lambda},\ DX=\frac{1}{\lambda^2}$$</span></div>
+<div class="formula-item"><span class="f-name">正态分布N(μ,σ²)</span><span class="f-katex">$$f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\ EX=\mu,\ DX=\sigma^2$$</span></div>
+<div class="formula-item"><span class="f-name">标准正态分布</span><span class="f-katex">$$\varphi(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}},\ \Phi(x)=\int_{-\infty}^{x}\varphi(t)dt$$</span></div>
+<div class="formula-item"><span class="f-name">标准化</span><span class="f-katex">$$X \sim N(\mu,\sigma^2) \Rightarrow \frac{X-\mu}{\sigma} \sim N(0,1)$$</span></div>
+<div class="formula-item"><span class="f-name">Φ(−x)</span><span class="f-katex">$$\Phi(-x) = 1 - \Phi(x)$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>二维随机变量</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">联合分布函数</span><span class="f-katex">$$F(x,y) = P(X \leq x, Y \leq y)$$</span></div>
+<div class="formula-item"><span class="f-name">边缘分布</span><span class="f-katex">$$F_X(x) = F(x,+\infty),\ F_Y(y) = F(+\infty,y)$$</span></div>
+<div class="formula-item"><span class="f-name">边缘密度</span><span class="f-katex">$$f_X(x) = \int_{-\infty}^{+\infty} f(x,y)dy$$</span></div>
+<div class="formula-item"><span class="f-name">条件分布</span><span class="f-katex">$$f_{Y|X}(y|x) = \frac{f(x,y)}{f_X(x)}$$</span></div>
+<div class="formula-item"><span class="f-name">X,Y独立</span><span class="f-katex">$$f(x,y) = f_X(x)f_Y(y) \Leftrightarrow X,Y \text{ 独立}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>随机变量函数的分布</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">Z=X+Y 卷积</span><span class="f-katex">$$f_Z(z) = \int_{-\infty}^{+\infty} f(x, z-x)dx \stackrel{\text{独立}}{=} \int_{-\infty}^{+\infty} f_X(x)f_Y(z-x)dx$$</span></div>
+<div class="formula-item"><span class="f-name">正态分布可加性</span><span class="f-katex">$$X_i \sim N(\mu_i,\sigma_i^2) \text{ 独立} \Rightarrow \sum a_iX_i \sim N\!\left(\sum a_i\mu_i,\ \sum a_i^2\sigma_i^2\right)$$</span></div>
+<div class="formula-item"><span class="f-name">M=max(X,Y)</span><span class="f-katex">$$F_M(z)=P(\max(X,Y)\leq z)=F_X(z)F_Y(z)$$</span></div>
+<div class="formula-item"><span class="f-name">N=min(X,Y)</span><span class="f-katex">$$F_N(z)=1-[1-F_X(z)][1-F_Y(z)]$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 数字特征 -->
+<div class="section-block" id="sec-numeric">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>数字特征</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>数学期望与方差</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">期望定义(离散)</span><span class="f-katex">$$EX = \sum x_k p_k$$</span></div>
+<div class="formula-item"><span class="f-name">期望定义(连续)</span><span class="f-katex">$$EX = \int_{-\infty}^{+\infty} x f(x)dx$$</span></div>
+<div class="formula-item"><span class="f-name">方差定义</span><span class="f-katex">$$DX = E(X-EX)^2 = EX^2 - (EX)^2$$</span></div>
+<div class="formula-item"><span class="f-name">线性性质</span><span class="f-katex">$$E(aX+b) = aEX + b,\ D(aX+b) = a^2DX$$</span></div>
+<div class="formula-item"><span class="f-name">独立时方差和</span><span class="f-katex">$$D(X \pm Y) = DX + DY \quad (X,Y \text{ 独立})$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>协方差与相关系数</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">协方差定义</span><span class="f-katex">$$\operatorname{Cov}(X,Y) = E[(X-EX)(Y-EY)] = E(XY) - EX \cdot EY$$</span></div>
+<div class="formula-item"><span class="f-name">相关系数</span><span class="f-katex">$$\rho_{XY} = \frac{\operatorname{Cov}(X,Y)}{\sqrt{DX}\sqrt{DY}},\ |\rho| \leq 1$$</span></div>
+<div class="formula-item"><span class="f-name">独立⇒不相关</span><span class="f-katex">$$X,Y \text{ 独立} \Rightarrow \rho_{XY}=0 \text{ (反之不成立)}$$</span></div>
+<div class="formula-item"><span class="f-name">D(X±Y)一般公式</span><span class="f-katex">$$D(X \pm Y) = DX + DY \pm 2\operatorname{Cov}(X,Y)$$</span></div>
+<div class="formula-item"><span class="f-name">协方差性质</span><span class="f-katex">$$\operatorname{Cov}(aX,bY) = ab\operatorname{Cov}(X,Y)$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>大数定律与中心极限定理</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">切比雪夫不等式</span><span class="f-katex">$$P(|X-EX| \geq \varepsilon) \leq \frac{DX}{\varepsilon^2}$$</span></div>
+<div class="formula-item"><span class="f-name">辛钦大数定律</span><span class="f-katex">$$\frac{1}{n}\sum_{i=1}^{n} X_i \xrightarrow{P} EX \quad (X_i \text{ i.i.d.}, EX \text{ 存在})$$</span></div>
+<div class="formula-item"><span class="f-name">列维-林德伯格CLT</span><span class="f-katex">$$\frac{\sum X_i - n\mu}{\sqrt{n}\sigma} \xrightarrow{d} N(0,1)$$</span></div>
+<div class="formula-item"><span class="f-name">德莫弗-拉普拉斯CLT</span><span class="f-katex">$$\frac{X_n - np}{\sqrt{np(1-p)}} \xrightarrow{d} N(0,1),\ X_n \sim B(n,p)$$</span></div>
+</div></div>
+
+</div></div>
+
+<!-- 数理统计 -->
+<div class="section-block" id="sec-stats">
+<div class="section-header" onclick="toggleSection(this)">
+  <h3>数理统计</h3>
+  <span class="arrow">▼</span>
+</div>
+<div class="section-body">
+
+<div class="subsection">
+<h4>统计量</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">样本均值</span><span class="f-katex">$$\bar{X} = \frac{1}{n}\sum_{i=1}^{n} X_i,\ E\bar{X}=\mu,\ D\bar{X}=\frac{\sigma^2}{n}$$</span></div>
+<div class="formula-item"><span class="f-name">样本方差</span><span class="f-katex">$$S^2 = \frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar{X})^2,\ ES^2=\sigma^2$$</span></div>
+<div class="formula-item"><span class="f-name">样本k阶原点矩</span><span class="f-katex">$$A_k = \frac{1}{n}\sum_{i=1}^{n} X_i^k$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>三大抽样分布</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">χ²分布定义</span><span class="f-katex">$$X_i \sim N(0,1) \text{ i.i.d.} \Rightarrow \sum_{i=1}^{n} X_i^2 \sim \chi^2(n)$$</span></div>
+<div class="formula-item"><span class="f-name">χ²期望方差</span><span class="f-katex">$$E\chi^2(n)=n,\ D\chi^2(n)=2n$$</span></div>
+<div class="formula-item"><span class="f-name">t分布定义</span><span class="f-katex">$$X \sim N(0,1),\ Y \sim \chi^2(n) \text{ 独立} \Rightarrow \frac{X}{\sqrt{Y/n}} \sim t(n)$$</span></div>
+<div class="formula-item"><span class="f-name">F分布定义</span><span class="f-katex">$$X \sim \chi^2(n_1),\ Y \sim \chi^2(n_2) \text{ 独立} \Rightarrow \frac{X/n_1}{Y/n_2} \sim F(n_1,n_2)$$</span></div>
+<div class="formula-item"><span class="f-name">F分布倒数关系</span><span class="f-katex">$$F_{1-\alpha}(n_1,n_2) = \frac{1}{F_\alpha(n_2,n_1)}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>正态总体抽样定理</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">样本均值分布</span><span class="f-katex">$$\bar{X} \sim N\!\left(\mu, \frac{\sigma^2}{n}\right)$$</span></div>
+<div class="formula-item"><span class="f-name">样本方差关系</span><span class="f-katex">$$\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$$</span></div>
+<div class="formula-item"><span class="f-name">X̄与S²独立</span><span class="f-katex">$$\bar{X} \text{ 与 } S^2 \text{ 相互独立}$$</span></div>
+<div class="formula-item"><span class="f-name">t统计量</span><span class="f-katex">$$\frac{\bar{X}-\mu}{S/\sqrt{n}} \sim t(n-1)$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>参数估计</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">矩估计</span><span class="f-katex">$$\text{用样本矩代替总体矩解出参数}$$</span></div>
+<div class="formula-item"><span class="f-name">似然函数</span><span class="f-katex">$$L(\theta) = \prod_{i=1}^{n} f(x_i;\theta)$$</span></div>
+<div class="formula-item"><span class="f-name">对数似然方程</span><span class="f-katex">$$\frac{d\ln L(\theta)}{d\theta} = 0$$</span></div>
+<div class="formula-item"><span class="f-name">无偏性</span><span class="f-katex">$$E\hat{\theta} = \theta$$</span></div>
+<div class="formula-item"><span class="f-name">置信区间(μ已知σ²)</span><span class="f-katex">$$\bar{X} \pm z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$$</span></div>
+<div class="formula-item"><span class="f-name">置信区间(μ未知σ²)</span><span class="f-katex">$$\bar{X} \pm t_{\alpha/2}(n-1) \cdot \frac{S}{\sqrt{n}}$$</span></div>
+</div></div>
+
+<div class="subsection">
+<h4>假设检验</h4>
+<div class="formula-list">
+<div class="formula-item"><span class="f-name">两类错误</span><span class="f-katex">$$\alpha = P(\text{拒 }H_0|H_0\text{ 真}),\ \beta = P(\text{接 }H_0|H_0\text{ 假})$$</span></div>
+<div class="formula-item"><span class="f-name">Z检验统计量</span><span class="f-katex">$$Z = \frac{\bar{X}-\mu_0}{\sigma/\sqrt{n}} \sim N(0,1)$$</span></div>
+<div class="formula-item"><span class="f-name">t检验统计量</span><span class="f-katex">$$T = \frac{\bar{X}-\mu_0}{S/\sqrt{n}} \sim t(n-1)$$</span></div>
+<div class="formula-item"><span class="f-name">χ²检验统计量</span><span class="f-katex">$$\chi^2 = \frac{(n-1)S^2}{\sigma_0^2} \sim \chi^2(n-1)$$</span></div>
+</div></div>
+
+</div></div>
+
+</div><!-- end .container -->
+
+<button class="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到顶部">↑</button>
+
+<script>
+// Section toggle
+function toggleSection(header) {
+  header.parentElement.classList.toggle('open');
+}
+
+// Search
+function searchFormulas() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const blocks = document.querySelectorAll('.section-block');
+  let firstMatch = null;
+
+  blocks.forEach(block => {
+    if (!q) {
+      block.classList.remove('open');
+      block.style.display = '';
+      return;
+    }
+    const text = block.textContent.toLowerCase().replace(/\s+/g, ' ');
+    // Extract Chinese + formula keywords from search
+    const match = text.includes(q) ||
+      block.querySelector('.section-header h3')?.textContent.toLowerCase().includes(q);
+
+    if (match) {
+      block.style.display = '';
+      block.classList.add('open');
+      if (!firstMatch) firstMatch = block;
+    } else {
+      block.style.display = 'none';
+    }
+  });
+
+  if (firstMatch) {
+    firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+// Highlight active nav
+const navLinks = document.querySelectorAll('.quick-nav a');
+const sections = document.querySelectorAll('.section-block, .module-divider');
+
+function updateActiveNav() {
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if (top < 150) current = sec.id;
+  });
+  navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    link.classList.toggle('active', href === '#' + current);
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+
+// KaTeX render
+document.addEventListener('DOMContentLoaded', function() {
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$', right: '$', display: false},
+      {left: '\\(', right: '\\)', display: false},
+      {left: '\\[', right: '\\]', display: true}
+    ],
+    throwOnError: false
+  });
+});
+
+// Close all / expand all with Ctrl+Shift+O
+document.addEventListener('keydown', function(e) {
+  if (e.ctrlKey && e.shiftKey && e.key === 'O') {
+    e.preventDefault();
+    const all = document.querySelectorAll('.section-block');
+    const anyOpen = document.querySelector('.section-block.open');
+    all.forEach(b => b.classList.toggle('open', !anyOpen));
+  }
+});
+</script>
+
+</body>
+</html>
