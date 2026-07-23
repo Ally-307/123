@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #e8ecf1;
+  display: flex; flex-direction: column; align-items: center;
+  padding: 40px 20px; gap: 48px;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.poster {
+  width: 540px; height: 720px; border-radius: 24px;
+  overflow: hidden; position: relative; flex-shrink: 0;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+.poster.square { width: 540px; height: 540px; }
+.poster.square .main-title { font-size: 28px; }
+.poster.square .stat-num { font-size: 40px; }
+
+.poster-content {
+  position: relative; z-index: 2;
+  height: 100%; display: flex; flex-direction: column;
+  padding: 44px 40px;
+}
+
+/* ===== 共通 ===== */
+.top-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; letter-spacing: 1px;
+  margin-bottom: 18px;
+}
+.top-tag .dot { width: 6px; height: 6px; border-radius: 50%; }
+.main-title { font-size: 36px; font-weight: 900; line-height: 1.25; margin-bottom: 10px; }
+.subtitle { font-size: 15px; margin-bottom: 26px; line-height: 1.5; }
+
+.modules { display: flex; gap: 10px; margin-bottom: 28px; }
+.module-chip {
+  flex: 1; text-align: center; padding: 14px 8px; border-radius: 14px;
+  font-size: 13px; font-weight: 700;
+}
+.module-chip .chip-icon { font-size: 28px; display: block; margin-bottom: 6px; }
+
+.stats {
+  display: flex; align-items: center; justify-content: center; gap: 24px;
+  margin-bottom: 28px;
+}
+.stat-item { text-align: center; }
+.stat-num { font-size: 52px; font-weight: 900; line-height: 1; }
+.stat-label { font-size: 13px; margin-top: 4px; }
+.stat-divider { width: 1px; height: 40px; }
+
+.showcase {
+  border-radius: 16px; padding: 20px 20px 14px; margin-bottom: 24px;
+}
+.showcase .sc-label {
+  font-size: 12px; font-weight: 600; letter-spacing: 2px; margin-bottom: 10px;
+}
+.sc-items { display: flex; flex-wrap: wrap; gap: 8px; }
+.sc-item {
+  font-size: 13px; font-weight: 600; padding: 8px 16px;
+  border-radius: 22px;
+}
+
+.poster-footer {
+  margin-top: auto; display: flex; align-items: center; justify-content: space-between;
+  font-size: 12px; padding-top: 16px;
+}
+.footer-tag {
+  padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 600;
+}
+
+/* ======================================== */
+/* 蓝白学术风 — 主色调 */
+/* ======================================== */
+.poster.blue {
+  background: linear-gradient(155deg, #f5f9ff 0%, #edf3fe 30%, #f0f5ff 60%, #f8faff 100%);
+  color: #1a2a4a;
+}
+.poster.blue .glow-1 {
+  position: absolute; top: -60px; right: -40px;
+  width: 240px; height: 240px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.poster.blue .glow-2 {
+  position: absolute; bottom: 70px; left: -50px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(96,165,250,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.poster.blue .glow-3 {
+  position: absolute; top: 220px; left: 300px;
+  width: 150px; height: 150px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(2,132,199,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+.poster.blue .top-tag { color: #2563eb; }
+.poster.blue .top-tag .dot { background: #3b82f6; }
+.poster.blue .main-title {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #3b82f6 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.poster.blue .subtitle { color: #6b8aab; }
+.poster.blue .module-chip {
+  background: rgba(255,255,255,0.7);
+  color: #2a4070;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.poster.blue .stat-num {
+  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.poster.blue .stat-label { color: #6b8aab; }
+.poster.blue .stat-divider { background: rgba(0,0,0,0.07); }
+.poster.blue .showcase {
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(59,130,246,0.12);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+}
+.poster.blue .showcase .sc-label { color: #2563eb; }
+.poster.blue .sc-item {
+  background: rgba(59,130,246,0.08);
+  color: #1d4ed8;
+}
+.poster.blue .poster-footer { color: #6b8aab; border-top: 1px solid rgba(0,0,0,0.04); }
+.poster.blue .footer-tag { background: rgba(59,130,246,0.1); color: #2563eb; }
+
+/* ======================================== */
+/* 深灰学术风 */
+/* ======================================== */
+.poster.dark {
+  background: linear-gradient(155deg, #f8f8f8 0%, #f2f2f2 30%, #f5f5f5 60%, #fafafa 100%);
+  color: #1a1a1a;
+}
+.poster.dark .glow-1 {
+  position: absolute; top: -60px; right: -40px;
+  width: 240px; height: 240px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(100,100,100,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.poster.dark .glow-2 {
+  position: absolute; bottom: 70px; left: -50px;
+  width: 200px; height: 200px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(80,80,80,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.poster.dark .glow-3 {
+  position: absolute; top: 220px; left: 300px;
+  width: 150px; height: 150px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(60,60,60,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+.poster.dark .top-tag { color: #444; }
+.poster.dark .top-tag .dot { background: #555; }
+.poster.dark .main-title {
+  background: linear-gradient(135deg, #111 0%, #333 50%, #555 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.poster.dark .subtitle { color: #888; }
+.poster.dark .module-chip {
+  background: rgba(255,255,255,0.7);
+  color: #333;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.poster.dark .stat-num {
+  background: linear-gradient(180deg, #555 0%, #333 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.poster.dark .stat-label { color: #888; }
+.poster.dark .stat-divider { background: rgba(0,0,0,0.08); }
+.poster.dark .showcase {
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+}
+.poster.dark .showcase .sc-label { color: #444; }
+.poster.dark .sc-item {
+  background: rgba(0,0,0,0.05);
+  color: #333;
+}
+.poster.dark .poster-footer { color: #888; border-top: 1px solid rgba(0,0,0,0.04); }
+.poster.dark .footer-tag { background: rgba(0,0,0,0.07); color: #444; }
+</style>
+</head>
+<body>
+
+<!-- 1. 蓝白学术 · 竖版 -->
+<div class="poster blue">
+  <div class="glow-1"></div><div class="glow-2"></div><div class="glow-3"></div>
+  <div class="poster-content">
+    <div class="top-tag"><span class="dot"></span> 免费 PDF 可打印</div>
+    <div class="main-title">张宇30讲<br>A4纸大法</div>
+    <div class="subtitle">每讲一张A4纸 · 30张搞定考研数学全体系</div>
+    <div class="modules">
+      <div class="module-chip"><span class="chip-icon">📐</span>高等数学<br>16讲</div>
+      <div class="module-chip"><span class="chip-icon">📊</span>线性代数<br>7讲</div>
+      <div class="module-chip"><span class="chip-icon">🎲</span>概率统计<br>7讲</div>
+    </div>
+    <div class="stats">
+      <div class="stat-item"><div class="stat-num">30</div><div class="stat-label">张 A4 纸</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><div class="stat-num">300+</div><div class="stat-label">核心公式</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><div class="stat-num">📄</div><div class="stat-label">打印即用</div></div>
+    </div>
+    <div class="showcase">
+      <div class="sc-label">✦ 每张 A4 纸包含</div>
+      <div class="sc-items">
+        <span class="sc-item">📋 知识框架</span>
+        <span class="sc-item">📝 核心公式</span>
+        <span class="sc-item">🎯 常考题型</span>
+        <span class="sc-item">⚠️ 误区提醒</span>
+      </div>
+    </div>
+    <div class="poster-footer">
+      <span>📱 支持打印 · 免费分享</span>
+      <span class="footer-tag">A4 纸大法</span>
+    </div>
+  </div>
+</div>
+
+<!-- 2. 深灰学术 · 竖版 -->
+<div class="poster dark">
+  <div class="glow-1"></div><div class="glow-2"></div><div class="glow-3"></div>
+  <div class="poster-content">
+    <div class="top-tag"><span class="dot"></span> 免费 PDF 可打印</div>
+    <div class="main-title">张宇30讲<br>A4纸大法</div>
+    <div class="subtitle">每讲一张A4纸 · 30张搞定考研数学全体系</div>
+    <div class="modules">
+      <div class="module-chip"><span class="chip-icon">📐</span>高等数学<br>16讲</div>
+      <div class="module-chip"><span class="chip-icon">📊</span>线性代数<br>7讲</div>
+      <div class="module-chip"><span class="chip-icon">🎲</span>概率统计<br>7讲</div>
+    </div>
+    <div class="stats">
+      <div class="stat-item"><div class="stat-num">30</div><div class="stat-label">张 A4 纸</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><div class="stat-num">300+</div><div class="stat-label">核心公式</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><div class="stat-num">📄</div><div class="stat-label">打印即用</div></div>
+    </div>
+    <div class="showcase">
+      <div class="sc-label">✦ 每张 A4 纸包含</div>
+      <div class="sc-items">
+        <span class="sc-item">📋 知识框架</span>
+        <span class="sc-item">📝 核心公式</span>
+        <span class="sc-item">🎯 常考题型</span>
+        <span class="sc-item">⚠️ 误区提醒</span>
+      </div>
+    </div>
+    <div class="poster-footer">
+      <span>📱 支持打印 · 免费分享</span>
+      <span class="footer-tag">A4 纸大法</span>
+    </div>
+  </div>
+</div>
+
+<!-- 3. 蓝白学术 · 方版（朋友圈/抖音封面） -->
+<div class="poster blue square">
+  <div class="glow-1"></div><div class="glow-2"></div><div class="glow-3"></div>
+  <div class="poster-content">
+    <div class="top-tag"><span class="dot"></span> 免费 PDF 可打印</div>
+    <div class="main-title">张宇30讲 A4纸大法</div>
+    <div class="subtitle">30张A4纸 · 考研数学全体系 · 打印即用</div>
+    <div class="modules">
+      <div class="module-chip"><span class="chip-icon">📐</span>高数16讲</div>
+      <div class="module-chip"><span class="chip-icon">📊</span>线代7讲</div>
+      <div class="module-chip"><span class="chip-icon">🎲</span>概率7讲</div>
+    </div>
+    <div class="stats">
+      <div class="stat-item"><div class="stat-num">30</div><div class="stat-label">张 A4 纸</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><div class="stat-num">300+</div><div class="stat-label">核心公式</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat-item"><div class="stat-num">📄</div><div class="stat-label">打印即用</div></div>
+    </div>
+    <div class="showcase">
+      <div class="sc-label">✦ 每张纸包含</div>
+      <div class="sc-items">
+        <span class="sc-item">📋 知识框架</span>
+        <span class="sc-item">📝 核心公式</span>
+        <span class="sc-item">🎯 常考题型</span>
+        <span class="sc-item">⚠️ 误区提醒</span>
+      </div>
+    </div>
+    <div class="poster-footer">
+      <span>📱 支持打印 · 免费分享</span>
+      <span class="footer-tag">A4 纸大法</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
