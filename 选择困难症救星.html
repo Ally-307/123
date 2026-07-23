@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>选择困难症救星</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f5f0eb;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%; max-width: 420px;
+  background: #fffdf9;
+  border-radius: 28px;
+  padding: 36px 28px 32px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
+}
+
+/* ===== Tabs ===== */
+.tabs {
+  display: flex; gap: 8px; margin-bottom: 32px;
+}
+.tab {
+  flex: 1; text-align: center; padding: 10px 0;
+  border-radius: 14px; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: all 0.25s;
+  color: #b8a99a; background: transparent;
+  user-select: none;
+}
+.tab.active {
+  background: #f0e8dd; color: #5c3d2e;
+}
+
+/* ===== 大转盘模式 ===== */
+.wheel-section { display: block; }
+.coin-section { display: none; }
+
+.wheel-area {
+  display: flex; flex-direction: column; align-items: center;
+}
+
+.wheel-label {
+  font-size: 22px; font-weight: 800; color: #3d2a15;
+  margin-bottom: 24px; letter-spacing: 2px;
+}
+
+/* 滚动显示区 */
+.roller {
+  width: 100%; height: 200px;
+  background: linear-gradient(180deg, #fdf8f2 0%, #faf3e8 50%, #fdf8f2 100%);
+  border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  margin-bottom: 20px;
+}
+.roller::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0;
+  height: 60px; background: linear-gradient(180deg, #fffdf9, transparent);
+  z-index: 2; pointer-events: none;
+}
+.roller::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 60px; background: linear-gradient(0deg, #fffdf9, transparent);
+  z-index: 2; pointer-events: none;
+}
+
+.roller-text {
+  font-size: 36px; font-weight: 900; color: #5c3d2e;
+  transition: none; letter-spacing: 2px; z-index: 1;
+}
+.roller-text.rolling {
+  animation: rollAnim 0.08s steps(1) infinite;
+}
+@keyframes rollAnim {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.result-badge {
+  margin-top: -10px; margin-bottom: 24px;
+  font-size: 28px; font-weight: 900; text-align: center; min-height: 42px;
+  color: #c2410c; letter-spacing: 3px;
+  transition: all 0.3s;
+}
+
+/* 预设按钮区 */
+.presets {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+}
+.preset-chip {
+  font-size: 13px; padding: 8px 16px; border-radius: 20px;
+  border: 1px solid #e5ddd4; background: #fffdf9;
+  color: #7a6958; cursor: pointer; transition: all 0.2s;
+  white-space: nowrap;
+}
+.preset-chip:hover { background: #f5ede2; border-color: #d4c8b8; }
+
+/* 输入区 */
+.input-row {
+  display: flex; gap: 10px; margin-bottom: 24px;
+}
+.input-row input {
+  flex: 1; padding: 12px 16px;
+  border: 1.5px solid #e5ddd4; border-radius: 16px;
+  font-size: 15px; color: #3d2a15; background: #fefcf9;
+  outline: none; font-family: inherit;
+}
+.input-row input:focus { border-color: #c4a882; }
+.input-row input::placeholder { color: #cfc3b5; }
+
+.btn {
+  width: 100%; padding: 16px;
+  border: none; border-radius: 20px;
+  font-size: 18px; font-weight: 700; letter-spacing: 3px;
+  cursor: pointer; transition: all 0.2s;
+  font-family: inherit;
+}
+
+/* ===== 决定模式 ===== */
+.coin-area {
+  display: flex; flex-direction: column; align-items: center;
+}
+.coin-label {
+  font-size: 22px; font-weight: 800; color: #3d2a15;
+  margin-bottom: 6px; letter-spacing: 2px; text-align: center;
+}
+.coin-sub {
+  font-size: 14px; color: #b8a99a; margin-bottom: 28px;
+}
+
+.coin-circle {
+  width: 180px; height: 180px; border-radius: 50%;
+  background: linear-gradient(145deg, #f0e8dd, #e8dcc8);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 28px; cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  user-select: none;
+  position: relative;
+}
+.coin-circle:hover { transform: scale(1.03); }
+
+.coin-emoji {
+  font-size: 72px; transition: all 0.4s;
+}
+.coin-circle.flipping { animation: flipCoin 0.8s ease-in-out; }
+@keyframes flipCoin {
+  0% { transform: rotateY(0) scale(1); }
+  25% { transform: rotateY(180deg) scale(0.8); }
+  50% { transform: rotateY(360deg) scale(1.1); }
+  75% { transform: rotateY(540deg) scale(0.8); }
+  100% { transform: rotateY(720deg) scale(1); }
+}
+
+.coin-result {
+  font-size: 26px; font-weight: 900; color: #5c3d2e;
+  margin-bottom: 24px; min-height: 36px; letter-spacing: 2px;
+  transition: all 0.3s;
+}
+
+.coin-presets {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+}
+
+/* 按钮颜色 */
+.btn-orange {
+  background: #f0e0cc; color: #7a4a2a;
+}
+.btn-orange:hover { background: #e8d4b8; }
+.btn-orange:active { transform: scale(0.97); }
+
+.btn-blue {
+  background: #dce8f0; color: #3d5a7a;
+}
+.btn-blue:hover { background: #cddbe6; }
+.btn-blue:active { transform: scale(0.97); }
+
+/* ===== 自定义选项标签 ===== */
+.tag-list {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+  min-height: 28px;
+}
+.tag {
+  font-size: 12px; padding: 4px 12px; border-radius: 14px;
+  background: #f5ede2; color: #7a6958;
+  display: flex; align-items: center; gap: 6px;
+}
+.tag-del {
+  cursor: pointer; font-size: 14px; line-height: 1;
+  color: #c4a882;
+}
+
+/* 分割线 */
+.divider {
+  text-align: center; font-size: 13px; color: #cfc3b5;
+  margin: 20px 0; letter-spacing: 2px;
+}
+
+/* 响应式 */
+@media (max-width: 440px) {
+  .container { padding: 28px 18px 24px; border-radius: 22px; }
+  .roller { height: 160px; }
+  .roller-text { font-size: 28px; }
+  .result-badge { font-size: 24px; }
+  .coin-circle { width: 150px; height: 150px; }
+  .coin-emoji { font-size: 60px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab active" data-tab="wheel">🎯 选一个</div>
+    <div class="tab" data-tab="coin">🎲 要不要</div>
+  </div>
+
+  <!-- ===== 大转盘模式 ===== -->
+  <div class="wheel-section" id="wheelSection">
+    <div class="wheel-area">
+      <div class="wheel-label">今天吃什么？</div>
+
+      <div class="roller" id="roller">
+        <div class="roller-text" id="rollerText">🍚</div>
+      </div>
+
+      <div class="result-badge" id="resultBadge"></div>
+
+      <div class="presets" id="wheelPresets"></div>
+
+      <div class="tag-list" id="tagList"></div>
+      <div class="input-row">
+        <input type="text" id="wheelInput" placeholder="添加选项，回车确认" maxlength="20">
+      </div>
+      <button class="btn btn-orange" id="wheelBtn">帮 我 决 定</button>
+    </div>
+  </div>
+
+  <!-- ===== 决定模式 ===== -->
+  <div class="coin-section" id="coinSection">
+    <div class="coin-area">
+      <div class="coin-label" id="coinLabel">要不要去？</div>
+      <div class="coin-sub">点击硬币翻转决定</div>
+
+      <div class="coin-circle" id="coinCircle">
+        <div class="coin-emoji" id="coinEmoji">❓</div>
+      </div>
+
+      <div class="coin-result" id="coinResult"></div>
+
+      <div class="coin-presets" id="coinPresets"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== 数据 =====
+const WHEEL_PRESETS = [
+  { label: '🍚 午餐', options: ['黄焖鸡', '麻辣烫', '螺蛳粉', '沙县小吃', '兰州拉面', '炸鸡汉堡', '盖浇饭', '饺子', '米线', '寿司', '轻食沙拉', '麻辣香锅'] },
+  { label: '🥤 喝什么', options: ['奶茶', '咖啡', '果茶', '白开水', '柠檬水', '可乐'] },
+  { label: '🍰 下午茶', options: ['蛋糕', '饼干', '水果', '酸奶', '不吃'] },
+  { label: '🍳 自己做', options: ['番茄炒蛋', '泡面', '蛋炒饭', '水饺', '煮粥', '叫外卖算了'] },
+];
+
+const COIN_PRESETS = [
+  { label: '💰 买不买', question: '买不买？' },
+  { label: '🚶 去不去', question: '要不要去？' },
+  { label: '🎬 看不看', question: '要不要看？' },
+  { label: '🍰 吃不吃', question: '吃不吃这个？' },
+  { label: '📱 回不回', question: '回不回消息？' },
+  { label: '😴 睡不睡', question: '现在睡不睡？' },
+  { label: '🏃 动一动', question: '要不要运动？' },
+  { label: '🗣️ 说不说', question: '要不要说？' },
+];
+
+let wheelOptions = [...WHEEL_PRESETS[0].options];
+let currentCoinQuestion = COIN_PRESETS[0].question;
+let isRolling = false;
+
+// ===== DOM =====
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+const tabWheel = $('[data-tab="wheel"]');
+const tabCoin = $('[data-tab="coin"]');
+const wheelSection = $('#wheelSection');
+const coinSection = $('#coinSection');
+const rollerText = $('#rollerText');
+const resultBadge = $('#resultBadge');
+const wheelInput = $('#wheelInput');
+const wheelBtn = $('#wheelBtn');
+const wheelPresets = $('#wheelPresets');
+const tagList = $('#tagList');
+const coinCircle = $('#coinCircle');
+const coinEmoji = $('#coinEmoji');
+const coinResult = $('#coinResult');
+const coinLabel = $('#coinLabel');
+const coinPresets = $('#coinPresets');
+const roller = $('#roller');
+
+// ===== Tab 切换 =====
+tabWheel.addEventListener('click', () => switchTab('wheel'));
+tabCoin.addEventListener('click', () => switchTab('coin'));
+
+function switchTab(tab) {
+  tabWheel.classList.toggle('active', tab === 'wheel');
+  tabCoin.classList.toggle('active', tab === 'coin');
+  wheelSection.style.display = tab === 'wheel' ? 'block' : 'none';
+  coinSection.style.display = tab === 'coin' ? 'block' : 'none';
+}
+
+// ===== 预设渲染 =====
+function renderWheelPresets() {
+  wheelPresets.innerHTML = WHEEL_PRESETS.map((p, i) =>
+    `<div class="preset-chip" data-idx="${i}">${p.label}</div>`
+  ).join('');
+  wheelPresets.querySelectorAll('.preset-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const idx = parseInt(chip.dataset.idx);
+      wheelOptions = [...WHEEL_PRESETS[idx].options];
+      renderTags();
+      resultBadge.textContent = '';
+    });
+  });
+}
+
+function renderCoinPresets() {
+  coinPresets.innerHTML = COIN_PRESETS.map((p, i) =>
+    `<div class="preset-chip" data-idx="${i}">${p.label}</div>`
+  ).join('');
+  coinPresets.querySelectorAll('.preset-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const idx = parseInt(chip.dataset.idx);
+      currentCoinQuestion = COIN_PRESETS[idx].question;
+      coinLabel.textContent = currentCoinQuestion;
+      coinResult.textContent = '';
+      coinEmoji.textContent = '❓';
+    });
+  });
+}
+
+function renderTags() {
+  if (wheelOptions.length <= 6) {
+    tagList.innerHTML = wheelOptions.map((o, i) =>
+      `<div class="tag">${o}<span class="tag-del" data-idx="${i}">×</span></div>`
+    ).join('');
+  } else {
+    tagList.innerHTML = `<div class="tag">共 ${wheelOptions.length} 个选项</div>`;
+  }
+  tagList.querySelectorAll('.tag-del').forEach(del => {
+    del.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = parseInt(del.dataset.idx);
+      wheelOptions.splice(idx, 1);
+      renderTags();
+      resultBadge.textContent = '';
+    });
+  });
+}
+
+// ===== 添加自定义选项 =====
+wheelInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && wheelInput.value.trim()) {
+    wheelOptions.push(wheelInput.value.trim());
+    wheelInput.value = '';
+    renderTags();
+    resultBadge.textContent = '';
+  }
+});
+
+// ===== 大转盘滚动 =====
+wheelBtn.addEventListener('click', () => {
+  if (isRolling) return;
+  if (wheelOptions.length === 0) {
+    resultBadge.textContent = '来都来了不加个选项？';
+    return;
+  }
+  isRolling = true;
+  resultBadge.textContent = '';
+  wheelBtn.textContent = '转 动 中...';
+  wheelBtn.style.opacity = '0.6';
+
+  const totalFrames = 30;
+  let frame = 0;
+  let interval = 60;
+
+  const spin = () => {
+    const randomIdx = Math.floor(Math.random() * wheelOptions.length);
+    rollerText.textContent = wheelOptions[randomIdx];
+    frame++;
+
+    if (frame < totalFrames) {
+      interval = 60 + frame * 8;
+      setTimeout(spin, interval);
+    } else {
+      // 最终结果
+      const finalIdx = Math.floor(Math.random() * wheelOptions.length);
+      const result = wheelOptions[finalIdx];
+      rollerText.textContent = result;
+      resultBadge.textContent = '👉 ' + result;
+      isRolling = false;
+      wheelBtn.textContent = '帮 我 决 定';
+      wheelBtn.style.opacity = '1';
+    }
+  };
+
+  spin();
+});
+
+// ===== 硬币翻转 =====
+coinCircle.addEventListener('click', () => {
+  coinCircle.classList.add('flipping');
+  coinEmoji.textContent = '🔄';
+  coinResult.textContent = '';
+
+  setTimeout(() => {
+    const yes = Math.random() > 0.5;
+    coinEmoji.textContent = yes ? '👍' : '👎';
+    const q = currentCoinQuestion;
+    coinResult.textContent = yes
+      ? q.replace('要不要', '要').replace('不', '').replace('？', '！')
+      : q.replace('要不要', '不要').replace('吃不吃', '不吃').replace('买不买', '不买').replace('看不看', '不看').replace('回不回', '不回').replace('睡不睡', '不睡').replace('说不说', '不说') + '～';
+    coinResult.style.color = yes ? '#16a34a' : '#dc2626';
+    coinCircle.classList.remove('flipping');
+  }, 800);
+});
+
+// ===== 初始化 =====
+renderWheelPresets();
+renderCoinPresets();
+renderTags();
+</script>
+</body>
+</html>
